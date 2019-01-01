@@ -42,13 +42,28 @@ td {
 #year,
 .year-previous,
 .year-next {
-    background-image: linear-gradient(lightblue, rgb(159, 159, 206));
+    background-image: linear-gradient(lightblue, rgb(170, 189, 221));
 }
 
 #month,
 .month-previous,
 .month-next {
-    background-image: linear-gradient(rgb(159, 159, 206), #7d8cc4);
+    background-image: linear-gradient(rgb(170, 189, 221), #7d8cc4);
+}
+
+.year-previous,
+.month-previous,
+.year-next,
+.month-next {
+    cursor: pointer;
+    transition: color .3s;
+}
+
+.year-previous:hover,
+.month-previous:hover,
+.year-next:hover,
+.month-next:hover {
+    color: red;
 }
 
 .year-previous,
