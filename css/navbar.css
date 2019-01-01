@@ -1,5 +1,5 @@
 .navbar-top {
-    background-color: lightblue;
+    background-color: #97A4EB;
     cursor: pointer;
     font-size: 2em;
     height: 60px;
@@ -42,7 +42,7 @@
 }
 
 .navbar-bottom {
-    background-color: lightblue;
+    background-color: #97A4EB;
     bottom: 0;
     cursor: pointer;
     font-size: 2em;
@@ -56,7 +56,7 @@
 }
 
 .navbar-hidden {
-    background-color: lightblue;
+    background-color: #97A4EB;
     display: none;
     min-width: 360px;
     overflow: hidden;
@@ -107,6 +107,6 @@
 
 .navbar-bottom ul li a:hover,
 .navbar-top ul li a:hover {
-    background-color: rgb(132, 189, 211);
+    background-color: #6B7DDC;
 }
 

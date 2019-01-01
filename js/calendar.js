@@ -6,9 +6,9 @@ const monthShortLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Au
 const dayOfWeekLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
 var currentDay = new Date();
-// var dd = currentDay.getDate();
-// var mm = currentDay.getMonth()+1;
-// var yyyy = currentDay.getFullYear();
+var dd = currentDay.getDate();
+var mm = currentDay.getMonth()+1;
+var yyyy = currentDay.getFullYear();
 
 var currentDayYear = currentDay.getFullYear();
 var currentDayMonth = currentDay.getMonth(); //index
@@ -35,6 +35,7 @@ function showDayView() {
 }
 
 function createMonthSkelaton() {
+    updateShortDates();
     let html = //html
         `
         <table class="view-month">
@@ -59,20 +60,31 @@ function createMonthSkelaton() {
     html += /*html*/ `</tr>`
 
     let dayOfMonth = 1 - new Date(currentDayYear + "-" + currentDayMonthWord + "-01").getDay();
-    for (let week = 1; week <= 6; week++) {
+    let daysInMonth = calcDaysInMonth(currentDayYear, currentDayMonth + 1);
+
+    let numWeeksToPrint = 0;
+    if (daysInMonth == 28 && dayOfMonth == 1) {
+        numWeeksToPrint = 4;
+    } else if ((daysInMonth == 31 && dayOfMonth >= -3) || (daysInMonth == 30 && dayOfMonth >= -4) || (daysInMonth == 29 && dayOfMonth >= -5) || (daysInMonth == 28 && dayOfMonth >= -6)) {
+        numWeeksToPrint = 5;
+    } else {
+        numWeeksToPrint = 6;
+    }
+
+    for (let week = 1; week <= numWeeksToPrint; week++) {
         html += /*html*/ `<tr>`;
         for (let dayOfWeek = 1; dayOfWeek <= 7; dayOfWeek++) {
-            if(dayOfMonth > 0 && dayOfMonth <= calcDaysInMonth(currentDayYear,currentDayMonth + 1)){
+            if (dayOfMonth > 0 && dayOfMonth <= daysInMonth) {
                 if (dayOfMonth % 2 == 1) {
                     html += /*html*/ `<td class="odd-day"><div class="day-label">${dayOfMonth++}</div></td>`;
                 } else {
                     html += /*html*/ `<td class="even-day"><div class="day-label">${dayOfMonth++}</div></td>`;
                 }
-            } else{
+            } else {
                 html += /*html*/ `<td class="blank-day"></td>`;
                 dayOfMonth++;
             }
-            
+
         }
         html += /*html*/ `</tr>`;
     }
@@ -114,44 +126,48 @@ function createDaySkelaton() {
     return html;
 }
 
-$(document).on('click','#year-previous',function (e) { 
+$(document).on('click', '#year-previous', function (e) {
     e.preventDefault();
     currentDayYear--;
     showMonthView();
 });
 
-$(document).on('click','#year-next',function (e) { 
+$(document).on('click', '#year-next', function (e) {
     e.preventDefault();
     currentDayYear++;
     showMonthView();
 });
 
-$(document).on('click','#month-previous',function (e) { 
+$(document).on('click', '#month-previous', function (e) {
     e.preventDefault();
-    if(currentDayMonth == 0){
+    if (currentDayMonth == 0) {
         currentDayMonth = 11;
         currentDayMonthWord = monthLongLabels[currentDayMonth];
         currentDayYear--;
-    } else{
+    } else {
         currentDayMonthWord = monthLongLabels[--currentDayMonth];
     }
     showMonthView();
 });
 
-$(document).on('click','#month-next',function (e) { 
+$(document).on('click', '#month-next', function (e) {
     e.preventDefault();
-    if(currentDayMonth == 11){
+    if (currentDayMonth == 11) {
         currentDayMonth = 0;
         currentDayMonthWord = monthLongLabels[currentDayMonth];
         currentDayYear++;
-    } else{
+    } else {
         currentDayMonthWord = monthLongLabels[++currentDayMonth];
     }
     showMonthView();
 });
 
+function updateShortDates() {
+    dd = currentDay.getDate();
+    mm = currentDay.getMonth()+1;
+    yyyy = currentDay.getFullYear();
+}
 
-
-function calcDaysInMonth (m, y) {
-    return new Date(m, y, 0).getDate();
+function calcDaysInMonth(y, m) {
+    return new Date(y, m, 0).getDate();
 }

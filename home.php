@@ -11,10 +11,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>µPlanner - Home</title>
 
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/navbar.css">
-    <link rel="stylesheet" href="css/calendar.css">
+    <link rel="stylesheet" href="css/normalize.min.css">
+    <link rel="stylesheet" href="css/main.min.css">
+    <link rel="stylesheet" href="css/navbar.min.css">
+    <link rel="stylesheet" href="css/calendar.min.css">
 
     <script src="app.js" defer></script>
     <script src="js/jquery-3.3.1.min.js"></script>
