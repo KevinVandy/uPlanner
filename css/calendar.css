@@ -1,0 +1,151 @@
+.calendar {
+    background-color: #ffffff;
+    margin: auto;
+    max-width: 1000px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.view-month {
+    background: #fff;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    white-space: nowrap;
+}
+
+.view-month tr {
+    width: 100%;
+}
+
+.view-month th,
+td {
+    width: 14.39%;
+    display: inline-table;
+}
+
+#year,
+.year-previous,
+.year-next,
+#month,
+.month-previous,
+.month-next {
+    height: 50px;
+    line-height: 3em;
+    font-size: 1.5em;
+    margin: 0 auto;
+    padding: 0;
+    text-align: center;
+    width: 72%;
+}
+
+#year,
+.year-previous,
+.year-next {
+    background-image: linear-gradient(lightblue, rgb(159, 159, 206));
+}
+
+#month,
+.month-previous,
+.month-next {
+    background-image: linear-gradient(rgb(159, 159, 206), #7d8cc4);
+}
+
+.year-previous,
+.month-previous {
+    text-align: right;
+    width: 33%;
+}
+
+.year-next,
+.month-next {
+    text-align: left;
+    width: 33%;
+}
+
+.day-of-week-label {
+    background-color: #7d8cc4;
+    border-bottom: #000 solid 3px;
+    color: #000000;
+    font-size: 1.3em;
+    height: 50px;
+    line-height: 2.5em;
+    text-align: center;
+}
+
+.odd-day,
+.even-day,
+.blank-day {
+    cursor: pointer;
+    font-size: 12px;
+    height: 100px;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+
+.odd-day {
+    background-color: rgb(204, 222, 228);
+}
+
+.odd-day .day-label {
+    background-color: rgb(168, 204, 218);
+}
+
+.even-day {
+    background-color: rgb(168, 204, 218);
+}
+
+.even-day .day-label {
+    background-color: rgb(204, 222, 228);
+}
+
+.view-month .odd-day:hover,
+.even-day:hover {
+    background-color: lightyellow;
+}
+
+.blank-day {
+    background-color: lightgray;
+}
+
+.view-week {
+    background: #fff;
+    cursor: pointer;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+}
+
+.view-week th {
+    min-height: 80px;
+    border: black 1px solid;
+}
+
+.view-week th {
+    text-align: center;
+    width: 10%;
+    min-width: 20px;
+    font-size: 2em;
+}
+
+.view-week td {
+    width: 90%;
+}
+
+.view-day {
+    color: green;
+}
+
+.day-label {
+    border-radius: 15px;
+    color: #000000;
+    display: table;
+    float: right;
+    font-size: 14pt;
+    height: 28px;
+    text-align: center;
+    width: 30px;
+    margin: 3px;
+    opacity: .8;
+    line-height: 1.4em;
+}
