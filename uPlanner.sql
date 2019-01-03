@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 29, 2018 at 09:01 PM
+-- Generation Time: Jan 02, 2019 at 01:51 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -213,6 +213,22 @@ CREATE TABLE `meetings` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `reminders`
+--
+
+CREATE TABLE `reminders` (
+  `Id` int(11) NOT NULL,
+  `AccountId` int(11) NOT NULL,
+  `ReminderText` text NOT NULL,
+  `Date` date NOT NULL,
+  `Time` time NOT NULL,
+  `CreationTime` datetime DEFAULT CURRENT_TIMESTAMP,
+  `ModifyTime` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tasks`
 --
 
@@ -233,7 +249,8 @@ CREATE TABLE `tasks` (
 -- Indexes for table `accounts`
 --
 ALTER TABLE `accounts`
-  ADD PRIMARY KEY (`Id`);
+  ADD PRIMARY KEY (`Id`),
+  ADD UNIQUE KEY `UniqueEmail` (`Email`);
 
 --
 -- Indexes for table `account_settings`
@@ -295,6 +312,13 @@ ALTER TABLE `job_work`
 -- Indexes for table `meetings`
 --
 ALTER TABLE `meetings`
+  ADD PRIMARY KEY (`Id`),
+  ADD KEY `AccountId` (`AccountId`);
+
+--
+-- Indexes for table `reminders`
+--
+ALTER TABLE `reminders`
   ADD PRIMARY KEY (`Id`),
   ADD KEY `AccountId` (`AccountId`);
 
@@ -369,6 +393,12 @@ ALTER TABLE `meetings`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `reminders`
+--
+ALTER TABLE `reminders`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- Constraints for dumped tables
 --
 
@@ -425,6 +455,12 @@ ALTER TABLE `job_work`
 --
 ALTER TABLE `meetings`
   ADD CONSTRAINT `meetings_ibfk_1` FOREIGN KEY (`AccountId`) REFERENCES `accounts` (`Id`);
+
+--
+-- Constraints for table `reminders`
+--
+ALTER TABLE `reminders`
+  ADD CONSTRAINT `reminders_ibfk_1` FOREIGN KEY (`AccountId`) REFERENCES `accounts` (`Id`);
 
 --
 -- Constraints for table `tasks`

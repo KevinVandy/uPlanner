@@ -13,47 +13,15 @@ table {
 }
 
 header {
-    background-color: blueviolet;
-    height: 50px;
+    background-color: none;
+    height: auto;
     margin: 0;
+    text-align: center;
     width: 100%;
 }
 
-h1, h2, h3 {
-    margin: 0;
-}
+@media only screen and (min-width: 1080px) {}
 
-.head1 {
-    display: inline;
-    text-align: left;
-    margin-left: 0;
-}
+@media only screen and (max-width: 768px) {}
 
-.head2 {
-    text-align: right;
-    margin-right: 0;
-    float: right;
-}
-
-
-
-@media only screen and (min-width: 1080px) {
-    
-}
-
-@media only screen and (max-width: 768px) {
-    .head1, .head2 {
-        display: block;
-        text-align: center;
-    }
-
-    .head1 {
-        font-size: 3em;
-    }
-}
-
-@media only screen and (max-width: 480px) {
-    .head2 {
-        font-size: 1.3em;
-    }
-}
+@media only screen and (max-width: 480px) {}

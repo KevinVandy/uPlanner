@@ -5,14 +5,9 @@ $dsn = "mysql:host=localhost;dbname=uplanner"; //local
 $usernameDB = "root";
 $passwordDB = "";
 
-try
-{
+try {
     $conn = new PDO($dsn, $usernameDB, $passwordDB);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-}
-catch (PDOException $ex)
-{
+} catch (PDOException $ex) {
     exit($ex->getMessage());
 }
-
-?>

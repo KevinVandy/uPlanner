@@ -1,6 +1,16 @@
-<?php
+<?php session_start();
 
-?>
+include './models/imports.php';
+
+if (!isset($_SESSION['account'])) {
+    $_SESSION['account'] = null;
+}
+
+if (!isLoggedIn()) {
+    header('Location: ./index.php');
+    exit();
+} else {
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,21 +33,21 @@
 
 <body>
     <nav id="navbar-top" class="navbar-top">
-        <script src="js/navbar-top.js"></script>
+        <script src="js/navbar-top.min.js"></script>
     </nav>
     <nav id="navbar-hidden" class="navbar-hidden">
-        <script src="js/navbar-hidden.js"></script>
+        <script src="js/navbar-hidden.min.js"></script>
     </nav>
     <main>
         <section id="calendar" class="calendar">
-            <script src="js/calendar.js" defer></script>
+            <script src="js/calendar.min.js" defer></script>
         </section>
         <section id="items" class="items">
 
         </section>
     </main>
     <nav id="navbar-bottom" class="navbar-bottom">
-        <script src="js/navbar-bottom.js"></script>
+        <script src="js/navbar-bottom.min.js"></script>
     </nav>
     <footer>
 
@@ -45,3 +55,6 @@
 </body>
 
 </html>
+<?php
+}
+?>

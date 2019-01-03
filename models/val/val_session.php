@@ -5,28 +5,25 @@ function login($account)
     $_SESSION['account'] = $account;
 }
 
-function isLoggedIn()
+function logout()
 {
-    if(isset($_SESSION['account']) && $_SESSION['account']->get_id() != NULL )
-    {
-        return TRUE;
-    }
-    else
-    {
-        return FALSE;
-    } 
+    session_destroy();
 }
 
-function validateLogin($email, $passwordHash)
+function isLoggedIn()
 {
-    if(findEmail($email) && password_verify(selectPasswordHashByEmail($email), $passwordHash))
-    {
+    if (isset($_SESSION['account']) && $_SESSION['account']->get_id() != null) {
         return true;
-    }
-    else
-    {
+    } else {
         return false;
     }
 }
 
-?>
+function validateLogin($email, $password)
+{
+    if (findEmail($email) && password_verify(selectPasswordHashByEmail($email), $password)) {
+        return true;
+    } else {
+        return false;
+    }
+}
