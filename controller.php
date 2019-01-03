@@ -3,6 +3,9 @@
 include './models/imports.php';
 
 $action = filter_input(INPUT_POST, 'action');
+if ($action == null) {
+    $action = filter_input(INPUT_GET, 'action');
+}
 
 switch ($action) {
 
@@ -15,12 +18,22 @@ switch ($action) {
 
         if ($_SESSION['errorMsgs'] == null) {
             $account = selectAccountByEmail($email);
-            login($user->getUsername());
+            login($account);
+            header('Location: ./home.php');
+            exit();
         } else {
             logout();
+            header('Location: ./index.php');
+            exit();
         }
 
         break;
+
+    case 'logout':
+
+        logout();
+        header('Location: ./index.php');
+        exit();
 
     case 'signup':
 
@@ -31,13 +44,15 @@ switch ($action) {
 
         $_SESSION['errorMsgs'] = validateSignUp($firstName, $email, $password, $passwordConfirm);
 
-        if ($_SESSION['errorMsgs'] == null) {
-            $account = new Account(null, $email, $firstName, 'default', 'default', false, null);
-            $account->set_id(insertAccount($account));
+        if (isArrayNull($_SESSION['errorMsgs'])) {
+            $account = new Account(null, $email, $firstName, 'default', 'default', false, false, null);
+            $account->set_id(insertAccount($account, hashPassword($password)));
             login($account->get_id());
             header('Location: ./home.php');
+            exit();
         } else {
             header('Location: ./index.php');
+            exit();
         }
 
         break;

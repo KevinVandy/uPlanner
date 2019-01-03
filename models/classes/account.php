@@ -7,15 +7,17 @@ class Account
     private $firstName;
     private $defaultView;
     private $theme;
+    private $hideCompleted;
     private $hideHints;
     private $creationTime;
 
-    function __construct($id, $email, $firstName, $defaultView, $theme, $hideHints, $creationTime) {
+    function __construct($id, $email, $firstName, $defaultView, $theme, $hideCompleted, $hideHints, $creationTime) {
         $this->id = $id;
         $this->email = $email;
         $this->firstName = $firstName;
         $this->defaultView = $defaultView;
         $this->theme = $theme;
+        $this->hideCompleted = $hideCompleted;
         $this->hideHints = $hideHints;
         $this->creationTime = $creationTime;
     }
@@ -38,6 +40,10 @@ class Account
 
     function get_theme() {
         return $this->theme;
+    }
+
+    function get_hideCompleted() {
+        return $this->hideCompleted;
     }
 
     function get_hideHints() {
@@ -66,6 +72,10 @@ class Account
 
     function set_theme($theme) {
         $this->theme = $theme;
+    }
+
+    function set_hideCompleted($hideCompleted) {
+        $this->hideCompleted = $hideCompleted;
     }
 
     function set_hideHints($hideHints) {

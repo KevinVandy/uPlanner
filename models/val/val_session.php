@@ -12,7 +12,7 @@ function logout()
 
 function isLoggedIn()
 {
-    if (isset($_SESSION['account']) && $_SESSION['account']->get_id() != null) {
+    if (isset($_SESSION['account']) && $_SESSION['account'] != null) {
         return true;
     } else {
         return false;
@@ -21,9 +21,16 @@ function isLoggedIn()
 
 function validateLogin($email, $password)
 {
-    if (findEmail($email) && password_verify(selectPasswordHashByEmail($email), $password)) {
-        return true;
+    if (findEmail($email) && password_verify($password, selectPasswordHashByEmail($email))) {
+        return null;
     } else {
-        return false;
+        return 'Login Error';
     }
+}
+
+function hashPassword($passwordPlainText)
+{
+    $options      = ['cost' => 13];
+    $passwordHash = password_hash($passwordPlainText, PASSWORD_BCRYPT, $options);
+    return $passwordHash;
 }

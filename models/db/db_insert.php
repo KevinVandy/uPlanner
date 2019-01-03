@@ -28,7 +28,7 @@ function insertAccount($account, $passwordHash)
         $statement->closeCursor();
     }
 
-    $account->set_id($conn->lastInsertedId()); //get account id for next statement
+    $account->set_id($conn->lastInsertId()); //get account id for next statement
 
     //insert into account_settings
     $query = 

@@ -25,8 +25,8 @@ function createHiddenNavBar(type) {
                 <tr>
                     <td><a>Add Job</a></td>
                     <td><a>Add Course</a></td>
-                    <td><a>Log Out</a></td>
                     <td><a href="./settings.php">Settings</a></td>
+                    <td><a href="./controller.php?action=logout">Log Out</a></td>
                 </tr>
             </table>
         `;

@@ -35,7 +35,7 @@ function selectAccountByEmail($email)
 
     $query = 
         'SELECT a.Id, a.Email, a.FirstName, a.CreateTime, a_s.DefaultView, a_s.Theme, a_s.HideCompleted, a_s.HideHints 
-         FROM accounts AS a INNER JOIN account_settings AS a_s on a.Id = a_c.AccountId 
+         FROM accounts AS a INNER JOIN account_settings AS a_s on a.Id = a_s.AccountId 
          WHERE a.Email = :email';
 
     $statement = $conn->prepare($query);
@@ -53,7 +53,7 @@ function selectAccountByEmail($email)
 
     $record = $statement->fetch();
     
-    $account = new Account($record['Id'], $record['Email'], $record['FirstName'], $record['DefaultView'], $record['Theme'], $record['HideHints'], $record['CreateTime']);
+    $account = new Account($record['Id'], $record['Email'], $record['FirstName'], $record['DefaultView'], $record['Theme'], $record['HideCompleted'], $record['HideHints'], $record['CreateTime']);
 
     return $account;
 }

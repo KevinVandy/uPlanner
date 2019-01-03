@@ -8,14 +8,14 @@ if (!isset($_SESSION['account'])) {
 
 if (!isset($_SESSION['errorMsgs'])){
     $_SESSION['errorMsgs'] = [];
-}
+} 
 
 $errorMsgs = $_SESSION['errorMsgs'];
 
 if (isLoggedIn()) {
     header('Location: ./home.php');
     exit();
-} else {
+} else { var_dump($_SESSION['errorMsgs']);
     ?>
 
 <!DOCTYPE html>
@@ -29,7 +29,8 @@ if (isLoggedIn()) {
     <link rel="stylesheet" href="css/normalize.min.css">
     <link rel="stylesheet" href="css/main.min.css">
 
-    <script src="app.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="app.min.js" defer></script>
 
 </head>
 <body>
@@ -45,7 +46,7 @@ if (isLoggedIn()) {
                     <tr>
                         <th>Email: </th>
                         <td>
-                            <input type="text" name="usernameOrEmail" value="<?php if (isset($email)) {echo htmlspecialchars($email);}?>" required autofocus>
+                            <input type="text" name="email" value="<?php if (isset($email)) {echo htmlspecialchars($email);}?>" required autofocus>
                         </td>
                     </tr>
                     <tr>
@@ -92,7 +93,7 @@ if (isLoggedIn()) {
                     <tr>
                         <th><label>Password:</label></th>
                         <td>
-                            <input type="password" name="password" minlength="8" maxlength="60" required>
+                            <input type="password" name="password" minlength="6" maxlength="60" required>
                         </td>
                     </tr>
                     <tr>
