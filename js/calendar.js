@@ -5,7 +5,12 @@ const monthShortLabels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July', 'Au
 
 const dayOfWeekLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-var currentDay = new Date();
+const today = new Date(); //stays todays date
+const todayDay = today.getDate();
+const todayMonth = today.getMonth(); //index;
+const todayYear = today.getFullYear();
+
+var currentDay = new Date(); //user cycles to new dates
 var dd = currentDay.getDate();
 var mm = currentDay.getMonth()+1;
 var yyyy = currentDay.getFullYear();
@@ -22,6 +27,10 @@ var currentDayMonthWord = monthLongLabels[currentDayMonth];
 
 })();
 
+function showYearView() {
+    calendarArea.innerHTML = createYearSkelaton();
+}
+
 function showMonthView() {
     calendarArea.innerHTML = createMonthSkelaton();
 }
@@ -34,20 +43,40 @@ function showDayView() {
     calendarArea.innerHTML = createDaySkelaton();
 }
 
+function createYearSkelaton() {
+    let html = //html
+    `    
+        <table class="view-year">
+            <tr>
+                <th>${currentDayYear}</th>
+            </tr>
+            <tr>
+                <td>
+                
+                </td>
+            </tr>
+        </table>
+        `;
+
+    html += /*html*/ `</table>`;
+
+    return html;
+}
+
 function createMonthSkelaton() {
     updateShortDates();
     let html = //html
         `
         <table class="view-month">
             <tr>
-                <th colspan="2" class="year-previous"><a id="year-previous"><</a></th>
-                <th colspan="3" id="year">${currentDayYear}</th>
-                <th colspan="2" class="year-next"><a id="year-next">></a></th>
+                <th colspan="3" class="year-previous"><a id="year-previous"><</a></th>
+                <th colspan="1" id="year">${currentDayYear}</th>
+                <th colspan="3" class="year-next"><a id="year-next">></a></th>
             </tr>
             <tr>
-                <th colspan="2" class="month-previous"><a id="month-previous"><</a></th>
-                <th colspan="3" id="month">${currentDayMonthWord}</th>
-                <th colspan="2" class="month-next"><a id="month-next">></a></th>
+                <th colspan="3" class="month-previous"><a id="month-previous"><</a></th>
+                <th colspan="1" id="month">${currentDayMonthWord}</th>
+                <th colspan="3" class="month-next"><a id="month-next">></a></th>
             </tr>
             <tr>
         `;
@@ -75,7 +104,9 @@ function createMonthSkelaton() {
         html += /*html*/ `<tr>`;
         for (let dayOfWeek = 1; dayOfWeek <= 7; dayOfWeek++) {
             if (dayOfMonth > 0 && dayOfMonth <= daysInMonth) {
-                if (dayOfMonth % 2 == 1) {
+                if (dayOfMonth == currentDayDay && currentDayMonth == todayMonth && currentDayYear == todayYear) {
+                    html += /*html*/ `<td class="to-day"><div class="day-label">${dayOfMonth++}</div></td>`;
+                } else if (dayOfMonth % 2 == 1) {
                     html += /*html*/ `<td class="odd-day"><div class="day-label">${dayOfMonth++}</div></td>`;
                 } else {
                     html += /*html*/ `<td class="even-day"><div class="day-label">${dayOfMonth++}</div></td>`;

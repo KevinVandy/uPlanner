@@ -10,6 +10,9 @@ function createBottomNavBar() {
     return /*html*/ `
         <ul>
             <li>
+                <a href="#" onclick="showYearView(); return false;">Year</a>
+            </li>
+            <li>
                 <a href="#" onclick="showMonthView(); return false;">Month</a>
             </li>
             <li>
@@ -20,4 +23,4 @@ function createBottomNavBar() {
             </li>
         </ul>
     `;
-} 
+}

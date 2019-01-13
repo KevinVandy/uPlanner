@@ -1,13 +1,12 @@
 .calendar {
-    background-color: #ffffff;
+    background-image: linear-gradient(#97A4EB, rgb(14, 4, 49));
     margin: auto;
-    max-width: 1000px;
+    max-width: 2000px;
     overflow: hidden;
     width: 100%;
 }
 
 .view-month {
-    background: #fff;
     margin: 0 auto;
     padding: 0;
     width: 100%;
@@ -42,13 +41,13 @@ td {
 #year,
 .year-previous,
 .year-next {
-    background-image: linear-gradient(#97A4EB, #6B7DDC);
+    
 }
 
 #month,
 .month-previous,
 .month-next {
-    background-image: linear-gradient(#6B7DDC, #4A5FCE);
+    
 }
 
 .year-previous,
@@ -88,6 +87,7 @@ td {
     text-align: center;
 }
 
+.to-day,
 .odd-day,
 .even-day,
 .blank-day {
@@ -96,6 +96,10 @@ td {
     height: 100px;
     text-align: center;
     transition: background-color 0.3s;
+}
+
+.to-day {
+    background-color: rgb(172, 72, 88);
 }
 
 .odd-day {

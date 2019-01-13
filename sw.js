@@ -1,7 +1,6 @@
 /* const staticAssets = [
     './index.php',
     './home.php',
-    './calendar.php',
     './settings.php',
     './app.js',
     './js/jquery-3.3.1.min.js',

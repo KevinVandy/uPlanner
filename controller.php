@@ -14,15 +14,15 @@ switch ($action) {
         $email    = filter_input(INPUT_POST, 'email');
         $password = filter_input(INPUT_POST, 'password');
 
-        $_SESSION['errorMsgs'] = validateLogin($email, $password);
+        $_SESSION['errorMsgs']['login'] = validateLogin($email, $password);
 
-        if ($_SESSION['errorMsgs'] == null) {
+        if ($_SESSION['errorMsgs']['login'] == null) {
             $account = selectAccountByEmail($email);
             login($account);
             header('Location: ./home.php');
             exit();
         } else {
-            logout();
+            $_SESSION['email'] = $email; //preserve typed in email on fail login
             header('Location: ./index.php');
             exit();
         }
@@ -54,6 +54,12 @@ switch ($action) {
             header('Location: ./index.php');
             exit();
         }
+
+        break;
+
+    default:
+
+        header('Location: ./index.php');
 
         break;
 
