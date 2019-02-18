@@ -21,6 +21,9 @@ if (!isLoggedIn()) {
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>µPlanner - Home</title>
 
+    <link rel="manifest" href="manifest.json">
+    <link rel="shortcut icon" href="favicon.ico">
+
     <link rel="stylesheet" href="css/normalize.min.css">
     <link rel="stylesheet" href="css/main.min.css">
     <link rel="stylesheet" href="css/navbar.min.css">

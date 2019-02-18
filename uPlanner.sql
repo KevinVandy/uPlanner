@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 02, 2019 at 01:51 AM
+-- Generation Time: Jan 13, 2019 at 09:50 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -34,10 +34,17 @@ CREATE TABLE `accounts` (
   `Id` int(11) NOT NULL,
   `Email` varchar(50) NOT NULL,
   `FirstName` varchar(50) NOT NULL,
-  `PasswordHash` varchar(200) NOT NULL,
+  `PasswordHash` text NOT NULL,
   `CreateTime` datetime DEFAULT CURRENT_TIMESTAMP,
   `ModifyTime` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `accounts`
+--
+
+INSERT INTO `accounts` (`Id`, `Email`, `FirstName`, `PasswordHash`, `CreateTime`, `ModifyTime`) VALUES
+(1, 'kevinvandy656@gmail.com', 'Kevin', '$2y$13$YW5uHoL.ENgeXaS.lXSKO..dl5HA6t0tcggdD1HubC0ZqjZz9Pk1y', '2019-01-02 23:38:54', '2019-01-02 23:38:54');
 
 -- --------------------------------------------------------
 
@@ -52,6 +59,27 @@ CREATE TABLE `account_settings` (
   `Theme` varchar(50) NOT NULL,
   `HideCompleted` tinyint(1) NOT NULL,
   `HideHints` tinyint(1) NOT NULL,
+  `CreateTime` datetime DEFAULT CURRENT_TIMESTAMP,
+  `ModifyTime` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `account_settings`
+--
+
+INSERT INTO `account_settings` (`Id`, `AccountId`, `DefaultView`, `Theme`, `HideCompleted`, `HideHints`, `CreateTime`, `ModifyTime`) VALUES
+(1, 1, 'default', 'default', 0, 0, '2019-01-02 23:38:54', '2019-01-02 23:38:54');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admins`
+--
+
+CREATE TABLE `admins` (
+  `Id` int(11) NOT NULL,
+  `UserName` varchar(50) NOT NULL,
+  `PasswordHash` text NOT NULL,
   `CreateTime` datetime DEFAULT CURRENT_TIMESTAMP,
   `ModifyTime` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -260,6 +288,12 @@ ALTER TABLE `account_settings`
   ADD KEY `AccountId` (`AccountId`);
 
 --
+-- Indexes for table `admins`
+--
+ALTER TABLE `admins`
+  ADD PRIMARY KEY (`Id`);
+
+--
 -- Indexes for table `courses`
 --
 ALTER TABLE `courses`
@@ -336,12 +370,18 @@ ALTER TABLE `tasks`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `account_settings`
 --
 ALTER TABLE `account_settings`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `admins`
+--
+ALTER TABLE `admins`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
