@@ -1,26 +1,26 @@
 .calendar {
-    background-image: linear-gradient(#97A4EB, rgb(14, 4, 49));
-    margin: auto;
-    max-width: 2000px;
-    overflow: hidden;
-    width: 100%;
+  background-image: linear-gradient(#97A4EB, rgb(14, 4, 49));
+  margin: auto;
+  max-width: 2000px;
+  overflow: hidden;
+  width: 100%;
 }
 
 .view-month {
-    margin: 0 auto;
-    padding: 0;
-    width: 100%;
-    white-space: nowrap;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  white-space: nowrap;
 }
 
 .view-month tr {
-    width: 100%;
+  width: 100%;
 }
 
 .view-month th,
 td {
-    width: 14.39%;
-    display: inline-table;
+  width: 14.39%;
+  display: inline-table;
 }
 
 #year,
@@ -29,142 +29,139 @@ td {
 #month,
 .month-previous,
 .month-next {
-    height: 50px;
-    line-height: 3em;
-    font-size: 1.5em;
-    margin: 0 auto;
-    padding: 0;
-    text-align: center;
-    width: 72%;
+  height: 50px;
+  line-height: 3em;
+  font-size: 1.5em;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+  width: 72%;
 }
 
 #year,
 .year-previous,
-.year-next {
-    
-}
+.year-next {}
 
 #month,
 .month-previous,
-.month-next {
-    
-}
+.month-next {}
 
 .year-previous,
 .month-previous,
 .year-next,
 .month-next {
-    cursor: pointer;
-    transition: color .3s;
+  cursor: pointer;
+  transition: color .3s;
 }
 
 .year-previous:hover,
 .month-previous:hover,
 .year-next:hover,
 .month-next:hover {
-    color: red;
+  color: red;
 }
 
 .year-previous,
 .month-previous {
-    text-align: right;
-    width: 33%;
+  text-align: right;
+  width: 33%;
 }
 
 .year-next,
 .month-next {
-    text-align: left;
-    width: 33%;
+  text-align: left;
+  width: 33%;
 }
 
 .day-of-week-label {
-    background-color: #4A5FCE;
-    border-bottom: #000 solid 3px;
-    color: #000000;
-    font-size: 1.3em;
-    height: 50px;
-    line-height: 2.5em;
-    text-align: center;
+  background-color: #4A5FCE;
+  border-bottom: #000 solid 3px;
+  color: #000000;
+  font-size: 1.3em;
+  height: 50px;
+  line-height: 2.5em;
+  text-align: center;
 }
 
 .to-day,
 .odd-day,
 .even-day,
 .blank-day {
-    cursor: pointer;
-    font-size: 12px;
-    height: 100px;
-    text-align: center;
-    transition: background-color 0.3s;
+  cursor: pointer;
+  font-size: 12px;
+  height: 100px;
+  text-align: center;
+  transition: background-color 0.3s;
 }
 
 .to-day {
-    background-color: rgb(172, 72, 88);
+  background-color: rgb(172, 72, 88);
 }
 
 .odd-day {
-    background-color: #2B43C1;
+  background-color: #2B43C1;
 }
 
 .odd-day .day-label {
-    background-color: #1229A1;
+  background-color: #1229A1;
 }
 
 .even-day {
-    background-color: #1229A1;
+  background-color: #1229A1;
 }
 
 .even-day .day-label {
-    background-color: #2B43C1;;
+  background-color: #2B43C1;
+  ;
 }
 
 .view-month .odd-day:hover,
 .even-day:hover {
-    background-color: #97A4EB;
+  background-color: #97A4EB;
 }
 
 .blank-day {
-    background-color: lightgray;
+  background-color: lightgray;
 }
 
 .view-week {
-    background: #fff;
-    cursor: pointer;
-    margin: 0 auto;
-    padding: 0;
-    width: 100%;
+  background: #fff;
+  cursor: pointer;
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
 }
 
 .view-week th {
-    min-height: 80px;
-    border: black 1px solid;
+  min-height: 80px;
+  border: black 1px solid;
 }
 
 .view-week th {
-    text-align: center;
-    width: 10%;
-    min-width: 20px;
-    font-size: 2em;
+  text-align: center;
+  width: 10%;
+  min-width: 20px;
+  font-size: 2em;
 }
 
 .view-week td {
-    width: 90%;
+  width: 90%;
 }
 
 .view-day {
-    color: green;
+  color: green;
 }
 
 .day-label {
-    border-radius: 15px;
-    color: #ffffff;
-    display: table;
-    float: right;
-    font-size: 14pt;
-    height: 28px;
-    text-align: center;
-    width: 30px;
-    margin: 3px;
-    opacity: .8;
-    line-height: 1.4em;
+  border-radius: 15px;
+  color: #ffffff;
+  display: table;
+  float: right;
+  font-size: 14pt;
+  height: 28px;
+  text-align: center;
+  width: 30px;
+  margin: 3px;
+  opacity: .8;
+  line-height: 1.4em;
 }

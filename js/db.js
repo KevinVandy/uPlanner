@@ -1,128 +1,128 @@
 var uplannerDB = (function () {
-    var uDB = {};
-    var datastore = null;
+  var uDB = {};
+  var datastore = null;
 
-    /**
-     * Open a connection to the datastore.
-     */
-    uDB.open = function (callback) {
-        // Database version.
-        var version = 1;
+  /**
+   * Open a connection to the datastore.
+   */
+  uDB.open = function (callback) {
+    // Database version.
+    var version = 1;
 
-        // Open a connection to the datastore.
-        var request = indexedDB.open('events', version);
+    // Open a connection to the datastore.
+    var request = indexedDB.open('events', version);
 
-        // Handle datastore upgrades.
-        request.onupgradeneeded = function (e) {
-            var db = e.target.result;
+    // Handle datastore upgrades.
+    request.onupgradeneeded = function (e) {
+      var db = e.target.result;
 
-            e.target.transaction.onerror = uDB.onerror;
+      e.target.transaction.onerror = uDB.onerror;
 
-            // Delete the old datastore.
-            if (db.objectStoreNames.contains('event')) {
-                db.deleteObjectStore('event');
-            }
+      // Delete the old datastore.
+      if (db.objectStoreNames.contains('event')) {
+        db.deleteObjectStore('event');
+      }
 
-            // Create a new datastore.
-            var store = db.createObjectStore('event', {
-                keyPath: 'timestamp'
-            });
-        };
-
-        // Handle successful datastore access.
-        request.onsuccess = function (e) {
-            // Get a reference to the DB.
-            datastore = e.target.result;
-
-            // Execute the callback.
-            callback();
-        };
-
-        // Handle errors when opening the datastore.
-        request.onerror = uDB.onerror;
+      // Create a new datastore.
+      var store = db.createObjectStore('event', {
+        keyPath: 'timestamp'
+      });
     };
 
-    /**
-     * Fetch all of the event items in the datastore.
-     */
-    uDB.fetchevents = function (callback) {
-        var db = datastore;
-        var transaction = db.transaction(['event'], 'readwrite');
-        var objStore = transaction.objectStore('event');
+    // Handle successful datastore access.
+    request.onsuccess = function (e) {
+      // Get a reference to the DB.
+      datastore = e.target.result;
 
-        var keyRange = IDBKeyRange.lowerBound(0);
-        var cursorRequest = objStore.openCursor(keyRange);
-
-        var events = [];
-
-        transaction.oncomplete = function (e) {
-            // Execute the callback function.
-            callback(events);
-        };
-
-        cursorRequest.onsuccess = function (e) {
-            var result = e.target.result;
-
-            if (!!result == false) {
-                return;
-            }
-
-            events.push(result.value);
-
-            result.continue();
-        };
-
-        cursorRequest.onerror = uDB.onerror;
+      // Execute the callback.
+      callback();
     };
 
-    /**
-     * Create a new event item.
-     */
-    uDB.createevent = function (event, callback) {
-        // Get a reference to the db.
-        var db = datastore;
+    // Handle errors when opening the datastore.
+    request.onerror = uDB.onerror;
+  };
 
-        // Initiate a new transaction.
-        var transaction = db.transaction(['event'], 'readwrite');
+  /**
+   * Fetch all of the event items in the datastore.
+   */
+  uDB.fetchevents = function (callback) {
+    var db = datastore;
+    var transaction = db.transaction(['event'], 'readwrite');
+    var objStore = transaction.objectStore('event');
 
-        // Get the datastore.
-        var objStore = transaction.objectStore('event');
+    var keyRange = IDBKeyRange.lowerBound(0);
+    var cursorRequest = objStore.openCursor(keyRange);
 
-        // Create a timestamp for the event item.
-        var timestamp = new Date().getTime();
+    var events = [];
 
-        // Create the datastore request.
-        var request = objStore.put(event);
-
-        // Handle a successful datastore put.
-        request.onsuccess = function (e) {
-            // Execute the callback function.
-            callback(event);
-        };
-
-        // Handle errors.
-        request.onerror = uDB.onerror;
+    transaction.oncomplete = function (e) {
+      // Execute the callback function.
+      callback(events);
     };
 
-    /**
-     * Delete a event item.
-     */
-    uDB.deleteevent = function (id, callback) {
-        var db = datastore;
-        var transaction = db.transaction(['event'], 'readwrite');
-        var objStore = transaction.objectStore('event');
+    cursorRequest.onsuccess = function (e) {
+      var result = e.target.result;
 
-        var request = objStore.delete(id);
+      if (!!result == false) {
+        return;
+      }
 
-        request.onsuccess = function (e) {
-            callback();
-        }
+      events.push(result.value);
 
-        request.onerror = function (e) {
-            console.log(e);
-        }
+      result.continue();
     };
-    
-    // Export the uDB object.
-    return uDB;
+
+    cursorRequest.onerror = uDB.onerror;
+  };
+
+  /**
+   * Create a new event item.
+   */
+  uDB.createevent = function (event, callback) {
+    // Get a reference to the db.
+    var db = datastore;
+
+    // Initiate a new transaction.
+    var transaction = db.transaction(['event'], 'readwrite');
+
+    // Get the datastore.
+    var objStore = transaction.objectStore('event');
+
+    // Create a timestamp for the event item.
+    var timestamp = new Date().getTime();
+
+    // Create the datastore request.
+    var request = objStore.put(event);
+
+    // Handle a successful datastore put.
+    request.onsuccess = function (e) {
+      // Execute the callback function.
+      callback(event);
+    };
+
+    // Handle errors.
+    request.onerror = uDB.onerror;
+  };
+
+  /**
+   * Delete a event item.
+   */
+  uDB.deleteevent = function (id, callback) {
+    var db = datastore;
+    var transaction = db.transaction(['event'], 'readwrite');
+    var objStore = transaction.objectStore('event');
+
+    var request = objStore.delete(id);
+
+    request.onsuccess = function (e) {
+      callback();
+    }
+
+    request.onerror = function (e) {
+      console.log(e);
+    }
+  };
+
+  // Export the uDB object.
+  return uDB;
 }());

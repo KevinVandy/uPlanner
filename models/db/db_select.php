@@ -2,89 +2,81 @@
 
 function selectAccountById($accountId)
 {
-    global $conn;
+ global $conn;
 
-    $query = 
-        'SELECT a.Id, a.Email, a.FirstName, a.CreateTime, a_s.DefaultView, a_s.Theme, a_s.HideCompleted, a_s.HideHints 
-         FROM accounts AS a INNER JOIN account_settings AS a_s on a.Id = a_c.AccountId 
+ $query =
+  'SELECT a.Id, a.Email, a.FirstName, a.CreateTime, a_s.DefaultView, a_s.Theme, a_s.HideCompleted, a_s.HideHints
+         FROM accounts AS a INNER JOIN account_settings AS a_s on a.Id = a_c.AccountId
          WHERE a.Id = :accountId';
 
-    $statement = $conn->prepare($query);
-    $statement->bindValue(':accountId', $accountId);
+ $statement = $conn->prepare($query);
+ $statement->bindValue(':accountId', $accountId);
 
-    try 
-    {
-        $statement->execute();
-    }
-    catch (PDOException $ex)
-    {
-        echo $ex->getMessage();
-        return NULL;
-    }
+ try
+ {
+  $statement->execute();
+ } catch (PDOException $ex) {
+  echo $ex->getMessage();
+  return null;
+ }
 
-    $record = $statement->fetch();
-    
-    $account = new Account($record['Id'], $record['Email'], $record['FirstName'], $record['DefaultView'], $record['Theme'], $record['HideHints'], $record['CreateTime']);
+ $record = $statement->fetch();
 
-    return $account;
+ $account = new Account($record['Id'], $record['Email'], $record['FirstName'], $record['DefaultView'], $record['Theme'], $record['HideHints'], $record['CreateTime']);
+
+ return $account;
 }
 
 function selectAccountByEmail($email)
 {
-    global $conn;
+ global $conn;
 
-    $query = 
-        'SELECT a.Id, a.Email, a.FirstName, a.CreateTime, a_s.DefaultView, a_s.Theme, a_s.HideCompleted, a_s.HideHints 
-         FROM accounts AS a INNER JOIN account_settings AS a_s on a.Id = a_s.AccountId 
+ $query =
+  'SELECT a.Id, a.Email, a.FirstName, a.CreateTime, a_s.DefaultView, a_s.Theme, a_s.HideCompleted, a_s.HideHints
+         FROM accounts AS a INNER JOIN account_settings AS a_s on a.Id = a_s.AccountId
          WHERE a.Email = :email';
 
-    $statement = $conn->prepare($query);
-    $statement->bindValue(':email', $email);
+ $statement = $conn->prepare($query);
+ $statement->bindValue(':email', $email);
 
-    try 
-    {
-        $statement->execute();
-    }
-    catch (PDOException $ex)
-    {
-        echo $ex->getMessage();
-        return NULL;
-    }
+ try
+ {
+  $statement->execute();
+ } catch (PDOException $ex) {
+  echo $ex->getMessage();
+  return null;
+ }
 
-    $record = $statement->fetch();
-    
-    $account = new Account($record['Id'], $record['Email'], $record['FirstName'], $record['DefaultView'], $record['Theme'], $record['HideCompleted'], $record['HideHints'], $record['CreateTime']);
+ $record = $statement->fetch();
 
-    return $account;
+ $account = new Account($record['Id'], $record['Email'], $record['FirstName'], $record['DefaultView'], $record['Theme'], $record['HideCompleted'], $record['HideHints'], $record['CreateTime']);
+
+ return $account;
 }
 
 function selectPasswordHashByEmail($email)
 {
-    global $conn;
+ global $conn;
 
-    $query = 
-        'SELECT PasswordHash
+ $query =
+  'SELECT PasswordHash
          FROM accounts
          WHERE Email = :email';
 
-    $statement = $conn->prepare($query);
-    $statement->bindValue(':email', $email);
+ $statement = $conn->prepare($query);
+ $statement->bindValue(':email', $email);
 
-    try 
-    {
-        $statement->execute();
-    }
-    catch (PDOException $ex)
-    {
-        echo $ex->getMessage();
-        return NULL;
-    }
+ try
+ {
+  $statement->execute();
+ } catch (PDOException $ex) {
+  echo $ex->getMessage();
+  return null;
+ }
 
-    $record = $statement->fetch();
+ $record = $statement->fetch();
 
-    $passwordHash = $record['PasswordHash'];
+ $passwordHash = $record['PasswordHash'];
 
-    return $passwordHash;
+ return $passwordHash;
 }
-
-?>

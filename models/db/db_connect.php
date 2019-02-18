@@ -6,9 +6,8 @@ $usernameDB = "root";
 $passwordDB = "";
 
 try {
-    $conn = new PDO($dsn, $usernameDB, $passwordDB);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+ $conn = new PDO($dsn, $usernameDB, $passwordDB);
+ $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 } catch (PDOException $ex) {
-    exit($ex->getMessage());
+ exit($ex->getMessage());
 }
-
