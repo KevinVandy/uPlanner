@@ -10,7 +10,7 @@ function createHiddenNavBar(type) {
     return /*html*/ `
       <table class="add-items">
         <tr>
-          <td><a>Event</a></td>
+          <td><a href="#">Event</a></td>
           <td><a>Meeting</a></td>
           <td><a>Task</a></td>
           <td><a>Reminder</a></td>
@@ -23,9 +23,9 @@ function createHiddenNavBar(type) {
     return /*html*/ `
       <table class="account-items">
         <tr>
-          <td><a>Add Job</a></td>
-          <td><a>Add Course</a></td>
-          <td><a href="./settings.php">Settings</a></td>
+          <td><a href="#" id="addJobButton" onclick='$("#add-job-popup").slideDown(1000);'>Add Job</a></td>
+          <td><a href="#" id="addCourseButton" onclick='$("#add-course-popup").slideDown(1000);'>Add Course</a></td>
+          <td><a href="#" id="settingsButton" onclick='$("#settings-popup").slideDown(1000);'>Settings</a></td>
           <td><a href="./controller.php?action=logout">Log Out</a></td>
         </tr>
       </table>

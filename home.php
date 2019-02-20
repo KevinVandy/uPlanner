@@ -28,6 +28,7 @@ if (!isLoggedIn()) {
   <link rel="stylesheet" href="css/main.min.css">
   <link rel="stylesheet" href="css/navbar.min.css">
   <link rel="stylesheet" href="css/calendar.min.css">
+  <link rel="stylesheet" href="css/popupform.min.css">
 
   <script src="js/jquery-3.3.1.min.js"></script>
   <script src="app.js" defer></script>
@@ -46,7 +47,16 @@ if (!isLoggedIn()) {
       <script src="js/calendar.min.js" defer></script>
     </section>
     <section id="items" class="items">
-
+      <script></script>
+    </section>
+    <section id="add-job-popup" class="popupform">
+      <script src="js/add-job.min.js" defer></script>
+    </section>
+    <section id="add-course-popup" class="popupform">
+      <script src="js/add-course.min.js" defer></script>
+    </section>
+    <section id="settings-popup" class="popupform">
+      <script src="js/settings.min.js" defer></script>
     </section>
   </main>
   <nav id="navbar-bottom" class="navbar-bottom">

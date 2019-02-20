@@ -3,18 +3,18 @@
 include './models/imports.php';
 
 if (!isset($_SESSION['account'])) {
-  $_SESSION['account'] = null;
+ $_SESSION['account'] = null;
 }
 
 if (!isset($_SESSION['errorMsgs'])) {
-  $_SESSION['errorMsgs'] = [];
+ $_SESSION['errorMsgs'] = [];
 }
 
 if (isLoggedIn()) {
-  header('Location: ./home.php');
-  exit();
+ header('Location ./home.php');
+ exit();
 } else { //var_dump($_SESSION['errorMsgs']);
-  ?>
+ ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -65,20 +65,24 @@ if (isLoggedIn()) {
         <table>
           <tr>
             <th>
-              <label>Email:</label>
+              <label>Email</label>
             </th>
+          </tr>
+          <tr>
             <td>
               <input type="email" name="email" id="loginEmail" value="<?php if (isset($_SESSION['email'])) {echo htmlspecialchars($_SESSION['email']);}?>" required autofocus>
             </td>
           </tr>
           <tr>
-            <th><label>Password:</label></th>
+            <th><label>Password</label></th>
+          </tr>
+          <tr>
             <td>
               <input type="password" name="password" minlength="6" maxlength="60" required>
             </td>
           </tr>
           <tr>
-            <td colspan="2" class="errorMsg">
+            <td class="errorMsg">
               <?php if (isset($_SESSION['errorMsgs']['login'])) {echo htmlspecialchars($_SESSION['errorMsgs']['login']);}?>
             </td>
           </tr>
@@ -93,53 +97,61 @@ if (isLoggedIn()) {
         <table>
           <tr>
             <th>
-              <label>First Name:</label>
+              <label>First Name</label>
             </th>
+          </tr>
+          <tr>
             <td>
               <input type="text" name="firstName" id="signupFirstName" value="<?php if (isset($firstName)) {echo htmlspecialchars($firstName);}?>" required>
             </td>
           </tr>
           <tr>
-            <td colspan="2" class="errorMsg">
+            <td class="errorMsg">
               <?php if (isset($_SESSION['errorMsgs']['firstName'])) {echo htmlspecialchars($_SESSION['errorMsgs']['firstName']);}?>
             </td>
           </tr>
           <tr>
             <th>
-              <label>Email:</label>
+              <label>Email</label>
             </th>
+          </tr>
+          <tr>
             <td>
               <input type="email" name="email" value="<?php if (isset($email)) {echo htmlspecialchars($email);}?>" required>
             </td>
           </tr>
           <tr>
-            <td colspan="2" class="errorMsg">
+            <td class="errorMsg">
               <?php if (isset($_SESSION['errorMsgs']['email'])) {echo htmlspecialchars($_SESSION['errorMsgs']['email']);}?>
             </td>
           </tr>
           <tr>
             <th>
-              <label>Password:</label>
+              <label>Password</label>
             </th>
+          </tr>
+          <tr>
             <td>
               <input type="password" name="password" minlength="6" maxlength="60" required>
             </td>
           </tr>
           <tr>
-            <td colspan="2" class="errorMsg">
+            <td class="errorMsg">
               <?php if (isset($_SESSION['errorMsgs']['password'])) {echo htmlspecialchars($_SESSION['errorMsgs']['password']);}?>
             </td>
           </tr>
           <tr>
             <th>
-              <label>Confirm:</label>
+              <label>Confirm Password</label>
             </th>
+          </tr>
+          <tr>
             <td>
               <input type="password" name="passwordConfirm" required>
             </td>
           </tr>
           <tr>
-            <td colspan="2" class="errorMsg">
+            <td class="errorMsg">
               <?php if (isset($_SESSION['errorMsgs']['passwordConfirm'])) {echo htmlspecialchars($_SESSION['errorMsgs']['passwordConfirm']);}?>
             </td>
           </tr>

@@ -11,6 +11,12 @@ h1 {
   margin: 5px auto;
   max-width: 480px;
   width: 100%;
+  text-align: center;
+}
+
+#section-login table,
+#section-signup table {
+  width: 100%;
 }
 
 th {
@@ -19,19 +25,25 @@ th {
 
 label {
   display: block;
-  font-size: 1.2em;
-  font-weight: 100;
-  text-align: right;
+  font-size: 1.5em;
+  font-weight: 300;
+  padding-top: 16px;
+  text-align: center;
 }
 
 input {
   border-color: lightblue;
   border-radius: 4px;
   display: block;
-  font-size: 1.4em;
-  margin: 8px;
+  font-size: 1.5em;
+  margin: 8px auto;
   padding: 4px;
-  width: 300px;
+  width: 90%;
+  max-width: 360px;
+}
+
+input[type="password"] {
+  font-size: 2em;
 }
 
 input[type="submit"] {
