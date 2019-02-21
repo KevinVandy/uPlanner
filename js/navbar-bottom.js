@@ -10,16 +10,16 @@ function createBottomNavBar() {
   return /*html*/ `
     <ul>
       <li>
-        <a href="#" onclick="showYearView(); return false;">Year</a>
+        <a href="#" onclick="currentView = 'year'; showView(); return false;">Year</a>
       </li>
       <li>
-        <a href="#" onclick="showMonthView(); return false;">Month</a>
+        <a href="#" onclick="currentView = 'month'; showView(); return false;">Month</a>
       </li>
       <li>
-        <a href="#" onclick="showWeekView(); return false;">Week</a>
+        <a href="#" onclick="currentView = 'week'; showView(); return false;">Week</a>
       </li>
       <li>
-        <a href="#" onclick="showDayView(); return false;">Day</a>
+        <a href="#" onclick="currentView = 'day'; showView(); return false;">Day</a>
       </li>
     </ul>
   `;

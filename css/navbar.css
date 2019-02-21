@@ -52,7 +52,8 @@ navb a:hover {
   background-color: #97A4EB;
   bottom: 0;
   cursor: pointer;
-  font-size: 2em;
+  font-size: 1.6em;
+  font-weight: 500;
   margin: 0 auto;
   min-width: 360px;
   padding: 0;

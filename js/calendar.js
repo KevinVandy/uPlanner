@@ -21,11 +21,25 @@ var currentDayDay = currentDay.getDate();
 
 var currentDayMonthWord = monthLongLabels[currentDayMonth];
 
+var currentView = "year";
+
 (function () {
 
-  showMonthView(); //todo show view based on setting
+  showView();
 
 })();
+
+function showView(){
+  if(currentView == "year"){
+    showYearView();
+  } else if(currentView == "month"){
+    showMonthView();
+  } else if(currentView == "week"){
+    showWeekView();
+  } else if(currentView == "day"){
+    showDayView();
+  }
+}
 
 function showYearView() {
   calendarArea.innerHTML = createYearSkelaton();
@@ -45,18 +59,61 @@ function showDayView() {
 
 function createYearSkelaton() {
   let html = //html
-    `    
-      <table class="view-year">
-        <tr>
-          <th>${currentDayYear}</th>
-        </tr>
-        <tr>
-          <td>
-          
-          </td>
-        </tr>
-      </table>
+  `    
+    <table class="view-year">
+      <tr>
+        <th class="year-previous">
+          <button id="year-previous"><</button>
+        </th>
+        <th id="year">${currentDayYear}</th>
+        <th class="year-next">
+          <button id="year-next">></button>
+        </th>
+      </tr>
+    </table>
+    <table class="view-year">
+      <tr>
+        <td>
+  `;
+
+  let monthOfYear = 0;
+
+  monthShortLabels.forEach( function(monthLabel){
+
+    if(monthOfYear == currentDayMonth && todayYear == currentDayYear){
+      html += //html
+      `
+        <div class="this-month">
+      `;
+    }
+    else if(monthOfYear % 2 == 0){
+      html += //html
+      `
+        <div class="odd-month">
+      `;
+    } else {
+      html += //html
+      `
+        <div class="even-month">
+      `;
+    }
+
+    html += //html
+    `
+        <div class="month-label">
+          ${monthLabel}
+        </div>
+      </div>
     `;
+    monthOfYear++;
+  });
+
+  html += //html
+  `
+        </td>
+      </tr>
+    </table>
+  `;
 
   html += /*html*/ `</table>`;
 
@@ -69,15 +126,29 @@ function createMonthSkelaton() {
     `
       <table class="view-month">
         <tr>
-          <th colspan="3" class="year-previous"><a id="year-previous"><</a></th>
-          <th colspan="1" id="year">${currentDayYear}</th>
-          <th colspan="3" class="year-next"><a id="year-next">></a></th>
+          <th class="year-previous">
+            <button id="year-previous"><</button>
+          </th>
+          <th id="year">
+            ${currentDayYear}
+          </th>
+          <th class="year-next">
+            <button id="year-next">></button>
+          </th>
         </tr>
         <tr>
-          <th colspan="3" class="month-previous"><a id="month-previous"><</a></th>
-          <th colspan="1" id="month">${currentDayMonthWord}</th>
-          <th colspan="3" class="month-next"><a id="month-next">></a></th>
+          <th class="month-previous">
+            <button id="month-previous"><</button>
+          </th>
+          <th id="month">
+            ${currentDayMonthWord}
+          </th>
+          <td class="month-next">
+            <button id="month-next">></button>
+          </td>
         </tr>
+      </table>
+      <table class="view-month">
         <tr>
     `;
   dayOfWeekLabels.forEach(function (dayLabel) {
@@ -160,13 +231,13 @@ function createDaySkelaton() {
 $(document).on('click', '#year-previous', function (e) {
   e.preventDefault();
   currentDayYear--;
-  showMonthView();
+  showView();
 });
 
 $(document).on('click', '#year-next', function (e) {
   e.preventDefault();
   currentDayYear++;
-  showMonthView();
+  showView();
 });
 
 $(document).on('click', '#month-previous', function (e) {
@@ -178,7 +249,7 @@ $(document).on('click', '#month-previous', function (e) {
   } else {
     currentDayMonthWord = monthLongLabels[--currentDayMonth];
   }
-  showMonthView();
+  showView();
 });
 
 $(document).on('click', '#month-next', function (e) {
@@ -190,7 +261,7 @@ $(document).on('click', '#month-next', function (e) {
   } else {
     currentDayMonthWord = monthLongLabels[++currentDayMonth];
   }
-  showMonthView();
+  showView();
 });
 
 function updateShortDates() {

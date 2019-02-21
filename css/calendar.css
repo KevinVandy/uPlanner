@@ -6,71 +6,128 @@
   width: 100%;
 }
 
-.view-month {
-  margin: 0 auto;
-  padding: 0;
-  width: 100%;
-  white-space: nowrap;
-}
-
-.view-month tr {
-  width: 100%;
-}
-
-.view-month th,
-td {
-  width: 14.39%;
-  display: inline-table;
-}
-
 #year,
 .year-previous,
 .year-next,
 #month,
 .month-previous,
 .month-next {
-  height: 50px;
   line-height: 3em;
   font-size: 1.5em;
   margin: 0 auto;
-  padding: 0;
+  padding: 12px;
   text-align: center;
-  width: 72%;
 }
 
-#year,
-.year-previous,
-.year-next {}
-
-#month,
-.month-previous,
-.month-next {}
-
-.year-previous,
-.month-previous,
-.year-next,
-.month-next {
+.year-previous button,
+.month-previous button,
+.year-next button,
+.month-next button {
+  background-color: rgb(188, 195, 231);
+  border-radius: 8px;
+  border: 1px solid rgb(160, 172, 235);
   cursor: pointer;
+  font-size: 1.2em;
   transition: color .3s;
 }
 
-.year-previous:hover,
-.month-previous:hover,
-.year-next:hover,
-.month-next:hover {
-  color: red;
+.year-previous button:hover,
+.month-previous button:hover,
+.year-next button:hover,
+.month-next button:hover {
+  background-color: #4A5FCE;
 }
 
 .year-previous,
 .month-previous {
   text-align: right;
-  width: 33%;
 }
 
 .year-next,
 .month-next {
   text-align: left;
-  width: 33%;
+}
+
+.view-year {
+  background-color: #fff;
+  display: block;
+  font-size: 1.6em;
+  margin: auto;
+  text-align: center;
+  width: 100%;
+}
+
+.view-year table {
+  width: 100%;
+  padding: 0;
+  margin: auto;
+  text-align: center;
+}
+
+.view-year th {
+  width: 36%;
+}
+
+.view-year td {
+  display: block;
+  padding: 0;
+  width: 100%;
+}
+
+.this-month,
+.odd-month,
+.even-month {
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  height: 100px;
+  margin: 0 -4px;
+  padding: 4px;
+  text-align: center;
+  transition: background-color 0.3s;
+  width: 31%;
+}
+
+.this-month {
+  background-color: rgb(172, 72, 88);
+}
+
+.odd-month {
+  background-color: #2B43C1;
+}
+
+.odd-month .month-label {
+  background-color: #1229A1;
+}
+
+.even-month {
+  background-color: #1229A1;
+}
+
+.even-month .month-label {
+  background-color: #2B43C1;
+}
+
+.view-year .odd-month:hover,
+.view-year .even-month:hover {
+  background-color: #97A4EB;
+}
+
+.month-label {
+  border-radius: 8px;
+  margin: 2px auto;
+  max-width: 120px;
+  min-width: 80px;
+  padding: 4px;
+  text-align: center;
+  width: 30%;
+}
+
+.view-month {
+  margin: 0 auto;
+  padding: 0;
+  width: 100%;
+  white-space: nowrap;
 }
 
 .day-of-week-label {
@@ -81,6 +138,7 @@ td {
   height: 50px;
   line-height: 2.5em;
   text-align: center;
+  width: 14.39%;
 }
 
 .to-day,
@@ -89,9 +147,10 @@ td {
 .blank-day {
   cursor: pointer;
   font-size: 12px;
-  height: 100px;
+  height: 80px;
   text-align: center;
   transition: background-color 0.3s;
+  width: 14.39%;
 }
 
 .to-day {
@@ -112,7 +171,6 @@ td {
 
 .even-day .day-label {
   background-color: #2B43C1;
-  ;
 }
 
 .view-month .odd-day:hover,
@@ -164,4 +222,24 @@ td {
   margin: 3px;
   opacity: .8;
   line-height: 1.4em;
+}
+
+@media only screen and (max-width: 768px) {}
+
+@media only screen and (min-width: 480px) {
+
+  .this-month,
+  .odd-month,
+  .even-month {
+    font-size: 1.2em;
+    height: 120px;
+  }
+
+  .to-day,
+  .odd-day,
+  .even-day,
+  .blank-day {
+    font-size: 13px;
+    height: 100px;
+  }
 }
