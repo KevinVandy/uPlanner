@@ -6,7 +6,7 @@ const addJobArea = document.getElementById('add-job-popup');
 })();
 
 $("#addJobCloseButton").click(function () {
-  $("#add-job-popup").slideUp(1000);
+  $("#add-job-popup").slideUp(500);
 });
 
 function generateAddJobForm() {

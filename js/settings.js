@@ -6,7 +6,7 @@ const settingsArea = document.getElementById('settings-popup');
 })();
 
 $("#settingsCloseButton").click(function () {
-  $("#settings-popup").slideUp(1000);
+  $("#settings-popup").slideUp(500);
 });
 
 function generateSettingsForm() {

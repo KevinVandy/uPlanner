@@ -55,7 +55,7 @@ function insertCourse($course)
 
  $query =
   'INSERT INTO courses(AccountId, CourseName, LocationId, Teacher, StartDate, EndDate)
-   VALUES(:accountId, :courseName, :locationId, :teacher, :startDate, :endDate)';
+          VALUES(:accountId, :courseName, :locationId, :teacher, :startDate, :endDate)';
 
  $statement = $conn->prepare($query);
  $statement->bindValue(':accountId', $_SESSION['account']->get_id());

@@ -6,7 +6,7 @@ const addCourseArea = document.getElementById('add-course-popup');
 })();
 
 $("#addCourseCloseButton").click(function () {
-  $("#add-course-popup").slideUp(1000);
+  $("#add-course-popup").slideUp(500);
 });
 
 function generateAddCourseForm() {

@@ -21,7 +21,7 @@ var currentDayDay = currentDay.getDate();
 
 var currentDayMonthWord = monthLongLabels[currentDayMonth];
 
-var currentView = "year";
+var currentView = "month";
 
 (function () {
 
@@ -80,13 +80,8 @@ function createYearSkelaton() {
 
   monthShortLabels.forEach( function(monthLabel){
 
-    if(monthOfYear == currentDayMonth && todayYear == currentDayYear){
-      html += //html
-      `
-        <div class="this-month">
-      `;
-    }
-    else if(monthOfYear % 2 == 0){
+    
+    if(monthOfYear % 2 == 0){
       html += //html
       `
         <div class="odd-month">
@@ -98,9 +93,20 @@ function createYearSkelaton() {
       `;
     }
 
+    if(monthOfYear == currentDayMonth && todayYear == currentDayYear){
+      html += //html
+      `
+        <div class="this-month-label">
+      `;
+    } else{
+      html += //html
+      `
+        <div class="month-label">
+      `;
+    }
+
     html += //html
     `
-        <div class="month-label">
           ${monthLabel}
         </div>
       </div>
@@ -175,20 +181,37 @@ function createMonthSkelaton() {
     html += /*html*/ `<tr>`;
     for (let dayOfWeek = 1; dayOfWeek <= 7; dayOfWeek++) {
       if (dayOfMonth > 0 && dayOfMonth <= daysInMonth) {
-        if (dayOfMonth == currentDayDay && currentDayMonth == todayMonth && currentDayYear == todayYear) {
-          html += /*html*/ `<td class="to-day"><div class="day-label">${dayOfMonth++}</div></td>`;
-        } else if (dayOfMonth % 2 == 1) {
-          html += /*html*/ `<td class="odd-day"><div class="day-label">${dayOfMonth++}</div></td>`;
-        } else {
-          html += /*html*/ `<td class="even-day"><div class="day-label">${dayOfMonth++}</div></td>`;
+         if (dayOfMonth % 2 == 1) {
+          html += //html
+          `
+            <td class="odd-day">
+          `;
+          } else {
+            html += //html
+          `
+            <td class="even-day">
+          `;
+        }
+        if (dayOfMonth == currentDayDay && currentDayMonth == todayMonth && currentDayYear == todayYear) { //if today
+          html += //html
+            `
+                <div class="to-day-label">${dayOfMonth++}</div>
+              
+            `;
+        } else{ 
+          html+= //html
+          `
+              <div class="day-label">${dayOfMonth++}</div>
+            
+          `;
         }
       } else {
-        html += /*html*/ `<td class="blank-day"></td>`;
+        html += /*html*/ `<td class="blank-day">`;
         dayOfMonth++;
       }
 
     }
-    html += /*html*/ `</tr>`;
+    html += /*html*/ `</td></tr>`;
   }
   html += /*html*/ `</table>`
   return html;

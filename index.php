@@ -1,6 +1,8 @@
-<?php session_start();
+<?php 
 
 include './models/imports.php';
+
+session_start();
 
 if (!isset($_SESSION['account'])) {
  $_SESSION['account'] = null;
@@ -12,7 +14,7 @@ if (!isset($_SESSION['errorMsgs'])) {
 
 if (isLoggedIn()) {
  header('Location ./home.php');
- exit();
+ 
 } else { //var_dump($_SESSION['errorMsgs']);
  ?>
 

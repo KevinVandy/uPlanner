@@ -1,4 +1,4 @@
-<?php
+<?php 
 
 include './models/imports.php';
 
@@ -76,7 +76,7 @@ switch ($action) {
   $newCourse = new Course(null, $courseName, $location, $teacher, $startDate, $endDate, null, null);
 
   $newCourse->set_id(insertCourse($newCourse));
-  die();
+
   header('Location: ./home.php');
 
   break;

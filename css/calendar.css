@@ -49,6 +49,10 @@
   text-align: left;
 }
 
+#year, #month{
+  min-width: 150px;
+}
+
 .view-year {
   display: block;
   margin: auto;
@@ -57,23 +61,26 @@
 }
 
 .view-year table {
-  width: auto;
-  padding: 0;
   margin: auto;
+  padding: 0;
   text-align: center;
+  width: 100%;
 }
 
 .view-year th {
-  width: 36%;
+  display: inline-block;
+  text-align: center;
+  width: auto;
+  margin: auto;
 }
 
 .view-year td {
   display: block;
   padding: 0;
+  margin: 0;
   width: 100%;
 }
 
-.this-month,
 .odd-month,
 .even-month {
   color: #fff;
@@ -85,10 +92,6 @@
   text-align: center;
   transition: background-color 0.3s;
   width: 31%;
-}
-
-.this-month {
-  background-color: rgb(172, 72, 88);
 }
 
 .odd-month {
@@ -112,15 +115,20 @@
   background-color: #97A4EB;
 }
 
-.month-label {
+.month-label,
+.this-month-label {
   border-radius: 8px;
   font-size: 1.5em;
   margin: 2px auto;
   max-width: 120px;
-  min-width: 80px;
+  min-width: 90px;
   padding: 4px;
   text-align: center;
   width: 30%;
+}
+
+.this-month-label {
+  background-color: rgb(172, 72, 88);
 }
 
 .view-month {
@@ -141,20 +149,16 @@
   width: 14.39%;
 }
 
-.to-day,
 .odd-day,
 .even-day,
 .blank-day {
   cursor: pointer;
   font-size: 12px;
-  height: 80px;
+  height: 75px;
   text-align: center;
   transition: background-color 0.3s;
   width: 14.39%;
-}
-
-.to-day {
-  background-color: rgb(172, 72, 88);
+  vertical-align: text-top;
 }
 
 .odd-day {
@@ -180,6 +184,25 @@
 
 .blank-day {
   background-color: lightgray;
+  cursor: default;
+}
+
+.day-label,
+.to-day-label {
+  border-radius: 12px;
+  color: #ffffff;
+  float: right;
+  font-size: 14pt;
+  height: 30px;
+  line-height: 1.7em;
+  margin: 3px;
+  opacity: .8;
+  text-align: center;
+  width: 30px;
+}
+
+.to-day-label {
+  background-color: rgb(172, 72, 88);
 }
 
 .view-week {
@@ -210,19 +233,7 @@
   color: green;
 }
 
-.day-label {
-  border-radius: 15px;
-  color: #ffffff;
-  display: block;
-  float: right;
-  font-size: 14pt;
-  height: 28px;
-  line-height: 1.4em;
-  margin: 3px;
-  opacity: .8;
-  text-align: center;
-  width: 30px;
-}
+
 
 @media only screen and (max-width: 768px) {}
 
