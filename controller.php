@@ -1,6 +1,8 @@
-<?php session_start();
+<?php
 
 include './models/imports.php';
+
+session_start();
 
 $action = filter_input(INPUT_POST, 'action');
 if ($action == null) {
@@ -63,7 +65,19 @@ switch ($action) {
 
   break;
 
- case 'add_class':
+ case 'add-course':
+
+  $courseName = filter_input(INPUT_POST, 'courseName');
+  $teacher    = filter_input(INPUT_POST, 'teacher');
+  $startDate  = filter_input(INPUT_POST, 'startDate');
+  $endDate    = filter_input(INPUT_POST, 'endDate');
+  $location   = null;
+
+  $newCourse = new Course(null, $courseName, $location, $teacher, $startDate, $endDate, null, null);
+
+  $newCourse->set_id(insertCourse($newCourse));
+  die();
+  header('Location: ./home.php');
 
   break;
 

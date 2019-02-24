@@ -29,6 +29,10 @@ header {
   width: 100%;
 }
 
+button {
+  padding: 6px;
+}
+
 .errorMsg {
   color: red;
   text-align: center;

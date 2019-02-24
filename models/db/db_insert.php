@@ -48,3 +48,31 @@ function insertAccount($account, $passwordHash)
 
  return $account->get_id(); //return new accountId to indicate success
 }
+
+function insertCourse($course)
+{
+ global $conn;
+
+ $query =
+  'INSERT INTO courses(AccountId, CourseName, LocationId, Teacher, StartDate, EndDate)
+   VALUES(:accountId, :courseName, :locationId, :teacher, :startDate, :endDate)';
+
+ $statement = $conn->prepare($query);
+ $statement->bindValue(':accountId', $_SESSION['account']->get_id());
+ $statement->bindValue(':courseName', $course->get_courseName());
+ $statement->bindValue(':locationId', $course->get_locationId());
+ $statement->bindValue(':teacher', $course->get_teacher());
+ $statement->bindValue(':startDate', $course->get_startDate());
+ $statement->bindValue(':endDate', $course->get_endDate());
+
+ try
+ {
+  $statement->execute();
+ } catch (PDOException $ex) {
+  echo $ex->getMessage();
+  return null;
+ } finally {
+  $statement->closeCursor();
+ }
+ return $conn->lastInsertId();
+}

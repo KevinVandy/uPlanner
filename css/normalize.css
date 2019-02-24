@@ -1,5 +1,7 @@
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
 
+* { margin: 0; padding: 0; }
+
 /* Document
    ========================================================================== */
 

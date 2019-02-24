@@ -13,7 +13,7 @@ function generateAddCourseForm() {
   return /*html*/ `
     <button id="addCourseCloseButton" class="close-button">X</button>
     <form action="./controller.php" method="post">
-      <input type="hidden" name="action" value="addClass">
+      <input type="hidden" name="action" value="add-course">
       <table>
         <tr>
           <th>

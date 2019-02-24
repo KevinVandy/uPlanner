@@ -88,7 +88,7 @@ if (isLoggedIn()) {
           </tr>
         </table>
         <input type="submit" value="Login">
-        <a id="show-signup">Don't have an Account yet? Sign up!</a>
+        <a id="show-signup">Don't have an Account yet?<br>Sign up!</a>
       </form>
     </section>
     <section id="section-signup">
@@ -158,7 +158,7 @@ if (isLoggedIn()) {
         </table>
         <input type="submit" value="Sign Up!">
       </form>
-      <a id="show-login">Already have an Account? Login!</a>
+      <a id="show-login">Already have an Account?<br>Login!</a>
     </section>
     <section id="information">
 

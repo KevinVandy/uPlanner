@@ -1,9 +1,9 @@
 .calendar {
-  background-image: linear-gradient(#97A4EB, rgb(14, 4, 49));
+  background-image: linear-gradient(#97A4EB, rgb(19, 2, 82));
   margin: auto;
   max-width: 2000px;
   overflow: hidden;
-  width: 100%;
+  width: auto;
 }
 
 #year,
@@ -12,7 +12,7 @@
 #month,
 .month-previous,
 .month-next {
-  line-height: 3em;
+  line-height: 2em;
   font-size: 1.5em;
   margin: 0 auto;
   padding: 12px;
@@ -27,6 +27,7 @@
   border-radius: 8px;
   border: 1px solid rgb(160, 172, 235);
   cursor: pointer;
+  margin: auto;
   font-size: 1.2em;
   transition: color .3s;
 }
@@ -49,16 +50,14 @@
 }
 
 .view-year {
-  background-color: #fff;
   display: block;
-  font-size: 1.6em;
   margin: auto;
   text-align: center;
   width: 100%;
 }
 
 .view-year table {
-  width: 100%;
+  width: auto;
   padding: 0;
   margin: auto;
   text-align: center;
@@ -115,6 +114,7 @@
 
 .month-label {
   border-radius: 8px;
+  font-size: 1.5em;
   margin: 2px auto;
   max-width: 120px;
   min-width: 80px;
@@ -213,15 +213,15 @@
 .day-label {
   border-radius: 15px;
   color: #ffffff;
-  display: table;
+  display: block;
   float: right;
   font-size: 14pt;
   height: 28px;
-  text-align: center;
-  width: 30px;
+  line-height: 1.4em;
   margin: 3px;
   opacity: .8;
-  line-height: 1.4em;
+  text-align: center;
+  width: 30px;
 }
 
 @media only screen and (max-width: 768px) {}
@@ -231,7 +231,7 @@
   .this-month,
   .odd-month,
   .even-month {
-    font-size: 1.2em;
+    font-size: 1.8em;
     height: 120px;
   }
 

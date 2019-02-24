@@ -56,10 +56,17 @@ input[type="submit"] {
 
 #show-signup,
 #show-login {
+  color: darkblue;
   cursor: pointer;
   display: block;
+  font-size: 1.2em;
+  font-weight: 500;
   margin: 20px auto;
   text-align: center;
   width: 80%;
-  font-size: 1.2em;
+}
+
+#show-signup:hover,
+#show-login:hover {
+  font-weight: 600;
 }
