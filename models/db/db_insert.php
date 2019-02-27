@@ -28,7 +28,7 @@ function insertAccount($account, $passwordHash)
  //insert into account_settings
  $query =
   'INSERT INTO account_settings(AccountId, DefaultView, Theme, HideCompleted, HideHints)
-         VALUES(:accountId, :defaultView, :theme, :hideCompleted, :hideHints)';
+          VALUES(:accountId, :defaultView, :theme, :hideCompleted, :hideHints)';
 
  $statement = $conn->prepare($query);
  $statement->bindValue(':accountId', $account->get_id());
@@ -64,6 +64,62 @@ function insertCourse($course)
  $statement->bindValue(':teacher', $course->get_teacher());
  $statement->bindValue(':startDate', $course->get_startDate());
  $statement->bindValue(':endDate', $course->get_endDate());
+
+ try
+ {
+  $statement->execute();
+ } catch (PDOException $ex) {
+  echo $ex->getMessage();
+  return null;
+ } finally {
+  $statement->closeCursor();
+ }
+ return $conn->lastInsertId();
+}
+
+function insertEvent($event)
+{
+ global $conn;
+
+ $query =
+  'INSERT INTO events(AccountId, EventName, LocationId, [Date], StartTime, EndTime, Completed)
+          VALUES(:accountId, :eventName, :locationId, :date, :startTime, :endTime, :completed)';
+
+ $statement = $conn->prepare($query);
+ $statement->bindValue(':accountId', $_SESSION['account']->get_id());
+ $statement->bindValue(':eventName', $event->get_eventName());
+ $statement->bindValue(':locationId', $event->get_locationId());
+ $statement->bindValue(':date', $event->get_date());
+ $statement->bindValue(':startTime', $event->get_startTime());
+ $statement->bindValue(':endTime', $event->get_endTime());
+
+ try
+ {
+  $statement->execute();
+ } catch (PDOException $ex) {
+  echo $ex->getMessage();
+  return null;
+ } finally {
+  $statement->closeCursor();
+ }
+ return $conn->lastInsertId();
+}
+
+function insertMeeting($meeting)
+{
+ global $conn;
+
+ $query =
+  'INSERT INTO meetings(AccountId, MeetingName, LocationId, [Date], StartTime, EndTime, Completed)
+          VALUES(:accountId, :meetingtName, :locationId, :date, :startTime, :endTime, :completed)';
+
+ $statement = $conn->prepare($query);
+ $statement->bindValue(':accountId', $_SESSION['account']->get_id());
+ $statement->bindValue(':meetingName', $meeting->get_meetingName());
+ $statement->bindValue(':locationId', $meeting->get_locationId());
+ $statement->bindValue(':date', $meeting->get_date());
+ $statement->bindValue(':startTime', $meeting->get_startTime());
+ $statement->bindValue(':endTime', $meeting->get_endTime());
 
  try
  {

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 include './models/imports.php';
 
@@ -59,12 +59,6 @@ switch ($action) {
 
   break;
 
- default:
-
-  header('Location: ./index.php');
-
-  break;
-
  case 'add-course':
 
   $courseName = filter_input(INPUT_POST, 'courseName');
@@ -80,5 +74,41 @@ switch ($action) {
   header('Location: ./home.php');
 
   break;
+
+ case 'add-event':
+
+  $eventName = filter_input(INPUT_POST, 'eventame');
+  $date      = filter_input(INPUT_POST, 'date');
+  $startTime = filter_input(INPUT_POST, 'startDate');
+  $endTime   = filter_input(INPUT_POST, 'endDate');
+  $location  = null;
+
+  $newEvent = new Event(null, $eventName, $location, $date, $startTime, $endTime, null);
+
+  $newEvent->set_id(insertEvent($newEvent));
+
+  header('Location: ./home.php');
+
+  break;
+
+ case 'add-meeting':
+
+  $meetingName = filter_input(INPUT_POST, 'meetingame');
+  $date      = filter_input(INPUT_POST, 'date');
+  $startTime = filter_input(INPUT_POST, 'startDate');
+  $endTime   = filter_input(INPUT_POST, 'endDate');
+  $location  = null;
+
+  $newMeeting = new Meeting(null, $meetingName, $location, $date, $startTime, $endTime, null);
+
+  $newMeeting->set_id(insertMeeting($newMeeting));
+
+  header('Location: ./home.php');
+
+  break;
+
+ default:
+
+  header('Location: ./index.php');
 
 }

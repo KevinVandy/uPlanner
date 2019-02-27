@@ -1,7 +1,6 @@
-/* const staticAssets = [
+const staticAssets = [
     './index.php',
     './home.php',
-    './settings.php',
     './app.js',
     './js/jquery-3.3.1.min.js',
     './js/db.min.js',
@@ -45,6 +44,6 @@ async function networkFirst(request){
         return res;
     } catch(error){
         const cachedResponse = await cache.match(request);
-        return cachedResponse || await caches.match('index.php');
+        return cachedResponse || await caches.match('home.php');
     }
-} */
+}

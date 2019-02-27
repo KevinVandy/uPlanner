@@ -10,12 +10,12 @@ function createHiddenNavBar(type) {
     return /*html*/ `
       <table class="add-items">
         <tr>
-          <td><a href="#">Event</a></td>
-          <td><a>Meeting</a></td>
-          <td><a>Task</a></td>
-          <td><a>Reminder</a></td>
-          <td><a>Homework</a></td>
-          <td><a>Work</a></td>
+          <td><a href="#" onclick='$("#add-event-popup").slideDown(500);'>Event</a></td>
+          <td><a href="#" onclick='$("#add-meeting-popup").slideDown(500);'>Meeting</a></td>
+          <td><a href="#" onclick='$("#add-task-popup").slideDown(500);'>Task</a></td>
+          <td><a href="#" onclick='$("#add-reminder-popup").slideDown(500);'>Reminder</a></td>
+          <td><a href="#" onclick='$("#add-homework-popup").slideDown(500);'>Homework</a></td>
+          <td><a href="#" onclick='$("#add-work-popup").slideDown(500);'>Work</a></td>
         </tr>
       </table>
     `;

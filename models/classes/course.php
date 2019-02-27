@@ -4,18 +4,18 @@ class Course
 {
  private $id;
  private $courseName;
- private $locationId;
+ private $location;
  private $teacher;
  private $startDate;
  private $endDate;
  private $courseTimes;
  private $courseWork;
 
- public function __construct($id, $courseName, $locationId, $teacher, $startDate, $endDate, $courseTimes, $courseWork)
+ public function __construct($id, $courseName, $location, $teacher, $startDate, $endDate, $courseTimes, $courseWork)
  {
   $this->id          = $id;
   $this->courseName  = $courseName;
-  $this->locationId    = $locationId;
+  $this->location    = $location;
   $this->teacher     = $teacher;
   $this->startDate   = $startDate;
   $this->endDate     = $endDate;
@@ -33,9 +33,9 @@ class Course
   return $this->courseName;
  }
 
- public function get_locationId()
+ public function get_location()
  {
-  return $this->locationId;
+  return $this->location;
  }
 
  public function get_teacher()
@@ -73,9 +73,9 @@ class Course
   $this->courseName = $courseName;
  }
 
- public function set_locationId($locationId)
+ public function set_location($location)
  {
-  $this->locationId = $locationId;
+  $this->location = $location;
  }
 
  public function set_teacher($teacher)

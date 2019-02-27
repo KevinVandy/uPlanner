@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 include './models/imports.php';
 
@@ -33,7 +33,9 @@ if (!isLoggedIn()) {
   <link rel="stylesheet" href="css/popupform.min.css">
 
   <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="app.js" defer></script>
+  <script src="app.min.js" defer></script>
+
+  <?php include 'js/info.php'?>
 
 </head>
 
@@ -59,6 +61,21 @@ if (!isLoggedIn()) {
     </section>
     <section id="settings-popup" class="popupform">
       <script src="js/settings.min.js" defer></script>
+    </section>
+    <section id="add-event-popup" class="popupform">
+      <script src="js/add-event.min.js" defer></script>
+    </section>
+    <section id="add-meeting-popup" class="popupform">
+      <script src="js/add-meeting.min.js" defer></script>
+    </section>
+    <section id="add-task-popup" class="popupform">
+      <script src="js/add-task.min.js" defer></script>
+    </section>
+    <section id="add-homework-popup" class="popupform">
+      <script src="js/add-homework.min.js" defer></script>
+    </section>
+    <section id="add-work-popup" class="popupform">
+      <script src="js/add-work.min.js" defer></script>
     </section>
   </main>
   <nav id="navbar-bottom" class="navbar-bottom">
