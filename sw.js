@@ -1,15 +1,30 @@
 const staticAssets = [
-    './index.php',
+    './images/profile.jpg',
+    './favicon.ico',
+    './manifest.json',
     './home.php',
-    './app.js',
+    './app.min.js',
+    './sw.min.css',
     './js/jquery-3.3.1.min.js',
-    './js/db.min.js',
-    './js/navbar-top.min.js',
-    './js/navbar-hidden.min.js',
+    './js/add-course.min.js',
+    './js/add-event.min.js',
+    './js/add-homework.min.js',
+    './js/add-job.min.js',
+    './js/add-meeting.min.js',
+    './js/add-reminder.min.js',
+    './js/add-task.min.js',
+    './js/add-work.min.js',
+    './js/calendar.min.js',
+    './js/login.min.js',
     './js/navbar-bottom.min.js',
+    './js/navbar-hidden.min.js',
+    './js/navbar-top.min.js',
+    './js/settings.min.js',
     './css/normalize.min.css',
     './css/main.min.css',
     './css/navbar.min.css',
+    './css/popupform.min.css',
+    './css/login.min.css',
     './css/calendar.min.css'
 ];
 
@@ -32,12 +47,12 @@ self.addEventListener('fetch', event => {
 
 async function cacheFirst(request){
     const cachedResponse = await caches.match(request);
+    console.log('Loaded from cache');
     return cachedResponse || fetch(request);
 }
 
 async function networkFirst(request){
     const cache = await caches.open('static');
-
     try{
         const res = await fetch(request);
         cache.put(request, res.clone());

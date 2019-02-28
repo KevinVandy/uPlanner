@@ -13,7 +13,6 @@ if (!isLoggedIn()) {
  exit();
 } else {
  ?>
-
 <!DOCTYPE html>
 <html lang="en"></html>
 

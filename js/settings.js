@@ -3,6 +3,7 @@ const settingsArea = document.getElementById('settings-popup');
 
 (function () {
   settingsArea.innerHTML = generateSettingsForm();
+  addSettingsInfo();
 })();
 
 $("#settingsCloseButton").click(function () {
@@ -22,7 +23,7 @@ function generateSettingsForm() {
         </tr>
         <tr>
           <td>
-            <input type="email" name="emailAddress">
+            <input type="email" name="emailAddress" id="settingsEmailAddress">
           </td>
         </tr>
         <tr>
@@ -32,7 +33,7 @@ function generateSettingsForm() {
         </tr>
         <tr>
           <td>
-            <input type="text" name="teacher">
+            <input type="text" name="teacher" id="settingsFirstName">
           </td>
         </tr>
         <tr>
@@ -72,4 +73,9 @@ function generateSettingsForm() {
       </table>
     </form>
   `;
+}
+
+function addSettingsInfo(){
+  document.getElementById("settingsEmailAddress").value = account.email;
+  document.getElementById("settingsFirstName").value = account.firstName;
 }

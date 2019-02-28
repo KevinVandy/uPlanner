@@ -102,33 +102,141 @@ function selectCoursesByAccountId($accountId)
  }
  $records = $statement->fetchAll();
  $courses = [];
- if($records != null){
-    foreach($records as $r){
-      $course = new Course($r['Id'], $r['CourseName'], $r['LocationId'], $r['Teacher'], $r['StartDate'], $r['EndDate'], null, null);
-      $courses[] = $course;
-    }
-    return $courses;
+ if ($records != null) {
+  foreach ($records as $r) {
+   $course    = new Course($r['Id'], $r['CourseName'], $r['LocationId'], $r['Teacher'], $r['StartDate'], $r['EndDate'], null, null);
+   $courses[] = $course;
+  }
+  return $courses;
  } else {
-   return null;
+  return null;
  }
 }
 
 function selectJobsByAccountId($accountId)
 {
+ global $conn;
 
+ $query =
+  'SELECT Id, JobName, LocationId
+    FROM jobs
+    WHERE AccountId = :accountId';
+
+ $statement = $conn->prepare($query);
+ $statement->bindValue(':accountId', $accountId);
+
+ try
+ {
+  $statement->execute();
+ } catch (PDOException $ex) {
+  echo $ex->getMessage();
+  return null;
+ }
+ $records = $statement->fetchAll();
+ $jobs    = [];
+ if ($jobs != null) {
+  foreach ($records as $r) {
+   $job    = new Job($r['Id'], $r['CourseName'], null, null);
+   $jobs[] = $job;
+  }
+  return $jobs;
+ } else {
+  return null;
+ }
 }
 
 function selectEventsByAccountId($accountId)
 {
+ global $conn;
 
+ $query =
+  'SELECT Id, EventName, LocationId, Date, StartTime, EndTime, Completed
+    FROM events
+    WHERE AccountId = :accountId';
+
+ $statement = $conn->prepare($query);
+ $statement->bindValue(':accountId', $accountId);
+
+ try
+ {
+  $statement->execute();
+ } catch (PDOException $ex) {
+  echo $ex->getMessage();
+  return null;
+ }
+ $records = $statement->fetchAll();
+ $events    = [];
+ if ($events != null) {
+  foreach ($records as $r) {
+   $event    = new Event($r['Id'], $r['EventName'], null, $r['Date'], $r['StartTime'], $r['EndTime'], $r['Completed']);
+   $events[] = $event;
+  }
+  return $events;
+ } else {
+  return null;
+ }
 }
 
 function selectMeetingsByAccountId($accountId)
 {
+  global $conn;
 
+ $query =
+  'SELECT Id, MeetingName, LocationId, Date, StartTime, EndTime, Completed
+    FROM meetings
+    WHERE AccountId = :accountId';
+
+ $statement = $conn->prepare($query);
+ $statement->bindValue(':accountId', $accountId);
+
+ try
+ {
+  $statement->execute();
+ } catch (PDOException $ex) {
+  echo $ex->getMessage();
+  return null;
+ }
+ $records = $statement->fetchAll();
+ $meetings    = [];
+ if ($meetings != null) {
+  foreach ($records as $r) {
+   $meeting    = new Event($r['Id'], $r['MeetingName'], null, $r['Date'], $r['StartTime'], $r['EndTime'], $r['Completed']);
+   $meetings[] = $meeting;
+  }
+  return $meetings;
+ } else {
+  return null;
+ }
 }
 
 function selectTasksByAccountId($accountId)
 {
+  global $conn;
 
+ $query =
+  'SELECT Id, TaskName, Priority
+    FROM tasks
+    WHERE AccountId = :accountId';
+
+ $statement = $conn->prepare($query);
+ $statement->bindValue(':accountId', $accountId);
+
+ try
+ {
+  $statement->execute();
+ } catch (PDOException $ex) {
+  echo $ex->getMessage();
+  return null;
+ }
+ $records = $statement->fetchAll();
+ $tasks    = [];
+ if ($tasks != null) {
+  foreach ($records as $r) {
+   $task    = new Task($r['Id'], $r['TaskName'], $r['Priority'], null);
+   $tasks[] = $task;
+  }
+  return $tasks;
+ } else {
+  return null;
+ }
 }

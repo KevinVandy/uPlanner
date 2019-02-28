@@ -77,6 +77,30 @@ function insertCourse($course)
  return $conn->lastInsertId();
 }
 
+function insertJob($job)
+{
+ global $conn;
+
+ $query =
+  'INSERT INTO jobs(AccountId, JobName, LocationId)
+          VALUES(:accountId, :jobName, :locationId)';
+
+ $statement = $conn->prepare($query);
+ $statement->bindValue(':accountId', $_SESSION['account']->get_id());
+ $statement->bindValue(':jobName', $job->get_jobName());
+ $statement->bindValue(':locationId', $job->get_locationId());
+ try
+ {
+  $statement->execute();
+ } catch (PDOException $ex) {
+  echo $ex->getMessage();
+  return null;
+ } finally {
+  $statement->closeCursor();
+ }
+ return $conn->lastInsertId();
+}
+
 function insertEvent($event)
 {
  global $conn;
@@ -111,7 +135,7 @@ function insertMeeting($meeting)
 
  $query =
   'INSERT INTO meetings(AccountId, MeetingName, LocationId, [Date], StartTime, EndTime, Completed)
-          VALUES(:accountId, :meetingtName, :locationId, :date, :startTime, :endTime, :completed)';
+          VALUES(:accountId, :meetingName, :locationId, :date, :startTime, :endTime, :completed)';
 
  $statement = $conn->prepare($query);
  $statement->bindValue(':accountId', $_SESSION['account']->get_id());
@@ -120,6 +144,31 @@ function insertMeeting($meeting)
  $statement->bindValue(':date', $meeting->get_date());
  $statement->bindValue(':startTime', $meeting->get_startTime());
  $statement->bindValue(':endTime', $meeting->get_endTime());
+
+ try
+ {
+  $statement->execute();
+ } catch (PDOException $ex) {
+  echo $ex->getMessage();
+  return null;
+ } finally {
+  $statement->closeCursor();
+ }
+ return $conn->lastInsertId();
+}
+
+function insertTask($task)
+{
+ global $conn;
+
+ $query =
+  'INSERT INTO tasks(AccountId, TaskName, Priority)
+          VALUES(:accountId, :taskName, :priority)';
+
+ $statement = $conn->prepare($query);
+ $statement->bindValue(':accountId', $_SESSION['account']->get_id());
+ $statement->bindValue(':taskName', $task->get_taskName());
+ $statement->bindValue(':locationId', $task->get_priority());
 
  try
  {
