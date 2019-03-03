@@ -2,6 +2,7 @@
 
 //import classes
 require_once 'classes/account.php';
+require_once 'classes/admin.php';
 require_once 'classes/course.php';
 require_once 'classes/coursetime.php';
 require_once 'classes/coursework.php';

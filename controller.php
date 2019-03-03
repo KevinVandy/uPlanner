@@ -11,6 +11,25 @@ if ($action == null) {
 
 switch ($action) {
 
+ case 'loginAdmin':
+
+ $username    = filter_input(INPUT_POST, 'username');
+ $password = filter_input(INPUT_POST, 'password');
+
+ $_SESSION['errorMsgs']['login'] = validateLoginAdmin($username, $password);
+
+ if ($_SESSION['errorMsgs']['login'] == null) {
+  $admin = selectAdminByUsername($username);
+  loginAdmin($admin);
+  header('Location: ./admin.php');
+  die();
+ } else {
+  header('Location: ./index.php');
+  die();
+ }
+
+  break;
+
  case 'login':
 
   $email    = filter_input(INPUT_POST, 'email');
@@ -22,11 +41,11 @@ switch ($action) {
    $account = selectAccountByEmail($email);
    login($account);
    header('Location: ./home.php');
-   exit();
+   die();
   } else {
    $_SESSION['email'] = $email; //preserve typed in email on fail login
    header('Location: ./index.php');
-   exit();
+   die();
   }
 
   break;
@@ -47,7 +66,7 @@ switch ($action) {
   $_SESSION['errorMsgs'] = validateSignUp($firstName, $email, $password, $passwordConfirm);
 
   if (isArrayNull($_SESSION['errorMsgs'])) {
-   $account = new Account(null, $email, $firstName, 'month', 'default', false, false, null);
+   $account = new Account(null, $email, $firstName, 'month', 'purple', false, false, null);
    $account->set_id(insertAccount($account, hashPassword($password)));
    login($account->get_id());
    header('Location: ./home.php');

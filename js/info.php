@@ -1,7 +1,7 @@
 <?php
 
 // select all account info from the database
-$account  = $_SESSION['account'];
+$account  = selectAccountByEmail( $_SESSION['account']->get_email());
 $courses  = selectCoursesByAccountId($_SESSION['account']->get_id());
 $jobs     = selectJobsByAccountId($_SESSION['account']->get_id());
 $events   = selectEventsByAccountId($_SESSION['account']->get_id());

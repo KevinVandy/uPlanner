@@ -1,7 +1,10 @@
-h3 {
+.items h3 {
   text-align: center;
   font-size: 1.5em;
-  padding: 8px;
+  padding: 12px 0;
+  background-color: rgb(183, 178, 231);
+  border-bottom-right-radius: 12px;
+  border-bottom-left-radius: 12px;
 }
 
 .itemsTable {

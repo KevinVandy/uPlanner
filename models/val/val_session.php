@@ -1,5 +1,10 @@
 <?php
 
+function loginAdmin($admin)
+{
+ $_SESSION['admin'] = $admin;
+}
+
 function login($account)
 {
  $_SESSION['account'] = $account;
@@ -10,12 +15,30 @@ function logout()
  session_destroy();
 }
 
+function isLoggedInAdmin()
+{
+ if (isset($_SESSION['admin']) && $_SESSION['admin'] != null) {
+  return true;
+ } else {
+  return false;
+ }
+}
+
 function isLoggedIn()
 {
  if (isset($_SESSION['account']) && $_SESSION['account'] != null) {
   return true;
  } else {
   return false;
+ }
+}
+
+function validateLoginAdmin($username, $password)
+{
+ if (selectAdminPassword($username) == $password) {
+  return null;
+ } else {
+  return 'Login Error';
  }
 }
 

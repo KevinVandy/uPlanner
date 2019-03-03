@@ -21,12 +21,13 @@ var currentDayDay = currentDay.getDate();
 
 var currentDayMonthWord = monthLongLabels[currentDayMonth];
 
-var currentView = "year";
+var currentView;
 
 (function () {
 
+  currentView = account.settings.defaultView;
   showView();
-
+  
 })();
 
 function showView() {

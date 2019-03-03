@@ -2,11 +2,13 @@ h1 {
   font-size: 3em;
 }
 
+#section-login-admin,
 #section-signup {
   display: none;
 }
 
 #section-login,
+#section-login-admin,
 #section-signup {
   margin: 5px auto;
   max-width: 480px;
@@ -15,6 +17,7 @@ h1 {
 }
 
 #section-login table,
+#section-login-admin table,
 #section-signup table {
   width: 100%;
 }
@@ -55,6 +58,8 @@ input[type="submit"] {
 }
 
 #show-signup,
+#show-login-admin,
+#hide-login-admin,
 #show-login {
   color: darkblue;
   cursor: pointer;
@@ -66,7 +71,28 @@ input[type="submit"] {
   width: 80%;
 }
 
+#show-login-admin:hover,
+#hide-login-admin:hover,
 #show-signup:hover,
 #show-login:hover {
   font-weight: 600;
+}
+
+footer {
+  font-size: 1em;
+  margin: 0;
+  margin-top: 200px;
+  padding: 24px 0;
+  text-align: center;
+  width: 100%;
+  min-height: 100px;
+}
+
+footer a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+#show-login-admin {
+  display: none;
 }

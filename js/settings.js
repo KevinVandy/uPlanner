@@ -59,10 +59,10 @@ function generateSettingsForm() {
         <tr>
           <td>
             <select name="theme">
-              <option value="Default">Default</option>
+              <option value="Default" selected>Default</option>
               <option value="Light">Light</option>
               <option value="Dark">Dark</option>
-        </select>
+            </select>
           </td>
         </tr>
         <tr>

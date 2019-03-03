@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 24, 2019 at 04:11 AM
+-- Generation Time: Mar 03, 2019 at 01:51 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.3.0
 
@@ -21,7 +21,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `uplanner`
 --
-DROP DATABASE IF EXISTS `uplanner`;
 CREATE DATABASE IF NOT EXISTS `uplanner` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `uplanner`;
 
@@ -40,6 +39,14 @@ CREATE TABLE `accounts` (
   `ModifyTime` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `accounts`
+--
+
+INSERT INTO `accounts` (`Id`, `Email`, `FirstName`, `PasswordHash`, `CreateTime`, `ModifyTime`) VALUES
+(1, 'kevinvandy656@gmail.com', 'Kevin', '$2y$13$YW5uHoL.ENgeXaS.lXSKO..dl5HA6t0tcggdD1HubC0ZqjZz9Pk1y', '2019-01-02 23:38:54', '2019-01-02 23:38:54'),
+(2, 'thomasvancott1@gmail.com', 'Thomas', '$2y$13$/Im/r2/sBV0Yc8MRgox07eFr4ZKU/CpWCSAsB/3kvJhnHICPFeqyi', '2019-02-05 21:19:31', '2019-02-05 21:19:31');
+
 -- --------------------------------------------------------
 
 --
@@ -56,6 +63,14 @@ CREATE TABLE `account_settings` (
   `CreateTime` datetime DEFAULT CURRENT_TIMESTAMP,
   `ModifyTime` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `account_settings`
+--
+
+INSERT INTO `account_settings` (`Id`, `AccountId`, `DefaultView`, `Theme`, `HideCompleted`, `HideHints`, `CreateTime`, `ModifyTime`) VALUES
+(1, 1, 'month', 'default', 0, 0, '2019-01-02 23:38:54', '2019-03-02 17:35:17'),
+(2, 2, 'month', 'default', 0, 0, '2019-02-05 21:19:31', '2019-03-02 17:35:25');
 
 -- --------------------------------------------------------
 
@@ -88,6 +103,15 @@ CREATE TABLE `courses` (
   `CreateTime` datetime DEFAULT CURRENT_TIMESTAMP,
   `ModifyTime` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `courses`
+--
+
+INSERT INTO `courses` (`Id`, `AccountId`, `CourseName`, `LocationId`, `Teacher`, `StartDate`, `EndDate`, `CreateTime`, `ModifyTime`) VALUES
+(1, 1, 'asgas', NULL, 'sdfa', '2019-02-21', '2019-02-28', '2019-02-23 22:14:58', '2019-02-23 22:14:58'),
+(2, 1, 'asgas', NULL, 'sdfa', '2019-02-21', '2019-02-28', '2019-02-23 22:20:30', '2019-02-23 22:20:30'),
+(3, 1, 'asdf', NULL, 'fda', '2019-02-14', '2019-02-28', '2019-02-24 14:35:06', '2019-02-24 14:35:06');
 
 -- --------------------------------------------------------
 
@@ -145,10 +169,24 @@ CREATE TABLE `events` (
   `Date` date NOT NULL,
   `StartTime` time DEFAULT NULL,
   `EndTime` time DEFAULT NULL,
-  `Completed` tinyint(1) DEFAULT '0',
+  `Completed` tinyint(1) NOT NULL DEFAULT '0',
   `CreateTime` datetime DEFAULT CURRENT_TIMESTAMP,
   `ModifyTime` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `events`
+--
+
+INSERT INTO `events` (`Id`, `AccountId`, `EventName`, `LocationId`, `Date`, `StartTime`, `EndTime`, `Completed`, `CreateTime`, `ModifyTime`) VALUES
+(1, 1, 'kjjk', NULL, '2019-02-13', '00:00:00', '00:00:00', 0, '2019-02-28 18:54:48', '2019-02-28 18:56:12'),
+(2, 1, 'knlkn', NULL, '2019-02-14', '00:00:00', '00:00:00', 0, '2019-02-28 18:58:18', '2019-02-28 18:58:18'),
+(3, 1, 'kkknjk', NULL, '2019-02-04', '00:00:00', '00:00:00', 0, '2019-02-28 19:02:41', '2019-02-28 19:02:41'),
+(4, 1, 'egrsr', NULL, '2019-04-09', '00:00:00', '00:00:00', 0, '2019-03-02 15:08:25', '2019-03-02 15:08:25'),
+(5, 1, 'hello there', NULL, '2019-03-12', '00:00:00', '00:00:00', 0, '2019-03-02 15:20:41', '2019-03-02 15:20:41'),
+(6, 1, 'Luke\'s Birthday', NULL, '2019-03-13', '00:00:00', '00:00:00', 0, '2019-03-02 15:22:09', '2019-03-02 15:22:09'),
+(7, 1, 'Last Day of School', NULL, '2019-03-19', '00:00:00', '00:00:00', 0, '2019-03-02 18:20:33', '2019-03-02 18:20:33'),
+(8, 1, 'jknnjj', NULL, '2019-04-30', '00:00:00', '00:00:00', 1, '2019-03-02 18:41:28', '2019-03-02 18:41:28');
 
 -- --------------------------------------------------------
 
@@ -164,6 +202,13 @@ CREATE TABLE `jobs` (
   `CreateTime` datetime DEFAULT CURRENT_TIMESTAMP,
   `ModifyTime` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `jobs`
+--
+
+INSERT INTO `jobs` (`Id`, `AccountId`, `JobName`, `LocationId`, `CreateTime`, `ModifyTime`) VALUES
+(1, 1, 'State of Nebraska', NULL, '2019-02-28 18:01:20', '2019-02-28 18:01:20');
 
 -- --------------------------------------------------------
 
@@ -237,12 +282,19 @@ CREATE TABLE `meetings` (
   `MeetingName` varchar(50) NOT NULL,
   `LocationId` int(11) DEFAULT NULL,
   `Date` date NOT NULL,
-  `StartTime` time DEFAULT NULL,
-  `EndTime` time DEFAULT NULL,
-  `Completed` tinyint(1) DEFAULT '0',
+  `StartTime` time DEFAULT '00:00:00',
+  `EndTime` time DEFAULT '00:00:00',
+  `Completed` tinyint(1) NOT NULL DEFAULT '0',
   `CreateTime` datetime DEFAULT CURRENT_TIMESTAMP,
   `ModifyTime` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `meetings`
+--
+
+INSERT INTO `meetings` (`Id`, `AccountId`, `MeetingName`, `LocationId`, `Date`, `StartTime`, `EndTime`, `Completed`, `CreateTime`, `ModifyTime`) VALUES
+(3, 1, 'Dentist Appointment', NULL, '2019-03-21', '00:00:00', '00:00:00', 0, '2019-03-02 18:39:31', '2019-03-02 18:39:31');
 
 -- --------------------------------------------------------
 
@@ -386,13 +438,13 @@ ALTER TABLE `tasks`
 -- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `account_settings`
 --
 ALTER TABLE `account_settings`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `admins`
@@ -404,7 +456,7 @@ ALTER TABLE `admins`
 -- AUTO_INCREMENT for table `courses`
 --
 ALTER TABLE `courses`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `course_times`
@@ -422,13 +474,13 @@ ALTER TABLE `course_work`
 -- AUTO_INCREMENT for table `events`
 --
 ALTER TABLE `events`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `jobs`
 --
 ALTER TABLE `jobs`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `job_times`
@@ -452,7 +504,7 @@ ALTER TABLE `locations`
 -- AUTO_INCREMENT for table `meetings`
 --
 ALTER TABLE `meetings`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `reminders`

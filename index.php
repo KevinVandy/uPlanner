@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 include './models/imports.php';
 
@@ -14,8 +14,7 @@ if (!isset($_SESSION['errorMsgs'])) {
 
 if (isLoggedIn()) {
  header('Location ./home.php');
- 
-} else { //var_dump($_SESSION['errorMsgs']);
+} else {
  ?>
 
 <!DOCTYPE html>
@@ -162,12 +161,44 @@ if (isLoggedIn()) {
       </form>
       <a id="show-login">Already have an Account?<br>Login!</a>
     </section>
+    <section id="section-login-admin">
+      <form action="./controller.php" method="post" autocomplete="on">
+        <input type="hidden" name="action" value="loginAdmin">
+        <table>
+          <tr>
+            <th>
+              <label>Username</label>
+            </th>
+          </tr>
+          <tr>
+            <td>
+              <input type="text" name="username" id="loginUsername" value="<?php if (isset($_SESSION['email'])) {echo htmlspecialchars($_SESSION['email']);}?>" required autofocus>
+            </td>
+          </tr>
+          <tr>
+            <th><label>Password</label></th>
+          </tr>
+          <tr>
+            <td>
+              <input type="password" name="password" minlength="6" maxlength="60" required>
+            </td>
+          </tr>
+          <tr>
+            <td class="errorMsg">
+              <?php if (isset($_SESSION['errorMsgs']['login'])) {echo htmlspecialchars($_SESSION['errorMsgs']['login']);}?>
+            </td>
+          </tr>
+        </table>
+        <input type="submit" value="Login">
+        <a id="hide-login-admin">Hide Admin Login</a>
+      </form>
+    </section>
     <section id="information">
 
     </section>
   </main>
-  <footer>
-
+  <footer id="loginFooter">
+    <a id="show-login-admin" href="#">Show Admin Login</a>
   </footer>
 </body>
 </html>

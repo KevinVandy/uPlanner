@@ -27,42 +27,16 @@ function generateAddTaskForm() {
         </tr>
         <tr>
           <th>
-            <label>Location</label>
+            <label>Priority</label>
           </th>
         </tr>
         <tr>
           <td>
-            <input type="text" name="location">
-          </td>
-        </tr>
-        <tr>
-          <th>
-            <label>Date</label>
-          </th>
-        </tr>
-        <tr>
-          <td>
-            <input type="date" name="date">
-          </td>
-        </tr>
-        <tr>
-          <th>
-            <label>Start Time</label>
-          </th>
-        </tr>
-        <tr>
-          <td>
-            <input type="time" name="startTime">
-          </td>
-        </tr>
-        <tr>
-          <th>
-            <label>End Time</label>
-          </th>
-        </tr>
-        <tr>
-          <td>
-            <input type="time" name="endTime">
+          <select name="theme">
+            <option value="Low">Low</option>
+            <option value="Medium" selected>Medium</option>
+            <option value="High">Default</option>
+          </select>
           </td>
         </tr>
         <tr>
@@ -77,7 +51,7 @@ function generateAddTaskForm() {
         </tr>
         <tr>
           <th colspan="2">
-            <input type="submit" value="Save task">
+            <input type="submit" value="Save Task">
           </th>
         </tr>
       </table>
