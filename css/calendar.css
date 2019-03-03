@@ -54,7 +54,6 @@
 }
 
 .view-year {
-  display: block;
   margin: auto;
   text-align: center;
   width: 100%;
@@ -91,7 +90,7 @@
   padding: 4px;
   text-align: center;
   transition: background-color 0.3s;
-  width: 31%;
+  width: 32%;
 }
 
 .odd-month {

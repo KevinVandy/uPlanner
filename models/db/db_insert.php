@@ -18,7 +18,7 @@ function insertAccount($account, $passwordHash)
   $statement->execute();
  } catch (PDOException $ex) {
   echo $ex->getMessage();
-  return null;
+  die();
  } finally {
   $statement->closeCursor();
  }
@@ -41,7 +41,7 @@ function insertAccount($account, $passwordHash)
   $statement->execute();
  } catch (PDOException $ex) {
   echo $ex->getMessage();
-  return null;
+  die();
  } finally {
   $statement->closeCursor();
  }
@@ -60,7 +60,7 @@ function insertCourse($course)
  $statement = $conn->prepare($query);
  $statement->bindValue(':accountId', $_SESSION['account']->get_id());
  $statement->bindValue(':courseName', $course->get_courseName());
- $statement->bindValue(':locationId', $course->get_locationId());
+ $statement->bindValue(':locationId', $course->get_location());
  $statement->bindValue(':teacher', $course->get_teacher());
  $statement->bindValue(':startDate', $course->get_startDate());
  $statement->bindValue(':endDate', $course->get_endDate());
@@ -70,7 +70,7 @@ function insertCourse($course)
   $statement->execute();
  } catch (PDOException $ex) {
   echo $ex->getMessage();
-  return null;
+  die();
  } finally {
   $statement->closeCursor();
  }
@@ -88,13 +88,13 @@ function insertJob($job)
  $statement = $conn->prepare($query);
  $statement->bindValue(':accountId', $_SESSION['account']->get_id());
  $statement->bindValue(':jobName', $job->get_jobName());
- $statement->bindValue(':locationId', $job->get_locationId());
+ $statement->bindValue(':locationId', $job->get_location());
  try
  {
   $statement->execute();
  } catch (PDOException $ex) {
   echo $ex->getMessage();
-  return null;
+  die();
  } finally {
   $statement->closeCursor();
  }
@@ -106,23 +106,24 @@ function insertEvent($event)
  global $conn;
 
  $query =
-  'INSERT INTO events(AccountId, EventName, LocationId, [Date], StartTime, EndTime, Completed)
+  'INSERT INTO events(AccountId, EventName, LocationId, Date, StartTime, EndTime, Completed)
           VALUES(:accountId, :eventName, :locationId, :date, :startTime, :endTime, :completed)';
 
  $statement = $conn->prepare($query);
  $statement->bindValue(':accountId', $_SESSION['account']->get_id());
  $statement->bindValue(':eventName', $event->get_eventName());
- $statement->bindValue(':locationId', $event->get_locationId());
+ $statement->bindValue(':locationId', $event->get_location());
  $statement->bindValue(':date', $event->get_date());
  $statement->bindValue(':startTime', $event->get_startTime());
  $statement->bindValue(':endTime', $event->get_endTime());
+ $statement->bindValue(':completed', $event->get_completed());
 
  try
  {
   $statement->execute();
  } catch (PDOException $ex) {
-  echo $ex->getMessage();
-  return null;
+  echo $ex->getMessage(); die();
+  die();
  } finally {
   $statement->closeCursor();
  }
@@ -134,23 +135,24 @@ function insertMeeting($meeting)
  global $conn;
 
  $query =
-  'INSERT INTO meetings(AccountId, MeetingName, LocationId, [Date], StartTime, EndTime, Completed)
+  'INSERT INTO meetings(AccountId, MeetingName, LocationId, Date, StartTime, EndTime, Completed)
           VALUES(:accountId, :meetingName, :locationId, :date, :startTime, :endTime, :completed)';
 
  $statement = $conn->prepare($query);
  $statement->bindValue(':accountId', $_SESSION['account']->get_id());
  $statement->bindValue(':meetingName', $meeting->get_meetingName());
- $statement->bindValue(':locationId', $meeting->get_locationId());
+ $statement->bindValue(':locationId', $meeting->get_location());
  $statement->bindValue(':date', $meeting->get_date());
  $statement->bindValue(':startTime', $meeting->get_startTime());
  $statement->bindValue(':endTime', $meeting->get_endTime());
+ $statement->bindValue(':completed', $meeting->get_completed());
 
  try
  {
   $statement->execute();
  } catch (PDOException $ex) {
   echo $ex->getMessage();
-  return null;
+  die();
  } finally {
   $statement->closeCursor();
  }
@@ -175,7 +177,7 @@ function insertTask($task)
   $statement->execute();
  } catch (PDOException $ex) {
   echo $ex->getMessage();
-  return null;
+  die();
  } finally {
   $statement->closeCursor();
  }

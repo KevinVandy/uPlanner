@@ -1,0 +1,47 @@
+h3 {
+  text-align: center;
+  font-size: 1.5em;
+  padding: 8px;
+}
+
+.itemsTable {
+  text-align: left;
+  width: 100%;
+}
+
+.itemsTable th,
+.itemsTable td {
+  padding: 4px;
+}
+
+.itemsTable th {
+  text-align: left;
+}
+
+.itemsTable td {
+  text-align: left;
+}
+
+.itemDateYearView {
+  font-size: 2em;
+  width: 30%;
+  min-width: 100px;
+}
+
+.itemDateMonthView {
+  font-size: 2em;
+  width: 20%;
+  min-width: 50px;
+}
+
+.itemsTable .itemName {
+  font-size: 24pt;
+}
+
+.itemStartTimeLabel, .itemEndTimeLabel {
+  font-size: 1.2em;
+}
+
+.itemStartTime, .itemEndTime {
+  font-size: 1.5em;
+}

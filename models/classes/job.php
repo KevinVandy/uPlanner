@@ -4,13 +4,15 @@ class Job
 {
  private $id;
  private $jobName;
+ private $location;
  private $jobTimes;
  private $jobWork;
 
- public function __construct($id, $jobName, $jobTimes, $jobWork)
+ public function __construct($id, $jobName, $location, $jobTimes, $jobWork)
  {
   $this->id       = $id;
   $this->jobName  = $jobName;
+  $this->location  = $location;
   $this->jobTimes = $jobTimes;
   $this->jobWork  = $jobWork;
  }
@@ -23,6 +25,11 @@ class Job
  public function get_jobName()
  {
   return $this->jobName;
+ }
+
+ public function get_location()
+ {
+  return $this->location;
  }
 
  public function get_jobTimes()
@@ -43,6 +50,11 @@ class Job
  public function set_jobName($jobName)
  {
   $this->jobName = $jobName;
+ }
+
+ public function set_location($location)
+ {
+  $this->location = $location;
  }
 
  public function set_jobTimes($jobTimes)

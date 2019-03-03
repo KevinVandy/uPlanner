@@ -27,16 +27,6 @@ function generateAddWorkForm() {
         </tr>
         <tr>
           <th>
-            <label>Location</label>
-          </th>
-        </tr>
-        <tr>
-          <td>
-            <input type="text" name="location">
-          </td>
-        </tr>
-        <tr>
-          <th>
             <label>Date</label>
           </th>
         </tr>

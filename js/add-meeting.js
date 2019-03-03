@@ -14,6 +14,7 @@ function generateAddMeetingForm() {
     <button id="addMeetingCloseButton" class="close-button">X</button>
     <form action="./controller.php" method="post">
       <input type="hidden" name="action" value="add-meeting">
+      <input type="hidden" name="meetingId" id="meetingId">
       <table>
         <tr>
           <th>
@@ -52,7 +53,7 @@ function generateAddMeetingForm() {
         </tr>
         <tr>
           <td>
-            <input type="time" name="startTime">
+            <input type="time" name="startTime" id="meetingStartTime">
           </td>
         </tr>
         <tr>
@@ -62,7 +63,7 @@ function generateAddMeetingForm() {
         </tr>
         <tr>
           <td>
-            <input type="time" name="endTime">
+            <input type="time" name="endTime" id="meetingEndTime">
           </td>
         </tr>
         <tr>
@@ -72,7 +73,7 @@ function generateAddMeetingForm() {
         </tr>
         <tr>
           <td>
-            <input type="checkbox" name="completed" value="1">
+            <input type="checkbox" name="completed" id="meetingCompleted" value="1">
           </td>
         </tr>
         <tr>

@@ -13,7 +13,7 @@ function generateAddJobForm() {
   return /*html*/ `
     <button id="addJobCloseButton" class="close-button">X</button>
     <form action="./controller.php" method="post">
-      <input type="hidden" name="action" value="addJob">
+      <input type="hidden" name="action" value="add-job">
       <table>
         <tr>
           <th>
@@ -22,12 +22,12 @@ function generateAddJobForm() {
         </tr>
         <tr>
           <td>
-            <input type="text" name="jobName">
+            <input type="text" name="jobName" required>
           </td>
         </tr>
         <tr>
           <th colspan="2">
-            <input type="submit" value="Add Course">
+            <input type="submit" value="Save Job">
           </th>
         </tr>
       </table>

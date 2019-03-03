@@ -47,7 +47,7 @@ switch ($action) {
   $_SESSION['errorMsgs'] = validateSignUp($firstName, $email, $password, $passwordConfirm);
 
   if (isArrayNull($_SESSION['errorMsgs'])) {
-   $account = new Account(null, $email, $firstName, 'default', 'default', false, false, null);
+   $account = new Account(null, $email, $firstName, 'month', 'default', false, false, null);
    $account->set_id(insertAccount($account, hashPassword($password)));
    login($account->get_id());
    header('Location: ./home.php');
@@ -75,17 +75,40 @@ switch ($action) {
 
   break;
 
+ case 'add-job':
+
+  $jobName  = filter_input(INPUT_POST, 'jobName');
+  $location = null;
+
+  $newJob = new Job(null, $jobName, null, null, null);
+
+  $newJob->set_id(insertJob($newJob));
+
+  header('Location: ./home.php');
+
+  break;
+
  case 'add-event':
 
-  $eventName = filter_input(INPUT_POST, 'eventame');
+  $eventId   = filter_input(INPUT_POST, 'eventId');
+  $eventName = filter_input(INPUT_POST, 'eventName');
   $date      = filter_input(INPUT_POST, 'date');
-  $startTime = filter_input(INPUT_POST, 'startDate');
-  $endTime   = filter_input(INPUT_POST, 'endDate');
+  $startTime = filter_input(INPUT_POST, 'startTime');
+  $endTime   = filter_input(INPUT_POST, 'endTime');
+  $completed = filter_input(INPUT_POST, 'completed');
   $location  = null;
 
-  $newEvent = new Event(null, $eventName, $location, $date, $startTime, $endTime, null);
+  if ($completed == null) {
+   $completed = false;
+  }
 
-  $newEvent->set_id(insertEvent($newEvent));
+  $newEvent = new Event($eventId, $eventName, $location, $date, $startTime, $endTime, $completed);
+
+  if ($eventId == null) {
+   $newEvent->set_id(insertEvent($newEvent));
+  } else {
+   updateEvent($newEvent);
+  }
 
   header('Location: ./home.php');
 
@@ -93,15 +116,39 @@ switch ($action) {
 
  case 'add-meeting':
 
-  $meetingName = filter_input(INPUT_POST, 'meetingame');
-  $date      = filter_input(INPUT_POST, 'date');
-  $startTime = filter_input(INPUT_POST, 'startDate');
-  $endTime   = filter_input(INPUT_POST, 'endDate');
-  $location  = null;
+  $meetingId   = filter_input(INPUT_POST, 'meetingId');
+  $meetingName = filter_input(INPUT_POST, 'meetingName');
+  $date        = filter_input(INPUT_POST, 'date');
+  $startTime   = filter_input(INPUT_POST, 'startTime');
+  $endTime     = filter_input(INPUT_POST, 'endTime');
+  $completed   = filter_input(INPUT_POST, 'completed');
+  $location    = null;
 
-  $newMeeting = new Meeting(null, $meetingName, $location, $date, $startTime, $endTime, null);
+  if ($completed == null) {
+   $completed = false;
+  }
+
+  $newMeeting = new Meeting($meetingId, $meetingName, $location, $date, $startTime, $endTime, $completed);
 
   $newMeeting->set_id(insertMeeting($newMeeting));
+
+  header('Location: ./home.php');
+
+  break;
+
+ case 'add-task':
+
+  $taskName  = filter_input(INPUT_POST, 'taskName');
+  $priority  = filter_input(INPUT_POST, 'priority');
+  $completed = filter_input(INPUT_POST, 'completed');
+
+  if ($completed == null) {
+   $completed = false;
+  }
+
+  $newTask = new Task(null, $taskName, $priority, $completed);
+
+  $newTask->set_id(insertTask($newTask));
 
   header('Location: ./home.php');
 

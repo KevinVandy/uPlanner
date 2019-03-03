@@ -21,7 +21,7 @@ var currentDayDay = currentDay.getDate();
 
 var currentDayMonthWord = monthLongLabels[currentDayMonth];
 
-var currentView = "month";
+var currentView = "year";
 
 (function () {
 
@@ -29,16 +29,20 @@ var currentView = "month";
 
 })();
 
-function showView(){
-  if(currentView == "year"){
+function showView() {
+  if (currentView == "year") {
     showYearView();
-  } else if(currentView == "month"){
+  } else if (currentView == "month") {
     showMonthView();
-  } else if(currentView == "week"){
+  } else if (currentView == "week") {
     showWeekView();
-  } else if(currentView == "day"){
+  } else if (currentView == "day") {
     showDayView();
   }
+  try {
+    GenerateItems();
+  } catch (error) {}
+
 }
 
 function showYearView() {
@@ -59,7 +63,7 @@ function showDayView() {
 
 function createYearSkelaton() {
   let html = //html
-  `    
+    `    
     <table class="view-year">
       <tr>
         <th class="year-previous">
@@ -78,35 +82,34 @@ function createYearSkelaton() {
 
   let monthOfYear = 0;
 
-  monthShortLabels.forEach( function(monthLabel){
+  monthShortLabels.forEach(function (monthLabel) {
 
-    
-    if(monthOfYear % 2 == 0){
+    if (monthOfYear % 2 == 0) {
       html += //html
-      `
+        `
         <div class="odd-month">
       `;
     } else {
       html += //html
-      `
+        `
         <div class="even-month">
       `;
     }
 
-    if(monthOfYear == currentDayMonth && todayYear == currentDayYear){
+    if (monthOfYear == currentDayMonth && todayYear == currentDayYear) {
       html += //html
-      `
+        `
         <div class="this-month-label">
       `;
-    } else{
+    } else {
       html += //html
-      `
+        `
         <div class="month-label">
       `;
     }
 
     html += //html
-    `
+      `
           ${monthLabel}
         </div>
       </div>
@@ -115,7 +118,7 @@ function createYearSkelaton() {
   });
 
   html += //html
-  `
+    `
         </td>
       </tr>
     </table>
@@ -181,14 +184,14 @@ function createMonthSkelaton() {
     html += /*html*/ `<tr>`;
     for (let dayOfWeek = 1; dayOfWeek <= 7; dayOfWeek++) {
       if (dayOfMonth > 0 && dayOfMonth <= daysInMonth) {
-         if (dayOfMonth % 2 == 1) {
+        if (dayOfMonth % 2 == 1) {
           html += //html
-          `
+            `
             <td class="odd-day">
           `;
-          } else {
-            html += //html
-          `
+        } else {
+          html += //html
+            `
             <td class="even-day">
           `;
         }
@@ -198,9 +201,9 @@ function createMonthSkelaton() {
                 <div class="to-day-label">${dayOfMonth++}</div>
               
             `;
-        } else{ 
-          html+= //html
-          `
+        } else {
+          html += //html
+            `
               <div class="day-label">${dayOfMonth++}</div>
             
           `;

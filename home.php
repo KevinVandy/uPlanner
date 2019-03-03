@@ -20,7 +20,7 @@ if (!isLoggedIn()) {
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>µPlanner - Home</title>
+  <title>µPlanner</title>
 
   <link rel="manifest" href="manifest.json">
   <link rel="shortcut icon" href="favicon.ico">
@@ -29,9 +29,11 @@ if (!isLoggedIn()) {
   <link rel="stylesheet" href="css/main.min.css">
   <link rel="stylesheet" href="css/navbar.min.css">
   <link rel="stylesheet" href="css/calendar.min.css">
+  <link rel="stylesheet" href="css/items.min.css">
   <link rel="stylesheet" href="css/popupform.min.css">
 
   <script src="js/jquery-3.3.1.min.js"></script>
+  <script src="js/moment.min.js"></script>
   <script src="app.min.js" defer></script>
 
   <?php include 'js/info.php'?>
@@ -50,7 +52,17 @@ if (!isLoggedIn()) {
       <script src="js/calendar.min.js" defer></script>
     </section>
     <section id="items" class="items">
-      <script></script>
+      <div class="itemsSection" id="eventItems">
+      </div>
+      <div class="itemsSection" id="meetingItems">
+      </div>
+      <div class="itemsSection" id="homeworkItems">
+      </div>
+      <div class="itemsSection" id="workItems">
+      </div>
+      <div class="todoList" id="taskItems">
+      </div>
+      <script src="js/items.min.js" defer></script>
     </section>
     <section id="add-job-popup" class="popupform">
       <script src="js/add-job.min.js" defer></script>

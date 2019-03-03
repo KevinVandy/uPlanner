@@ -134,9 +134,9 @@ function selectJobsByAccountId($accountId)
  }
  $records = $statement->fetchAll();
  $jobs    = [];
- if ($jobs != null) {
+ if ($records != null) {
   foreach ($records as $r) {
-   $job    = new Job($r['Id'], $r['CourseName'], null, null);
+   $job    = new Job($r['Id'], $r['JobName'], null, null, null);
    $jobs[] = $job;
   }
   return $jobs;
@@ -152,7 +152,8 @@ function selectEventsByAccountId($accountId)
  $query =
   'SELECT Id, EventName, LocationId, Date, StartTime, EndTime, Completed
     FROM events
-    WHERE AccountId = :accountId';
+    WHERE AccountId = :accountId
+    ORDER BY Date';
 
  $statement = $conn->prepare($query);
  $statement->bindValue(':accountId', $accountId);
@@ -166,7 +167,7 @@ function selectEventsByAccountId($accountId)
  }
  $records = $statement->fetchAll();
  $events    = [];
- if ($events != null) {
+ if ($records != null) {
   foreach ($records as $r) {
    $event    = new Event($r['Id'], $r['EventName'], null, $r['Date'], $r['StartTime'], $r['EndTime'], $r['Completed']);
    $events[] = $event;
@@ -184,7 +185,8 @@ function selectMeetingsByAccountId($accountId)
  $query =
   'SELECT Id, MeetingName, LocationId, Date, StartTime, EndTime, Completed
     FROM meetings
-    WHERE AccountId = :accountId';
+    WHERE AccountId = :accountId
+    ORDER BY Date';
 
  $statement = $conn->prepare($query);
  $statement->bindValue(':accountId', $accountId);
@@ -194,13 +196,13 @@ function selectMeetingsByAccountId($accountId)
   $statement->execute();
  } catch (PDOException $ex) {
   echo $ex->getMessage();
-  return null;
+  die();
  }
  $records = $statement->fetchAll();
  $meetings    = [];
- if ($meetings != null) {
+ if ($records != null) {
   foreach ($records as $r) {
-   $meeting    = new Event($r['Id'], $r['MeetingName'], null, $r['Date'], $r['StartTime'], $r['EndTime'], $r['Completed']);
+   $meeting    = new Meeting($r['Id'], $r['MeetingName'], null, $r['Date'], $r['StartTime'], $r['EndTime'], $r['Completed']);
    $meetings[] = $meeting;
   }
   return $meetings;
@@ -230,7 +232,7 @@ function selectTasksByAccountId($accountId)
  }
  $records = $statement->fetchAll();
  $tasks    = [];
- if ($tasks != null) {
+ if ($records != null) {
   foreach ($records as $r) {
    $task    = new Task($r['Id'], $r['TaskName'], $r['Priority'], null);
    $tasks[] = $task;
