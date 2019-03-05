@@ -17,7 +17,7 @@ function selectAdminByUsername($username)
   $statement->execute();
  } catch (PDOException $ex) {
   echo $ex->getMessage();
-  return null;
+  die();
  }
 
  $record = $statement->fetch();
@@ -44,7 +44,7 @@ function selectAccountById($accountId)
   $statement->execute();
  } catch (PDOException $ex) {
   echo $ex->getMessage();
-  return null;
+  die();
  }
 
  $record = $statement->fetch();
@@ -71,7 +71,7 @@ function selectAccountByEmail($email)
   $statement->execute();
  } catch (PDOException $ex) {
   echo $ex->getMessage();
-  return null;
+  die();
  }
 
  $record = $statement->fetch();
@@ -125,7 +125,7 @@ function selectPasswordHashByEmail($email)
   $statement->execute();
  } catch (PDOException $ex) {
   echo $ex->getMessage();
-  return null;
+  die();
  }
 
  $record = $statement->fetch();
@@ -152,7 +152,7 @@ function selectCoursesByAccountId($accountId)
   $statement->execute();
  } catch (PDOException $ex) {
   echo $ex->getMessage();
-  return null;
+  die();
  }
  $records = $statement->fetchAll();
  $courses = [];
@@ -184,7 +184,7 @@ function selectJobsByAccountId($accountId)
   $statement->execute();
  } catch (PDOException $ex) {
   echo $ex->getMessage();
-  return null;
+  die();
  }
  $records = $statement->fetchAll();
  $jobs    = [];
@@ -217,7 +217,7 @@ function selectEventsByAccountId($accountId)
   $statement->execute();
  } catch (PDOException $ex) {
   echo $ex->getMessage();
-  return null;
+  die();
  }
  $records = $statement->fetchAll();
  $events  = [];
@@ -282,7 +282,7 @@ function selectTasksByAccountId($accountId)
   $statement->execute();
  } catch (PDOException $ex) {
   echo $ex->getMessage();
-  return null;
+  die();
  }
  $records = $statement->fetchAll();
  $tasks   = [];

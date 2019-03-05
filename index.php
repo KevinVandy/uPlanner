@@ -12,11 +12,12 @@ if (!isset($_SESSION['errorMsgs'])) {
  $_SESSION['errorMsgs'] = [];
 }
 
-if (isLoggedIn()) {
- header('Location ./home.php');
+if (isLoggedInAdmin()) {
+ header('Location: ./home-admin.php');
+} else if (isLoggedIn()) {
+ header('Location: ./home.php');
 } else {
- ?>
-
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -162,7 +163,7 @@ if (isLoggedIn()) {
       <a id="show-login">Already have an Account?<br>Login!</a>
     </section>
     <section id="section-login-admin">
-      <form action="./controller.php" method="post" autocomplete="on">
+      <form action="./controller-admin.php" method="post" autocomplete="on">
         <input type="hidden" name="action" value="loginAdmin">
         <table>
           <tr>
@@ -202,7 +203,6 @@ if (isLoggedIn()) {
   </footer>
 </body>
 </html>
-
 <?php
 }
 ?>

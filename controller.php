@@ -11,25 +11,6 @@ if ($action == null) {
 
 switch ($action) {
 
- case 'loginAdmin':
-
- $username    = filter_input(INPUT_POST, 'username');
- $password = filter_input(INPUT_POST, 'password');
-
- $_SESSION['errorMsgs']['login'] = validateLoginAdmin($username, $password);
-
- if ($_SESSION['errorMsgs']['login'] == null) {
-  $admin = selectAdminByUsername($username);
-  loginAdmin($admin);
-  header('Location: ./admin.php');
-  die();
- } else {
-  header('Location: ./index.php');
-  die();
- }
-
-  break;
-
  case 'login':
 
   $email    = filter_input(INPUT_POST, 'email');
@@ -176,5 +157,7 @@ switch ($action) {
  default:
 
   header('Location: ./index.php');
+
+  break;
 
 }

@@ -16,7 +16,9 @@ require_once 'classes/task.php';
 
 //import db functions
 require_once 'db/db_connect.php';
+require_once 'db/db_count.php';
 require_once 'db/db_find.php';
+require_once 'db/db_select_all.php';
 require_once 'db/db_select.php';
 require_once 'db/db_insert.php';
 require_once 'db/db_update.php';

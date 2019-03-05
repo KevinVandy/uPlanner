@@ -4,6 +4,12 @@ class Admin
  private $id;
  private $username;
 
+ public function __construct($id, $username)
+ {
+  $this->id    = $id;
+  $this->username = $username;
+ }
+
  public function get_id()
  {
   return $this->id;

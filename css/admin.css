@@ -1,0 +1,37 @@
+h1,
+h2,
+h4 {
+  text-align: center;
+}
+
+h3 {
+  margin-top: 48px;
+  margin-left: 100px;
+}
+
+table {
+  width: auto;
+  margin-left: 20px;
+  border: 1px solid black;
+}
+
+th {
+  text-align: right;
+  font-size: 1.2em;
+  padding: 4px 12px;
+}
+
+td {
+  border: 1px gray dashed;
+  min-width: 30px;
+  padding: 4px 8px;
+  font-size: 1.2em;
+}
+
+button,
+input[type="submit"] {
+  font-size: 1.2em;
+  padding: 4px;
+  text-align: center;
+  margin: 12x auto;
+}
