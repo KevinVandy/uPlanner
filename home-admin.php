@@ -10,7 +10,6 @@ if (!isset($_SESSION['admin'])) {
 
 if (!isLoggedInAdmin()) {
  header('Location ./index.php');
- echo ($_SESSION['admin']);
 } else { //load data for tables
 
   $numAdmins = selectCountAdmins();
@@ -35,28 +34,35 @@ if (!isLoggedInAdmin()) {
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/main.min.css">
-    <link rel="stylesheet" href="css/admin.min.css">
     <link rel="stylesheet" href="css/navbar.min.css">
     <link rel="stylesheet" href="css/popupform.min.css">
+    <link rel="stylesheet" href="css/admin.min.css">
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="js/admin.min.js" defer></script>
   </head>
   <body>
     <nav class="navbar-top">
-      <ul>
+      <ul class="left-item">
         <li>
+          <a>Hello <?php echo ($_SESSION['admin']->get_username()); ?></a>
+        </li>
+      </ul>
+      <ul >
+        <li >
+          <a>µPlanner</a>
+        </li>
+      </ul>
+      <ul class="right-item">
+        <li >
           <a href="./controller-admin.php?action=logout">Log Out</a>
         </li>
       </ul>
     </nav>
-    <header>
-      <h1>µPlanner</h1>
-      <h2>Admin Portal</h2>
-    </header>
-    <p class="errorMsg">
-      <?php if (isset($_SESSION['errorMsgs']['admin'])) {echo htmlspecialchars($_SESSION['errorMsgs']['admin']);}?>
-    </p>
     <main>
+      <p class="errorMsg">
+        <?php if (isset($_SESSION['errorMsgs']['admin']['username'])) {echo htmlspecialchars($_SESSION['errorMsgs']['admin']['username']);}?>
+        <?php if (isset($_SESSION['errorMsgs']['admin']['password'])) {echo htmlspecialchars($_SESSION['errorMsgs']['admin']['password']);}?>
+      </p>
       <section class="dataTableContainer">
         <h3>App Statistics</h3>
         <table>
@@ -76,10 +82,8 @@ if (!isLoggedInAdmin()) {
               <?php echo htmlspecialchars($numAccounts); ?>
             </td>
           </tr>
-          <tr>
-            <th colspan="2">
-            </th>
-          </tr>
+        </table>
+        <table>
           <tr>
             <th>
               Number of Events
@@ -140,6 +144,59 @@ if (!isLoggedInAdmin()) {
       </section>
       <section class="dataTableContainer">
         <h3>Admins Table</h3>
+        <button id="createAdminAccountButton" onclick='$("#create-admin-account-popup").show(500);'>
+          Create New Admin Account
+        </button>
+          <div class="popupform" id="create-admin-account-popup">
+            <button id="createAdminAccountCloseButton" class="close-button" onclick='$("#create-admin-account-popup").hide(500);'>X</button>
+            <form method="post" action = "./controller-admin.php">
+              <input type="hidden" name="action" value="create-admin-account">
+              <table>
+                <tr>
+                  <th>
+                    <label>
+                      Username
+                    </label>
+                  </th>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="text" name="username">
+                  </td>
+                </tr>
+                <tr>
+                <tr>
+                  <th>
+                    <label>
+                      Password
+                    </label>
+                  </th>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="password" name="password">
+                  </td>
+                </tr>
+                <tr>
+                  <th>
+                    <label>
+                      Confirm Password
+                    </label>
+                  </th>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="password" name="passwordConfirm">
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <input type="submit" value="Create Admin">
+                  </td>
+                </tr>
+              </table>
+            </form>
+          </div>
         <table id="adminsTable">
           <tr>
             <th>Ban</th>
@@ -163,7 +220,7 @@ if (!isLoggedInAdmin()) {
                     Change Password
                   </button>
                   <div class="popupform" id="change-admin-password-popup<?php echo $i ?>">
-                    <button id="addHomeworkCloseButton<?php echo $i ?>" class="close-button" onclick='$("#change-admin-password-popup<?php echo $i ?>").hide(500);'>X</button>
+                    <button id="changeAdminPasswordCloseButton<?php echo $i ?>" class="close-button" onclick='$("#change-admin-password-popup<?php echo $i ?>").hide(500);'>X</button>
                     <form method="post" action = "./controller-admin.php">
                       <input type="hidden" name="action" value="change-admin-password">
                       <input type="hidden" name="adminId" value="<?php echo htmlspecialchars($allAdmins[$i]->get_id()); ?>">
@@ -192,8 +249,12 @@ if (!isLoggedInAdmin()) {
                             <input type="password" name="newPasswordConfirm">
                           </td>
                         </tr>
+                        <tr>
+                          <td>
+                            <input type="submit" value="Change Password">
+                          </td>
+                        </tr>
                       </table>
-                      <input type="submit" value="Change Password">
                     </form>
                   </div>
                 </td>

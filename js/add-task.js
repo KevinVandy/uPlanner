@@ -32,7 +32,7 @@ function generateAddTaskForm() {
         </tr>
         <tr>
           <td>
-          <select name="theme">
+          <select name="priority">
             <option value="Low">Low</option>
             <option value="Medium" selected>Medium</option>
             <option value="High">Default</option>

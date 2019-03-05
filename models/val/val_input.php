@@ -10,6 +10,14 @@ function validateFirstName($firstName)
  return null;
 }
 
+function validateUsername($username)
+{
+ if (findUsername($username)) {
+  return 'This username has already been used by someone else';
+ }
+ return null;
+}
+
 function validateEmail($email)
 {
  if ($email === false || isStringBlank($email)) {

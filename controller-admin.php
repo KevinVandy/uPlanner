@@ -37,6 +37,25 @@ switch ($action) {
 
   break;
 
+ case 'create-admin-account':
+
+  if (isLoggedInAdmin()) {
+   $username        = filter_input(INPUT_POST, 'username');
+   $password        = filter_input(INPUT_POST, 'password');
+   $passwordConfirm = filter_input(INPUT_POST, 'passwordConfirm');
+
+   $_SESSION['errorMsgs']['admin'] = validateSignupAdmin($username, $password, $passwordConfirm);
+
+   if (isArrayNull($_SESSION['errorMsgs']['admin'])) {
+    $admin = new Admin($null, $username);
+    $admin->set_id(insertAdmin($admin, $password));
+   }
+  }
+
+  header('Location: ./home-admin.php');
+
+  break;
+
  case 'change-admin-password':
 
   if (isLoggedInAdmin()) {

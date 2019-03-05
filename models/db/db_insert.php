@@ -1,5 +1,29 @@
 <?php
 
+function insertAdmin($admin, $passwordHash)
+{
+ global $conn;
+
+ $query =
+  'INSERT INTO admins(UserName, PasswordHash )
+          VALUES(:username, :passwordHash)';
+
+ $statement = $conn->prepare($query);
+ $statement->bindValue(':username', $admin->get_username());
+ $statement->bindValue(':passwordHash', $passwordHash);
+
+ try
+ {
+  $statement->execute();
+ } catch (PDOException $ex) {
+  echo $ex->getMessage();
+  die();
+ } finally {
+  $statement->closeCursor();
+ }
+ return $conn->lastInsertId();
+}
+
 function insertAccount($account, $passwordHash)
 {
  global $conn;

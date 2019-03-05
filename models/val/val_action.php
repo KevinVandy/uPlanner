@@ -1,5 +1,14 @@
 <?php
 
+function validateSignupAdmin($username, $password, $passwordConfirm)
+{
+ $errorMsgs             = [];
+ $errorMsgs['username'] = validateUsername($username);
+ $errorMsgs['password'] = validatePassword($password, $passwordConfirm);
+
+ return $errorMsgs;
+}
+
 function validateSignup($firstName, $email, $password, $passwordConfirm)
 {
  $errorMsgs              = [];

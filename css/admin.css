@@ -1,18 +1,49 @@
+body{
+  background-image: linear-gradient(#97A4EB, rgb(19, 2, 82));
+}
+
+main {
+  background-color: rgb(200, 214, 243);
+  margin: 0 auto;
+  max-width: 1200px;
+  min-width: 480px;
+  padding: 32px;
+  width: 80%;
+}
+
+nav {
+  margin: 0;
+  overflow: hidden;
+}
+
 h1,
 h2,
+h3,
 h4 {
   text-align: center;
 }
 
-h3 {
-  margin-top: 48px;
-  margin-left: 100px;
+table {
+  background-color:  rgb(218, 171, 179);
+  border: 1px solid black;
+  margin: 20px auto;
+  width: auto;
 }
 
-table {
-  width: auto;
-  margin-left: 20px;
-  border: 1px solid black;
+tr:nth-child(even) {
+  background-color:  rgb(218, 171, 179);
+}
+
+tr:nth-child(odd) {
+  background-color:  rgb(211, 128, 141);
+}
+
+.popupform tr:nth-child(even) {
+  background-color: white;
+}
+
+.popupform tr:nth-child(odd) {
+  background-color: white;
 }
 
 th {
@@ -22,16 +53,19 @@ th {
 }
 
 td {
-  border: 1px gray dashed;
+  border: none;
+  font-size: 1.2em;
   min-width: 30px;
   padding: 4px 8px;
-  font-size: 1.2em;
 }
 
 button,
 input[type="submit"] {
+  border-radius: 8px;
+  cursor: pointer;
+  display: block;
   font-size: 1.2em;
-  padding: 4px;
+  margin: 12px auto;
+  padding: 8px;
   text-align: center;
-  margin: 12x auto;
 }
