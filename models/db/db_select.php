@@ -272,7 +272,8 @@ function selectTasksByAccountId($accountId)
  $query =
   'SELECT Id, TaskName, Priority
     FROM tasks
-    WHERE AccountId = :accountId';
+    WHERE AccountId = :accountId
+    ORDER BY Priority';
 
  $statement = $conn->prepare($query);
  $statement->bindValue(':accountId', $accountId);

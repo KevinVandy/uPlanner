@@ -88,6 +88,25 @@ switch ($action) {
 
   break;
 
+ case 'change-settings':
+
+  $emailAddress = filter_input(INPUT_POST, 'emailAddress');
+  $firstName = filter_input(INPUT_POST, 'firstName');
+  $defaultView = filter_input(INPUT_POST, 'defaultView');
+  $theme = filter_input(INPUT_POST, 'theme');
+
+  $account = $_SESSION['account'];
+  $account->set_email($emailAddress);
+  $account->set_firstName($firstName);
+  $account->set_defaultView($defaultView);
+  $account->set_theme($theme);
+
+  updateAccountSettings($account);
+
+  header('Location: ./home.php');
+
+  break;
+
  case 'add-event':
 
   $eventId   = filter_input(INPUT_POST, 'eventId');
@@ -138,17 +157,39 @@ switch ($action) {
 
  case 'add-task':
 
-  $taskName  = filter_input(INPUT_POST, 'taskName');
-  $priority  = filter_input(INPUT_POST, 'priority');
-  $completed = filter_input(INPUT_POST, 'completed');
+  $taskName = filter_input(INPUT_POST, 'taskName');
+  $priority = filter_input(INPUT_POST, 'priority');
 
-  if ($completed == null) {
-   $completed = false;
-  }
-
-  $newTask = new Task(null, $taskName, $priority, $completed);
+  $newTask = new Task(null, $taskName, $priority, false);
 
   $newTask->set_id(insertTask($newTask));
+
+  header('Location: ./home.php');
+
+  break;
+
+ case 'complete-event':
+
+  $eventId = filter_input(INPUT_POST, 'eventId');
+  updateEventComplete($eventId);
+
+  header('Location: ./home.php');
+
+  break;
+
+ case 'complete-meeting':
+
+  $meetingId = filter_input(INPUT_POST, 'meetingId');
+  updateMeetingComplete($meetingId);
+
+  header('Location: ./home.php');
+
+  break;
+
+ case 'complete-task':
+
+  $taskId = filter_input(INPUT_POST, 'taskId');
+  deleteTask($taskId);
 
   header('Location: ./home.php');
 

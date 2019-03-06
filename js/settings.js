@@ -14,7 +14,7 @@ function generateSettingsForm() {
   return /*html*/ `
     <button id="settingsCloseButton" class="close-button">X</button>
     <form action="./controller.php" method="post">
-      <input type="hidden" name="action" value="changeSettings">
+      <input type="hidden" name="action" value="change-settings">
       <table>
         <tr>
           <th>
@@ -33,7 +33,7 @@ function generateSettingsForm() {
         </tr>
         <tr>
           <td>
-            <input type="text" name="teacher" id="settingsFirstName">
+            <input type="text" name="firstName" id="settingsFirstName">
           </td>
         </tr>
         <tr>
@@ -44,10 +44,10 @@ function generateSettingsForm() {
         <tr>
           <td>
             <select name="defaultView">
-              <option value="Day">Day</option>
-              <option value="Week">Week</option>
-              <option value="Month" selected>Month</option>
-              <option value="Year">Year</option>
+              <option value="day" id="dayOption">Day</option>
+              <option value="week" id="weekOption">Week</option>
+              <option value="month" id="monthOption">Month</option>
+              <option value="year" id="yearOption">Year</option>
             </select>
           </td>
         </tr>
@@ -59,9 +59,9 @@ function generateSettingsForm() {
         <tr>
           <td>
             <select name="theme">
-              <option value="Default" selected>Default</option>
-              <option value="Light">Light</option>
-              <option value="Dark">Dark</option>
+              <option value="default" id="defaultThemeOption">Default</option>
+              <option value="light" id="lightThemeOption">Light</option>
+              <option value="dark" id="darkThemeOption">Dark</option>
             </select>
           </td>
         </tr>
@@ -76,6 +76,26 @@ function generateSettingsForm() {
 }
 
 function addSettingsInfo(){
+
   document.getElementById("settingsEmailAddress").value = account.email;
   document.getElementById("settingsFirstName").value = account.firstName;
+
+  if(account.settings.defaultView == "day"){
+    $('#dayOption').attr('selected', 'selected');
+  } else if(account.settings.defaultView == "week"){
+    $('#weekOption').attr('selected', 'selected');
+  } else if(account.settings.defaultView == "month"){
+    $('#monthOption').attr('selected', 'selected');
+  } else if(account.settings.defaultView == "year"){
+    $('#yearOption').attr('selected', 'selected');
+  }
+  
+  if(account.settings.theme == "default"){
+    $('#defaultThemeOption').attr('selected', 'selected');
+  } else if(account.settings.theme == "light"){
+    $('#lightThemeOption').attr('selected', 'selected');
+  } else if(account.settings.theme == "dark"){
+    $('#darkThemeOption').attr('selected', 'selected');
+  }
+
 }

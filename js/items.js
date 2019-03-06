@@ -35,11 +35,18 @@ function generateEventItemsSkelaton() {
         if (eventItem.completed == 0) {
           html += /*html*/ `<td class="itemName">`
         } else {
-          html += /*html*/ `<td class="itemName" style="text-decoration: line-through">`
+          html += /*html*/ `<td class="itemName" style="text-decoration: line-through; color: grey">`
         }
         html += //html
           `
                 ${eventItem.eventName}
+              </td>
+              <td>
+                <form method="post" action="./controller.php">
+                  <input type="hidden" name="action" value="complete-event">
+                  <input type="hidden" name="eventId" value="${eventItem.id}">
+                  <input type="submit" value="Done">
+                </form>
               </td>
             </tr>
           `;
@@ -61,11 +68,18 @@ function generateEventItemsSkelaton() {
         if (eventItem.completed == 0) {
           html += /*html*/ `<td class="itemName">`
         } else {
-          html += /*html*/ `<td class="itemName" style="text-decoration: line-through">`
+          html += /*html*/ `<td class="itemName" style="text-decoration: line-through; color: grey">`
         }
         html += //html
           `
                 ${eventItem.eventName}
+              </td>
+              <td>
+                <form method="post" action="./controller.php">
+                  <input type="hidden" name="action" value="complete-event">
+                  <input type="hidden" name="eventId" value="${eventItem.id}">
+                  <input type="submit" value="Done">
+                </form>
               </td>
             </tr>
           `;
@@ -106,12 +120,26 @@ function generateMeetingItemsSkelaton() {
         if (meetingItem.date.getFullYear() == currentDayYear) {
           html += //html
             `
-            <tr class="itemDateYearView">
-              <th>
+            <tr>
+              <th class="itemDateYearView">
                 ${monthShortLabels[meetingItem.date.getMonth()]} ${meetingItem.date.getDate() + 1}
               </th>
-              <td class="itemName">
+            `;
+            if (meetingItem.completed == 0) {
+              html += /*html*/ `<td class="itemName">`
+            } else {
+              html += /*html*/ `<td class="itemName" style="text-decoration: line-through; color: grey">`
+            }
+            html += //html
+            `
                 ${meetingItem.meetingName}
+              </td>
+              <td>
+                <form method="post" action="./controller.php">
+                  <input type="hidden" name="action" value="complete-meeting">
+                  <input type="hidden" name="meetingId" value="${meetingItem.id}">
+                  <input type="submit" value="Done">
+                </form>
               </td>
             </tr>
           `;
@@ -129,8 +157,22 @@ function generateMeetingItemsSkelaton() {
             <th class="itemDateMonthView">
               ${meetingItem.date.getDate() + 1}
             </th>
-            <td class="itemName">
+            `;
+            if (meetingItem.completed == 0) {
+              html += /*html*/ `<td class="itemName">`
+            } else {
+              html += /*html*/ `<td class="itemName" style="text-decoration: line-through; color: grey">`
+            }
+            html += //html
+            `
               ${meetingItem.meetingName}
+            </td>
+            <td>
+              <form method="post" action="./controller.php">
+                <input type="hidden" name="action" value="complete-meeting">
+                <input type="hidden" name="meetingId" value="${meetingItem.id}">
+                <input type="submit" value="Done">
+              </form>
             </td>
           </tr>
         `;
@@ -176,7 +218,28 @@ function generateWorkItemsSkelaton() {
 
 function generateTaskItemsSkelaton() {
   let html = /*html*/ '<h3>Todo List</h3>';
-
+  Array.from(account.tasks).forEach(function (taskItem) {
+    html += //html
+      `
+        <table class="itemsTable">
+          <tr>
+            <th class="itemDateYearView">
+              ${taskItem.priority}
+            </th>
+            <td class="itemName">
+              ${taskItem.taskName}
+            </td>
+            <td>
+              <form method="post" action="./controller.php">
+                <input type="hidden" name="action" value="complete-task">
+                <input type="hidden" name="taskId" value="${taskItem.id}">
+                <input type="submit" value="Done">
+              </form>
+            </td>
+          </tr>
+        </table>
+      `;
+  });
 
   return html;
 }

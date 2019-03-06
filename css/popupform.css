@@ -33,7 +33,8 @@
   padding-top: 16px;
 }
 
-.popupform form input {
+.popupform form input,
+.popupform select {
   width: 90%;
   max-width: 360px;
   text-align: left;

@@ -36,7 +36,28 @@ function deleteAccount($id)
   $statement->execute();
  } catch (PDOException $ex) {
   echo $ex->getMessage();
-  return null;
+  die();
+ } finally {
+  $statement->closeCursor();
+ }
+}
+
+function deleteTask($id)
+{
+ global $conn;
+ $query =
+  'DELETE FROM tasks
+   WHERE Id = :id';
+
+ $statement = $conn->prepare($query);
+ $statement->bindValue(':id', $id);
+
+ try
+ {
+  $statement->execute();
+ } catch (PDOException $ex) {
+  echo $ex->getMessage();
+  die();
  } finally {
   $statement->closeCursor();
  }

@@ -127,7 +127,6 @@ if ($tasks != null) {
     account.tasks[<?php echo htmlspecialchars($i); ?>].id = <?php echo htmlspecialchars($tasks[$i]->get_id()) ?>;
     account.tasks[<?php echo htmlspecialchars($i); ?>].taskName = "<?php echo htmlspecialchars($tasks[$i]->get_taskName()) ?>";
     account.tasks[<?php echo htmlspecialchars($i); ?>].priority = "<?php echo htmlspecialchars($tasks[$i]->get_priority()) ?>";
-    account.tasks[<?php echo htmlspecialchars($i); ?>].tasks = <?php echo htmlspecialchars($tasks[$i]->get_completed()) ?>;
 
     account.tasks[<?php echo htmlspecialchars($i); ?>].location = {};
 

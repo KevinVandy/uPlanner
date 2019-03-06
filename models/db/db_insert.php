@@ -194,7 +194,7 @@ function insertTask($task)
  $statement = $conn->prepare($query);
  $statement->bindValue(':accountId', $_SESSION['account']->get_id());
  $statement->bindValue(':taskName', $task->get_taskName());
- $statement->bindValue(':locationId', $task->get_priority());
+ $statement->bindValue(':priority', $task->get_priority());
 
  try
  {
