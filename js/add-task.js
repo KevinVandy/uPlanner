@@ -17,7 +17,7 @@ function generateAddTaskForm() {
       <table>
         <tr>
           <th>
-            <label>task Name</label>
+            <label>Task Name</label>
           </th>
         </tr>
         <tr>

@@ -22,10 +22,10 @@ function generateAddReminderForm() {
         </tr>
         <tr>
           <td>
-            <input type="text" name="reminderName">
+            <input type="text" name="reminderName" required>
           </td>
         </tr>
-        <tr>
+        <!--<tr>
           <th>
             <label>Location</label>
           </th>
@@ -34,7 +34,7 @@ function generateAddReminderForm() {
           <td>
             <input type="text" name="location">
           </td>
-        </tr>
+        </tr>-->
         <tr>
           <th>
             <label>Date</label>
@@ -42,42 +42,22 @@ function generateAddReminderForm() {
         </tr>
         <tr>
           <td>
-            <input type="date" name="date">
+            <input type="date" name="date" required>
           </td>
         </tr>
         <tr>
           <th>
-            <label>Start Time</label>
+            <label>Time</label>
           </th>
         </tr>
         <tr>
           <td>
-            <input type="time" name="startTime">
-          </td>
-        </tr>
-        <tr>
-          <th>
-            <label>End Time</label>
-          </th>
-        </tr>
-        <tr>
-          <td>
-            <input type="time" name="endTime">
-          </td>
-        </tr>
-        <tr>
-          <th>
-            <label>Completed</label>
-          </th>
-        </tr>
-        <tr>
-          <td>
-            <input type="checkbox" name="completed" value="1">
+            <input type="time" name="remindTime" value="00:00">
           </td>
         </tr>
         <tr>
           <th colspan="2">
-            <input type="submit" value="Save reminder">
+            <input type="submit" value="Set reminder">
           </th>
         </tr>
       </table>

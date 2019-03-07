@@ -241,13 +241,38 @@ function createWeekSkelaton() {
 function createDaySkelaton() {
   let html = //html
     `
-      <table class="view-day">
+      <table class="view-month">
         <tr>
-          <th>Date</th>
+          <th class="year-previous">
+            <button id="year-previous"><</button>
+          </th>
+          <th id="year">
+            ${currentDayYear}
+          </th>
+          <th class="year-next">
+            <button id="year-next">></button>
+          </th>
         </tr>
         <tr>
-          <td>
-          
+          <th class="month-previous">
+            <button id="month-previous"><</button>
+          </th>
+          <th id="month">
+            ${currentDayMonthWord}
+          </th>
+          <td class="month-next">
+            <button id="month-next">></button>
+          </td>
+        </tr>
+        <tr>
+          <th class="day-previous">
+            <button id="day-previous"><</button>
+          </th>
+          <th id="day">
+            ${currentDayDay}
+          </th>
+          <td class="day-next">
+            <button id="day-next">></button>
           </td>
         </tr>
       </table>
@@ -287,6 +312,29 @@ $(document).on('click', '#month-next', function (e) {
     currentDayYear++;
   } else {
     currentDayMonthWord = monthLongLabels[++currentDayMonth];
+  }
+  showView();
+});
+
+
+$(document).on('click', '#day-previous', function (e) {
+  e.preventDefault();
+  if (currentDayDay == 1) {
+    $("#month-previous").click();
+    currentDayDay = calcDaysInMonth(currentDayYear, currentDayMonth + 1);
+  } else {
+    currentDayDay--;
+  }
+  showView();
+});
+
+$(document).on('click', '#day-next', function (e) {
+  e.preventDefault();
+  if (currentDayDay == calcDaysInMonth(currentDayYear, currentDayMonth + 1)) {
+    $("#month-next").click();
+    currentDayDay = 1;
+  } else {
+    currentDayDay++;
   }
   showView();
 });

@@ -12,7 +12,7 @@ $("#addEventCloseButton").click(function () {
 function generateAddEventForm() {
   return /*html*/ `
     <button id="addEventCloseButton" class="close-button">X</button>
-    <form action="./controller.php" method="post" novalidate>
+    <form action="./controller.php" method="post">
       <input type="hidden" name="action" value="add-event">
       <input type="hidden" name="eventId" id="eventId">
       <table>
@@ -23,10 +23,10 @@ function generateAddEventForm() {
         </tr>
         <tr>
           <td>
-            <input type="text" name="eventName" id="eventName">
+            <input type="text" name="eventName" id="eventName" required>
           </td>
         </tr>
-        <tr>
+        <!--<tr>
           <th>
             <label>Location</label>
           </th>
@@ -35,7 +35,7 @@ function generateAddEventForm() {
           <td>
             <input type="text" name="location">
           </td>
-        </tr>
+        </tr>-->
         <tr>
           <th>
             <label>Date</label>
@@ -43,7 +43,7 @@ function generateAddEventForm() {
         </tr>
         <tr>
           <td>
-            <input type="date" name="date" id="eventDate">
+            <input type="date" name="date" id="eventDate" required>
           </td>
         </tr>
         <tr>
@@ -53,7 +53,7 @@ function generateAddEventForm() {
         </tr>
         <tr>
           <td>
-            <input type="time" name="startTime" id="eventStartTime">
+            <input type="time" name="startTime" id="eventStartTime" value="00:00">
           </td>
         </tr>
         <tr>
@@ -63,7 +63,7 @@ function generateAddEventForm() {
         </tr>
         <tr>
           <td>
-            <input type="time" name="endTime" id="eventEndTime">
+            <input type="time" name="endTime" id="eventEndTime" value="00:00">
           </td>
         </tr>
         <tr>

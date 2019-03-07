@@ -23,6 +23,29 @@ function updateAdminPassword($id, $newPassword)
  }
 }
 
+function updateAccountPassword($newPasswordHash)
+{
+ global $conn;
+ $query =
+  'UPDATE accounts
+   SET PasswordHash = :newPasswordHash
+   WHERE Id = :id';
+
+ $statement = $conn->prepare($query);
+ $statement->bindValue(':newPasswordHash', $newPasswordHash);
+ $statement->bindValue(':id', $_SESSION['account']->get_id());
+
+ try
+ {
+  $statement->execute();
+ } catch (PDOException $ex) {
+  echo $ex->getMessage();
+  die();
+ } finally {
+  $statement->closeCursor();
+ }
+}
+
 function updateAccountSettings($account)
 {
  global $conn;
@@ -57,29 +80,6 @@ function updateAccountSettings($account)
  $statement->bindValue(':newDefaultView', $account->get_defaultView());
  $statement->bindValue(':newTheme', $account->get_theme());
  $statement->bindValue(':id', $_SESSION['account']->get_id());
- 
- try
- {
-  $statement->execute();
- } catch (PDOException $ex) {
-  echo $ex->getMessage();
-  die();
- } finally {
-  $statement->closeCursor();
- }
-}
-
-function updateAccountPassword($id, $newPasswordHash)
-{
- global $conn;
- $query =
-  'UPDATE accounts
-   SET PasswordHash = :newPasswordHash
-   WHERE Id = :id';
-
- $statement = $conn->prepare($query);
- $statement->bindValue(':newPasswordHash', $newPasswordHash);
- $statement->bindValue(':id', $id);
  
  try
  {

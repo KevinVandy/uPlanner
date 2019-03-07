@@ -82,6 +82,9 @@ if (!isLoggedIn()) {
     <section id="add-task-popup" class="popupform">
       <script src="js/add-task.min.js" defer></script>
     </section>
+    <section id="add-reminder-popup" class="popupform">
+      <script src="js/add-reminder.min.js" defer></script>
+    </section>
     <section id="add-homework-popup" class="popupform">
       <script src="js/add-homework.min.js" defer></script>
     </section>

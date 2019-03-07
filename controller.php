@@ -49,7 +49,7 @@ switch ($action) {
   if (isArrayNull($_SESSION['errorMsgs'])) {
    $account = new Account(null, $email, $firstName, 'month', 'purple', false, false, null);
    $account->set_id(insertAccount($account, hashPassword($password)));
-   login($account->get_id());
+   login($account);
    header('Location: ./home.php');
    exit();
   } else {
@@ -91,9 +91,9 @@ switch ($action) {
  case 'change-settings':
 
   $emailAddress = filter_input(INPUT_POST, 'emailAddress');
-  $firstName = filter_input(INPUT_POST, 'firstName');
-  $defaultView = filter_input(INPUT_POST, 'defaultView');
-  $theme = filter_input(INPUT_POST, 'theme');
+  $firstName    = filter_input(INPUT_POST, 'firstName');
+  $defaultView  = filter_input(INPUT_POST, 'defaultView');
+  $theme        = filter_input(INPUT_POST, 'theme');
 
   $account = $_SESSION['account'];
   $account->set_email($emailAddress);
@@ -102,6 +102,24 @@ switch ($action) {
   $account->set_theme($theme);
 
   updateAccountSettings($account);
+
+  header('Location: ./home.php');
+
+  break;
+
+ case 'change-password':
+
+  $oldPassword        = filter_input(INPUT_POST, 'oldPassword');
+  $newPassword        = filter_input(INPUT_POST, 'newPassword');
+  $newPasswordConfirm = filter_input(INPUT_POST, 'newPasswordConfirm');
+
+  $errorMsgs['oldpassword'] = validateLogin($_SESSION['account']->get_email(), $oldPassword);
+  $errorMsgs['newpassword'] = validatePassword($newPassword, $newPasswordConfirm);
+
+  if ($errorMsgs['oldpassword'] === null && $errorMsgs['newpassword'] === null) {
+   updateAccountPassword(hashPassword($newPassword));
+   $confirmMsgs['password'] = 'Your Password Was Succesfully Changed';
+  }
 
   header('Location: ./home.php');
 

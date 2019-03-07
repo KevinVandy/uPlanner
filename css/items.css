@@ -1,5 +1,5 @@
 .items h3 {
-  /* background-color: rgb(183, 178, 231); */
+  background-color: rgb(194, 192, 211);
   border-bottom: 3px solid black;
   font-size: 1.5em;
   padding: 12px 0;
@@ -43,13 +43,19 @@
 }
 
 .itemDateMonthView {
+  background-color:  #2B43C1;
+  border-radius: 32px;
+  color: white;
   font-size: 2em;
+  margin: 8px;
+  min-width: 25px;
+  padding: 4px;
+  text-align: center;
   width: 10%;
-  min-width: 50px;
 }
 
 .itemsTable .itemName {
-  font-size: 24pt;
+  font-size: 20pt;
 }
 
 .itemStartTimeLabel,

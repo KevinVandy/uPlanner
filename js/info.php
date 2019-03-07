@@ -1,12 +1,17 @@
 <?php
 
 // select all account info from the database
-$account  = selectAccountByEmail( $_SESSION['account']->get_email());
-$courses  = selectCoursesByAccountId($_SESSION['account']->get_id());
-$jobs     = selectJobsByAccountId($_SESSION['account']->get_id());
-$events   = selectEventsByAccountId($_SESSION['account']->get_id());
-$meetings = selectMeetingsByAccountId($_SESSION['account']->get_id());
-$tasks    = selectTasksByAccountId($_SESSION['account']->get_id());
+try {
+  $account  = selectAccountByEmail( $_SESSION['account']->get_email());
+  $courses  = selectCoursesByAccountId($_SESSION['account']->get_id());
+  $jobs     = selectJobsByAccountId($_SESSION['account']->get_id());
+  $events   = selectEventsByAccountId($_SESSION['account']->get_id());
+  $meetings = selectMeetingsByAccountId($_SESSION['account']->get_id());
+  $tasks    = selectTasksByAccountId($_SESSION['account']->get_id());
+} catch(Exception $ex){
+  echo("Could not load user data"); die();
+}
+
 
 // then put all of that info into an 'account' javascript object
 ?>
@@ -104,8 +109,8 @@ if ($meetings != null) {
       account.meetings[<?php echo htmlspecialchars($i); ?>].id = <?php echo htmlspecialchars($meetings[$i]->get_id()) ?>;
       account.meetings[<?php echo htmlspecialchars($i); ?>].meetingName = "<?php echo htmlspecialchars($meetings[$i]->get_meetingName()) ?>";
       account.meetings[<?php echo htmlspecialchars($i); ?>].date = new Date("<?php echo htmlspecialchars($meetings[$i]->get_date()) ?>");
-      account.meetings[<?php echo htmlspecialchars($i); ?>].startTime = moment("<?php echo htmlspecialchars($meetings[$i]->get_startTime()) ?>", "HH:mm");
-      account.meetings[<?php echo htmlspecialchars($i); ?>].endTime = moment("<?php echo htmlspecialchars($meetings[$i]->get_endTime()) ?>", "HH:mm");
+      account.meetings[<?php echo htmlspecialchars($i); ?>].startTime = moment("<?php echo htmlspecialchars($meetings[$i]->get_startTime()) ?>", "HH:mm:ss");
+      account.meetings[<?php echo htmlspecialchars($i); ?>].endTime = moment("<?php echo htmlspecialchars($meetings[$i]->get_endTime()) ?>", "HH:mm:ss");
       account.meetings[<?php echo htmlspecialchars($i); ?>].completed = <?php echo htmlspecialchars($meetings[$i]->get_completed()) ?>;
 
       account.meetings[<?php echo htmlspecialchars($i); ?>].location = {};

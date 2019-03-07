@@ -26,7 +26,7 @@ function generateAddMeetingForm() {
             <input type="text" name="meetingName" required>
           </td>
         </tr>
-        <tr>
+        <!--<tr>
           <th>
             <label>Location</label>
           </th>
@@ -35,7 +35,7 @@ function generateAddMeetingForm() {
           <td>
             <input type="text" name="location">
           </td>
-        </tr>
+        </tr> -->
         <tr>
           <th>
             <label>Date</label>
@@ -43,7 +43,7 @@ function generateAddMeetingForm() {
         </tr>
         <tr>
           <td>
-            <input type="date" name="date">
+            <input type="date" name="date" required>
           </td>
         </tr>
         <tr>
@@ -53,7 +53,7 @@ function generateAddMeetingForm() {
         </tr>
         <tr>
           <td>
-            <input type="time" name="startTime" id="meetingStartTime">
+            <input type="time" name="startTime" id="meetingStartTime" value="00:00">
           </td>
         </tr>
         <tr>
@@ -63,7 +63,7 @@ function generateAddMeetingForm() {
         </tr>
         <tr>
           <td>
-            <input type="time" name="endTime" id="meetingEndTime">
+            <input type="time" name="endTime" id="meetingEndTime" value="00:00">
           </td>
         </tr>
         <tr>

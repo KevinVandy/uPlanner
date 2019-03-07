@@ -72,6 +72,57 @@ function generateSettingsForm() {
         </tr>
       </table>
     </form>
+    <button onclick='$("#change-password-popup").show(500);'>Change Password</button>
+    <div class="popupform" id="change-password-popup">
+      <button class="close-button" id="changeAccountPasswordCloseButton" onclick='$("#change-password-popup").slideUp(500);'>X</button>
+      <form action="./controller.php" method="post">
+        <input type="hidden" name="action" value="change-password">
+        <table>
+          <tr>
+            <th>
+              <label>
+                Old Password
+              </label>
+            </th>
+          </tr>
+          <tr>
+            <td>
+              <input type="password" name="oldPassword">
+            </td>
+          </tr>
+          <tr>
+          <tr>
+            <th>
+              <label>
+                New Password
+              </label>
+            </th>
+          </tr>
+          <tr>
+            <td>
+              <input type="password" name="newPassword">
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <label>
+                Confirm New Password
+              </label>
+            </th>
+          </tr>
+          <tr>
+            <td>
+              <input type="password" name="newPasswordConfirm">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="submit" value="Change Password">
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
   `;
 }
 
