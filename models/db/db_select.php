@@ -159,9 +159,43 @@ function selectCoursesByAccountId($accountId)
  if ($records != null) {
   foreach ($records as $r) {
    $course    = new Course($r['Id'], $r['CourseName'], $r['LocationId'], $r['Teacher'], $r['StartDate'], $r['EndDate'], null, null);
+   $course->set_courseWork(selectCourseWorkByCourseId($course->get_id()));
    $courses[] = $course;
   }
   return $courses;
+ } else {
+  return null;
+ }
+}
+
+function selectCourseWorkByCourseId($courseId)
+{
+ global $conn;
+
+ $query =
+  'SELECT Id, CourseId, WorkName, WorkType, Priority, DueDate, DueTime, Completed
+    FROM course_work
+    WHERE CourseId = :courseId
+    ORDER BY DueDate ASC, DueTime ASC, Priority';
+
+ $statement = $conn->prepare($query);
+ $statement->bindValue(':courseId', $courseId);
+
+ try
+ {
+  $statement->execute();
+ } catch (PDOException $ex) {
+  echo $ex->getMessage();
+  die();
+ }
+ $records = $statement->fetchAll();
+ $course_works = [];
+ if ($records != null) {
+  foreach ($records as $r) {
+   $course_work    = new CourseWork($r['Id'], $r['WorkName'], $r['WorkType'], $r['Priority'], $r['DueDate'], $r['DueTime'], $r['Completed']);
+   $course_works[] = $course_work;
+  }
+  return $course_works;
  } else {
   return null;
  }

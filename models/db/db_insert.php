@@ -101,6 +101,35 @@ function insertCourse($course)
  return $conn->lastInsertId();
 }
 
+function insertCourseWork($courseWork, $courseId)
+{
+ global $conn;
+
+ $query =
+  'INSERT INTO course_work(CourseId, WorkName, WorkType, Priority, DueDate, DueTime, Completed)
+          VALUES(:courseId, :workName, :workType, :priority, :dueDate, :dueTime, :completed)';
+
+ $statement = $conn->prepare($query);
+ $statement->bindValue(':courseId', $courseId);
+ $statement->bindValue(':workName', $courseWork->get_workName());
+ $statement->bindValue(':workType', $courseWork->get_workType());
+ $statement->bindValue(':priority', $courseWork->get_priority());
+ $statement->bindValue(':dueDate', $courseWork->get_dueDate());
+ $statement->bindValue(':dueTime', $courseWork->get_dueTime());
+ $statement->bindValue(':completed', $courseWork->get_completed());
+
+ try
+ {
+  $statement->execute();
+ } catch (PDOException $ex) {
+  echo $ex->getMessage(); die();
+  die();
+ } finally {
+  $statement->closeCursor();
+ }
+ return $conn->lastInsertId();
+}
+
 function insertJob($job)
 {
  global $conn;

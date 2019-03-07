@@ -2,16 +2,15 @@
 
 // select all account info from the database
 try {
-  $account  = selectAccountByEmail( $_SESSION['account']->get_email());
-  $courses  = selectCoursesByAccountId($_SESSION['account']->get_id());
-  $jobs     = selectJobsByAccountId($_SESSION['account']->get_id());
-  $events   = selectEventsByAccountId($_SESSION['account']->get_id());
-  $meetings = selectMeetingsByAccountId($_SESSION['account']->get_id());
-  $tasks    = selectTasksByAccountId($_SESSION['account']->get_id());
-} catch(Exception $ex){
-  echo("Could not load user data"); die();
+ $account  = selectAccountByEmail($_SESSION['account']->get_email());
+ $courses  = selectCoursesByAccountId($_SESSION['account']->get_id());
+ $jobs     = selectJobsByAccountId($_SESSION['account']->get_id());
+ $events   = selectEventsByAccountId($_SESSION['account']->get_id());
+ $meetings = selectMeetingsByAccountId($_SESSION['account']->get_id());
+ $tasks    = selectTasksByAccountId($_SESSION['account']->get_id());
+} catch (Exception $ex) {
+ echo ("Could not load user data");die();
 }
-
 
 // then put all of that info into an 'account' javascript object
 ?>
@@ -47,7 +46,27 @@ if ($courses != null) {
 
       account.courses[<?php echo htmlspecialchars($i); ?>].courseTimes = [];
 
-      account.courses[<?php echo htmlspecialchars($i); ?>].homework = [];
+      account.courses[<?php echo htmlspecialchars($i); ?>].courseWork = [];
+
+      <?php
+if ($courses[$i]->get_courseWork() != null) {
+   for ($j = 0; $j < count($courses[$i]->get_courseWork()); $j++) {
+    ?>
+  account.courses[<?php echo htmlspecialchars($i); ?>].courseWork[<?php echo htmlspecialchars($j); ?>] = {};
+
+          account.courses[<?php echo htmlspecialchars($i); ?>].courseWork[<?php echo htmlspecialchars($j); ?>].id = <?php echo htmlspecialchars($courses[$i]->get_courseWork()[$j]->get_id()); ?>;
+          account.courses[<?php echo htmlspecialchars($i); ?>].courseWork[<?php echo htmlspecialchars($j); ?>].workName = "<?php echo htmlspecialchars($courses[$i]->get_courseWork()[$j]->get_workName()); ?>";
+          account.courses[<?php echo htmlspecialchars($i); ?>].courseWork[<?php echo htmlspecialchars($j); ?>].workType = "<?php echo htmlspecialchars($courses[$i]->get_courseWork()[$j]->get_workType()); ?>";
+          account.courses[<?php echo htmlspecialchars($i); ?>].courseWork[<?php echo htmlspecialchars($j); ?>].priority = "<?php echo htmlspecialchars($courses[$i]->get_courseWork()[$j]->get_priority()); ?>";
+          account.courses[<?php echo htmlspecialchars($i); ?>].courseWork[<?php echo htmlspecialchars($j); ?>].dueDate = new Date("<?php echo htmlspecialchars($courses[$i]->get_courseWork()[$j]->get_dueDate()); ?>");
+          account.courses[<?php echo htmlspecialchars($i); ?>].courseWork[<?php echo htmlspecialchars($j); ?>].dueTime = moment("<?php echo htmlspecialchars($courses[$i]->get_courseWork()[$j]->get_dueTime()); ?>", "HH:mm:ss");
+          account.courses[<?php echo htmlspecialchars($i); ?>].courseWork[<?php echo htmlspecialchars($j); ?>].completed = <?php echo htmlspecialchars($courses[$i]->get_courseWork()[$j]->get_completed()); ?>;
+
+
+      <?php
+}
+  }
+  ?>
   <?php
 }
 }

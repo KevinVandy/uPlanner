@@ -106,7 +106,7 @@ function generateEventItemsSkelaton() {
         }
       });
       html += /*html*/ `</table>`;
-    } else if(currentView == "day"){
+    } else if (currentView == "day") {
       html += /*html*/ `<table class="itemsTable">`;
       Array.from(account.events).forEach(function (eventItem) {
         if (eventItem.date.getFullYear() == currentDayYear && eventItem.date.getMonth() == currentDayMonth && eventItem.date.getDate() == currentDayDay - 1) {
@@ -244,7 +244,7 @@ function generateMeetingItemsSkelaton() {
                 </tr>
               `;
           }
-        } 
+        }
       });
       html += /*html*/ `</table>`;
     } else if (currentView == "day") {
@@ -291,7 +291,7 @@ function generateMeetingItemsSkelaton() {
                 </tr>
               `;
           }
-        } 
+        }
       });
       html += /*html*/ `</table>`;
     }
@@ -300,11 +300,135 @@ function generateMeetingItemsSkelaton() {
 }
 
 function generateHomeworkItemsSkelaton() {
-  let html = "";
+  let html = '';
+
   if (account.courses != null && account.courses.length > 0) {
     html = /*html*/ '<h3>Homework</h3>';
 
-
+    if (currentView == "year") {
+      html += /*html*/ `<table class="itemsTable">`;
+      Array.from(account.courses).forEach(function (courseItem) {
+        Array.from(courseItem.courseWork).forEach(function (courseWorkItem) {
+          if (courseWorkItem.dueDate.getFullYear() == currentDayYear) {
+            html += //html
+              `
+              <tr>
+                <th class="itemDateYearView">
+                  ${monthShortLabels[courseWorkItem.dueDate.getMonth()]} ${courseWorkItem.dueDate.getDate() + 1}
+                </th>
+              `;
+            if (courseWorkItem.completed == 0) {
+              html += /*html*/ `<td class="itemName">`
+            } else {
+              html += /*html*/ `<td class="itemName" style="text-decoration: line-through; color: grey">`
+            }
+            html += //html
+              `
+                  ${courseWorkItem.workName}
+                </td>
+                <td>
+                  <form method="post" action="./controller.php">
+                    <input type="hidden" name="action" value="complete-homework">
+                    <input type="hidden" name="homeworkId" value="${courseWorkItem.id}">
+                    <input type="submit" value="Done">
+                  </form>
+                </td>
+              </tr>
+            `;
+          }
+        });
+      });
+      html += /*html*/ `</table>`;
+    } else if (currentView == "month") {
+      html += /*html*/ `<table class="itemsTable">`;
+      Array.from(account.courses).forEach(function (courseItem) {
+        Array.from(courseItem.courseWork).forEach(function (courseWorkItem) {
+          if (courseWorkItem.dueDate.getFullYear() == currentDayYear && courseWorkItem.dueDate.getMonth() == currentDayMonth) {
+            html += //html
+              `
+                <tr>
+                  <th class="itemDateMonthView">
+                    ${courseWorkItem.dueDate.getDate() + 1}
+                  </th>
+            `;
+            if (courseWorkItem.completed == 0) {
+              html += /*html*/ `<td class="itemName">`
+            } else {
+              html += /*html*/ `<td class="itemName" style="text-decoration: line-through; color: grey">`
+            }
+            html += //html
+              `
+              ${courseWorkItem.workName}
+            </td>
+            <td>
+              <form method="post" action="./controller.php">
+                <input type="hidden" name="action" value="complete-meeting">
+                <input type="hidden" name="meetingId" value="${courseWorkItem.id}">
+                <input type="submit" value="Done">
+              </form>
+            </td>
+          </tr>
+        `;
+            if (courseWorkItem.dueTime != null && courseWorkItem.dueTime.format("HH:mm") != "00:00") {
+              html += //html
+                `
+                  <tr>
+                    <th class="itemStartTimeLabel">
+                    </th>
+                    <td class="itemStartTime">
+                      ${courseWorkItem.dueTime.format("HH:mm")}
+                    </td>
+                  </tr>
+                `;
+            }
+          }
+        });
+      });
+      html += /*html*/ `</table>`;
+    } else if (currentView == "day") {
+      html += /*html*/ `<table class="itemsTable">`;
+      Array.from(account.courses).forEach(function (courseItem) {
+        Array.from(courseItem.courseWork).forEach(function (courseWorkItem) {
+          if (courseWorkItem.dueDate.getFullYear() == currentDayYear && courseWorkItem.dueDate.getMonth() == currentDayMonth && courseWorkItem.dueDate.getDate() == currentDayDay - 1) {
+            html += //html
+              `
+          <tr>
+            `;
+            if (courseWorkItem.completed == 0) {
+              html += /*html*/ `<td class="itemName">`
+            } else {
+              html += /*html*/ `<td class="itemName" style="text-decoration: line-through; color: grey">`
+            }
+            html += //html
+              `
+              ${courseWorkItem.workName}
+            </td>
+            <td>
+              <form method="post" action="./controller.php">
+                <input type="hidden" name="action" value="complete-meeting">
+                <input type="hidden" name="meetingId" value="${courseWorkItem.id}">
+                <input type="submit" value="Done">
+              </form>
+            </td>
+          </tr>
+        `;
+            if (courseWorkItem.dueTime != null && courseWorkItem.dueTime.format("HH:mm") != "00:00") {
+              html += //html
+                `
+                <tr>
+                  <th class="itemStartTimeLabel">
+                  </th>
+                  <td class="itemStartTime">
+                    ${courseWorkItem.dueTime.format("HH:mm")}
+                  </td>
+                </tr>
+              `;
+            }
+          }
+        });
+      });
+      html += /*html*/ `</table>`;
+    }
   }
   return html;
 }

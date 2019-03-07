@@ -75,6 +75,28 @@ switch ($action) {
 
   break;
 
+ case 'add-homework':
+
+  $courseId     = filter_input(INPUT_POST, 'courseId');
+  $homeworkName = filter_input(INPUT_POST, 'homeworkName');
+  $homeworkType = filter_input(INPUT_POST, 'homeworkType');
+  $priority     = filter_input(INPUT_POST, 'priority');
+  $dueDate      = filter_input(INPUT_POST, 'dueDate');
+  $dueTime      = filter_input(INPUT_POST, 'dueTime');
+  $completed    = filter_input(INPUT_POST, 'completed');
+
+  if ($completed == null) {
+   $completed = false;
+  }
+
+  $newCourseWork = new CourseWork(null, $homeworkName, $homeworkType, $priority, $dueDate, $dueTime, $completed);
+
+  $newCourseWork->set_id(insertCourseWork($newCourseWork, $courseId));
+
+  header('Location: ./home.php');
+
+  break;
+
  case 'add-job':
 
   $jobName  = filter_input(INPUT_POST, 'jobName');
@@ -208,6 +230,15 @@ switch ($action) {
 
   $taskId = filter_input(INPUT_POST, 'taskId');
   deleteTask($taskId);
+
+  header('Location: ./home.php');
+
+  break;
+
+ case 'complete-homework':
+
+  $homeworkId = filter_input(INPUT_POST, 'homeworkId');
+  updateCourseWorkComplete($homeworkId);
 
   header('Location: ./home.php');
 
