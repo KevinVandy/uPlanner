@@ -1,8 +1,4 @@
-<?php
-
-include './models/imports.php';
-
-session_start();
+<?php include './models/imports.php';
 
 if (!isset($_SESSION['account'])) {
  $_SESSION['account'] = null;
@@ -22,8 +18,8 @@ if (!isLoggedIn()) {
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>µPlanner</title>
 
-  <link rel="manifest" href="manifest.json">
   <link rel="shortcut icon" href="favicon.ico">
+  <link rel="manifest" href="manifest.webmanifest">
 
   <link rel="stylesheet" href="css/normalize.min.css">
   <link rel="stylesheet" href="css/main.min.css">
@@ -96,7 +92,7 @@ if (!isLoggedIn()) {
     <script src="js/navbar-bottom.min.js" defer></script>
   </nav>
   <footer>
-
+    
   </footer>
 </body>
 

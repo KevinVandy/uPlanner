@@ -1,43 +1,40 @@
 const staticAssets = [
-  './images/profile.jpg',
-  './favicon.ico',
-  './manifest.json',
-  './home.php',
-  './app.min.js',
-  './sw.min.css',
-  './js/jquery-3.3.1.min.js',
-  './js/moment.min.js',
-  './js/add-course.min.js',
-  './js/add-event.min.js',
-  './js/add-homework.min.js',
-  './js/add-job.min.js',
-  './js/add-meeting.min.js',
-  './js/add-reminder.min.js',
-  './js/add-task.min.js',
-  './js/add-work.min.js',
-  './js/calendar.min.js',
-  './js/items.min.js',
-  './js/login.min.js',
-  './js/navbar-bottom.min.js',
-  './js/navbar-hidden.min.js',
-  './js/navbar-top.min.js',
-  './js/settings.min.js',
-  './css/normalize.min.css',
-  './css/main.min.css',
-  './css/navbar.min.css',
-  './css/popupform.min.css',
-  './css/login.min.css',
-  './css/calendar.min.css'
+  '/manifest.webmanifest',
+  '/home.php',
+  '/app.min.js',
+  '/sw.min.js',
+  '/js/jquery-3.3.1.min.js',
+  '/js/moment.min.js',
+  '/js/add-course.min.js',
+  '/js/add-event.min.js',
+  '/js/add-homework.min.js',
+  '/js/add-job.min.js',
+  '/js/add-meeting.min.js',
+  '/js/add-reminder.min.js',
+  '/js/add-task.min.js',
+  '/js/add-work.min.js',
+  '/js/calendar.min.js',
+  '/js/items.min.js',
+  '/js/navbar-bottom.min.js',
+  '/js/navbar-hidden.min.js',
+  '/js/navbar-top.min.js',
+  '/js/settings.min.js',
+  '/css/calendar.min.css',
+  '/css/items.min.css',
+  '/css/main.min.css',
+  '/css/navbar.min.css',
+  '/css/normalize.min.css',
+  '/css/popupform.min.css',
+  '/images/profile.jpg',
+  '/images/uplanner.jpg'
 ];
 
-self.addEventListener('install', async event => {
-  try {
-    const cache = await caches.open('static');
-    cache.addAll(staticAssets);
-    console.log('Static Assets added to cache');
-  } catch (error) {
-    console.log('Static Assets could not be added to cache');
-  }
+self.addEventListener('install', function(event) {
+  event.waitUntil(
+    caches.open("static").then(function(cache) {
+      return cache.addAll(staticAssets);
+    })
+  );
 });
 
 self.addEventListener('fetch', event => {
@@ -45,9 +42,9 @@ self.addEventListener('fetch', event => {
   const url = new URL(request.url);
 
   if (url.origin == location.origin) {
-    event.respondWith(cacheFirst(request));
+    event.respondWith(networkFirst(request));
   } else {
-    event.respondWith(networkFirst(request))
+    event.respondWith(cacheFirst(request))
   }
 });
 
@@ -64,6 +61,6 @@ async function networkFirst(request) {
     return res;
   } catch (error) {
     const cachedResponse = await cache.match(request);
-    return cachedResponse || await caches.match('./home.php');
+    return cachedResponse || await caches.match('/home.php');
   }
 }

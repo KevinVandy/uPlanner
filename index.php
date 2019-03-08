@@ -1,33 +1,29 @@
-<?php
-
-include './models/imports.php';
-
-session_start();
+<?php include './models/imports.php';
 
 if (!isset($_SESSION['account'])) {
- $_SESSION['account'] = null;
+  $_SESSION['account'] = null;
 }
 
 if (!isset($_SESSION['errorMsgs'])) {
- $_SESSION['errorMsgs'] = [];
+  $_SESSION['errorMsgs'] = [];
 }
 
 if (isLoggedInAdmin()) {
- header('Location: ./home-admin.php');
+  header('Location: ./home-admin.php');
 } else if (isLoggedIn()) {
- header('Location: ./home.php');
+  header('Location: ./home.php');
 } else {
-?>
+  ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>µPlanner - Log in</title>
+  <title>µPlanner</title>
 
-  <link rel="manifest" href="manifest.json">
   <link rel="shortcut icon" href="favicon.ico">
+  <link rel="manifest" href="manifest.webmanifest">
 
   <link rel="stylesheet" href="css/normalize.min.css">
   <link rel="stylesheet" href="css/main.min.css">
@@ -35,8 +31,8 @@ if (isLoggedInAdmin()) {
   <link rel="stylesheet" href="css/login.min.css">
 
   <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="app.min.js" defer></script>
   <script src="js/login.min.js" defer></script>
+
 </head>
 <body>
   <nav class="navbar-top">
@@ -194,8 +190,8 @@ if (isLoggedInAdmin()) {
         <a id="hide-login-admin">Hide Admin Login</a>
       </form>
     </section>
-    <section id="information">
-
+    <section id="information" class="infoSection">
+      <image src="images/uplanner.jpg" id="uplannerLogo">
     </section>
   </main>
   <footer id="loginFooter">

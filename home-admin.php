@@ -1,8 +1,4 @@
-<?php
-
-include './models/imports.php';
-
-session_start();
+<?php include './models/imports.php';
 
 if (!isset($_SESSION['admin'])) {
  $_SESSION['admin'] = null;
@@ -38,7 +34,6 @@ if (!isLoggedInAdmin()) {
     <link rel="stylesheet" href="css/popupform.min.css">
     <link rel="stylesheet" href="css/admin.min.css">
     <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/admin.min.js" defer></script>
   </head>
   <body>
     <nav class="navbar-top">

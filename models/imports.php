@@ -29,3 +29,5 @@ require_once 'val/val_action.php';
 require_once 'val/val_data.php';
 require_once 'val/val_session.php';
 require_once 'val/val_input.php';
+
+session_start();

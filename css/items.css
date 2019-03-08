@@ -17,10 +17,12 @@
   text-align: right;
 }
 
-.itemsTable input[type="submit"] {
+.itemsTable input[type="submit"],
+.itemsTabe button {
   padding: 8px;
   border-radius: 8px;
   font-weight: bold;
+  font-size: 14pt;
 }
 
 .itemsTable th,

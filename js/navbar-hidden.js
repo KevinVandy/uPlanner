@@ -1,12 +1,13 @@
 const navbarHidden = document.getElementById("navbar-hidden");
+let currentNavView = "";
 
 (function () {
 
 })();
 
-function createHiddenNavBar(type) {
+function createHiddenNavBar() {
 
-  if (type == "add") {
+  if (currentNavView == "add") {
     return /*html*/ `
       <table class="add-items">
         <tr>
@@ -19,7 +20,7 @@ function createHiddenNavBar(type) {
         </tr>
       </table>
     `;
-  } else if (type == "account") {
+  } else if (currentNavView == "account") {
     return /*html*/ `
       <table class="account-items">
         <tr>
@@ -34,11 +35,37 @@ function createHiddenNavBar(type) {
 }
 
 $("#toggle-navbar-hidden-add").click(function () {
-  navbarHidden.innerHTML = createHiddenNavBar("add");
-  $("#navbar-hidden").slideToggle(300);
+  if (currentNavView == "") {
+    currentNavView = "add";
+    navbarHidden.innerHTML = createHiddenNavBar();
+    $("#navbar-hidden").slideDown(300);
+  } else if (currentNavView == "account") {
+    currentNavView = "add";
+    $("#navbar-hidden").slideUp(300, function () {
+      navbarHidden.innerHTML = createHiddenNavBar();
+      $("#navbar-hidden").slideDown(300);
+    });
+  } else if (currentNavView == "add") {
+    currentNavView = "";
+    $("#navbar-hidden").slideUp(300);
+  }
+
 });
 
 $("#toggle-navbar-hidden-account").click(function () {
-  navbarHidden.innerHTML = createHiddenNavBar("account");
-  $("#navbar-hidden").slideToggle(300);
+  if (currentNavView == "") {
+    currentNavView = "account";
+    navbarHidden.innerHTML = createHiddenNavBar();
+    $("#navbar-hidden").slideDown(300);
+  } else if (currentNavView == "add") {
+    currentNavView = "account";
+    $("#navbar-hidden").slideUp(300, function () {
+      navbarHidden.innerHTML = createHiddenNavBar();
+      $("#navbar-hidden").slideDown(300);
+    });
+  } else if (currentNavView == "account") {
+    currentNavView = "";
+    $("#navbar-hidden").slideUp(300);
+  }
+
 });
