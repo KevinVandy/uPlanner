@@ -22,7 +22,7 @@ function generateAddTaskForm() {
         </tr>
         <tr>
           <td>
-            <input type="text" name="taskName">
+            <input type="text" name="taskName" maxlength="100">
           </td>
         </tr>
         <tr>

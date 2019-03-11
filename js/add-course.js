@@ -22,7 +22,7 @@ function generateAddCourseForm() {
         </tr>
         <tr>
           <td>
-            <input type="text" name="courseName">
+            <input type="text" name="courseName" maxlength="30">
           </td>
         </tr>
         <tr>
@@ -32,7 +32,7 @@ function generateAddCourseForm() {
         </tr>
         <tr>
           <td>
-            <input type="text" name="teacher">
+            <input type="text" name="teacher" maxlength="30">
           </td>
         </tr>
         <tr>

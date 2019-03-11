@@ -24,7 +24,7 @@ function generateAddHomeworkForm() {
         </tr>
         <tr>
           <td>
-            <select name="courseId">
+            <select name="courseId" required>
     `;
     Array.from(account.courses).forEach(function (courseItem) {
       html += //html
@@ -44,7 +44,7 @@ function generateAddHomeworkForm() {
         </tr>
         <tr>
           <td>
-            <input type="text" name="homeworkName">
+            <input type="text" name="homeworkName" maxlength="50">
           </td>
         </tr>
         <tr>

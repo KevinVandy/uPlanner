@@ -44,7 +44,7 @@ function generateAddJobWorkForm() {
         </tr>
         <tr>
           <td>
-            <input type="text" name="jobWorkName">
+            <input type="text" name="jobWorkName" maxlength="50">
           </td>
         </tr>
         <tr>

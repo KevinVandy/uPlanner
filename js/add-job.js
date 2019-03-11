@@ -22,7 +22,7 @@ function generateAddJobForm() {
         </tr>
         <tr>
           <td>
-            <input type="text" name="jobName" required>
+            <input type="text" name="jobName" maxlength="50" required>
           </td>
         </tr>
         <tr>

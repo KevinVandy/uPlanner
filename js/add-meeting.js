@@ -23,7 +23,7 @@ function generateAddMeetingForm() {
         </tr>
         <tr>
           <td>
-            <input type="text" name="meetingName" required>
+            <input type="text" name="meetingName" maxlength="50" required>
           </td>
         </tr>
         <!--<tr>

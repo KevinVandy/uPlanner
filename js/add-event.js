@@ -23,7 +23,7 @@ function generateAddEventForm() {
         </tr>
         <tr>
           <td>
-            <input type="text" name="eventName" id="eventName" required>
+            <input type="text" name="eventName" id="eventName" maxlength="50" required>
           </td>
         </tr>
         <!--<tr>
@@ -84,10 +84,4 @@ function generateAddEventForm() {
       </table>
     </form>
   `;
-}
-
-function addEventInfo(){
-  if($("#eventId").val() != null){
-
-  }
 }
