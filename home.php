@@ -58,7 +58,7 @@ if (!isLoggedIn()) {
       </div>
       <div class="todoList" id="taskItems">
       </div>
-      <script src="js/items.min.js" defer></script>
+      <script src="js/items.js" defer></script>
     </section>
     <section id="add-job-popup" class="popupform">
       <script src="js/add-job.min.js" defer></script>

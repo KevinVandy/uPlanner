@@ -122,7 +122,7 @@ function insertCourseWork($courseWork, $courseId)
  {
   $statement->execute();
  } catch (PDOException $ex) {
-  echo $ex->getMessage(); die();
+  echo $ex->getMessage();
   die();
  } finally {
   $statement->closeCursor();
@@ -142,6 +142,35 @@ function insertJob($job)
  $statement->bindValue(':accountId', $_SESSION['account']->get_id());
  $statement->bindValue(':jobName', $job->get_jobName());
  $statement->bindValue(':locationId', $job->get_location());
+ try
+ {
+  $statement->execute();
+ } catch (PDOException $ex) {
+  echo $ex->getMessage();
+  die();
+ } finally {
+  $statement->closeCursor();
+ }
+ return $conn->lastInsertId();
+}
+
+function insertJobWork($jobWork, $jobId)
+{
+ global $conn;
+
+ $query =
+  'INSERT INTO job_work(JobId, WorkName, WorkType, Priority, DueDate, DueTime, Completed)
+          VALUES(:courseId, :workName, :workType, :priority, :dueDate, :dueTime, :completed)';
+
+ $statement = $conn->prepare($query);
+ $statement->bindValue(':courseId', $jobId);
+ $statement->bindValue(':workName', $jobWork->get_workName());
+ $statement->bindValue(':workType', $jobWork->get_workType());
+ $statement->bindValue(':priority', $jobWork->get_priority());
+ $statement->bindValue(':dueDate', $jobWork->get_dueDate());
+ $statement->bindValue(':dueTime', $jobWork->get_dueTime());
+ $statement->bindValue(':completed', $jobWork->get_completed());
+
  try
  {
   $statement->execute();
@@ -175,7 +204,7 @@ function insertEvent($event)
  {
   $statement->execute();
  } catch (PDOException $ex) {
-  echo $ex->getMessage(); die();
+  echo $ex->getMessage();
   die();
  } finally {
   $statement->closeCursor();

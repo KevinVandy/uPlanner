@@ -158,7 +158,7 @@ function selectCoursesByAccountId($accountId)
  $courses = [];
  if ($records != null) {
   foreach ($records as $r) {
-   $course    = new Course($r['Id'], $r['CourseName'], $r['LocationId'], $r['Teacher'], $r['StartDate'], $r['EndDate'], null, null);
+   $course = new Course($r['Id'], $r['CourseName'], $r['LocationId'], $r['Teacher'], $r['StartDate'], $r['EndDate'], null, null);
    $course->set_courseWork(selectCourseWorkByCourseId($course->get_id()));
    $courses[] = $course;
   }
@@ -188,7 +188,7 @@ function selectCourseWorkByCourseId($courseId)
   echo $ex->getMessage();
   die();
  }
- $records = $statement->fetchAll();
+ $records      = $statement->fetchAll();
  $course_works = [];
  if ($records != null) {
   foreach ($records as $r) {
@@ -225,9 +225,43 @@ function selectJobsByAccountId($accountId)
  if ($records != null) {
   foreach ($records as $r) {
    $job    = new Job($r['Id'], $r['JobName'], null, null, null);
+   $job->set_jobWork(selectJobWorkByJobId($job->get_id()));
    $jobs[] = $job;
   }
   return $jobs;
+ } else {
+  return null;
+ }
+}
+
+function selectJobWorkByJobId($jobId)
+{
+ global $conn;
+
+ $query =
+  'SELECT Id, JobId, WorkName, WorkType, Priority, DueDate, DueTime, Completed
+    FROM job_work
+    WHERE JobId = :jobId
+    ORDER BY DueDate ASC, DueTime ASC, Priority';
+
+ $statement = $conn->prepare($query);
+ $statement->bindValue(':jobId', $jobId);
+
+ try
+ {
+  $statement->execute();
+ } catch (PDOException $ex) {
+  echo $ex->getMessage();
+  die();
+ }
+ $records   = $statement->fetchAll();
+ $job_works = [];
+ if ($records != null) {
+  foreach ($records as $r) {
+   $job_work    = new JobWork($r['Id'], $r['WorkName'], $r['WorkType'], $r['Priority'], $r['DueDate'], $r['DueTime'], $r['Completed']);
+   $job_works[] = $job_work;
+  }
+  return $job_works;
  } else {
   return null;
  }

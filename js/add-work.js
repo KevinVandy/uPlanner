@@ -2,19 +2,41 @@ const addWorkButton = document.getElementById('addWorkButton');
 const addWorkArea = document.getElementById('add-work-popup');
 
 (function () {
-  addWorkArea.innerHTML = generateAddWorkForm();
+  addWorkArea.innerHTML = generateAddJobWorkForm();
 })();
 
 $("#addWorkCloseButton").click(function () {
-  $("#add-work-popup").slideUp(500);
+  $("#add-work-popup").slideUp(300);
 });
 
-function generateAddWorkForm() {
-  return /*html*/ `
-    <button id="addWorkCloseButton" class="close-button">X</button>
+function generateAddJobWorkForm() {
+  let html = '';/*html*/ 
+  html += //html
+  `
+    <button id="addJobWorkCloseButton" class="close-button">X</button>
     <form action="./controller.php" method="post">
       <input type="hidden" name="action" value="add-work">
       <table>
+        <tr>
+          <th>
+            <label>Job</label>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <select name="jobId">
+    `;
+    Array.from(account.jobs).forEach(function (jobItem) {
+      html += //html
+      `
+        <option value="${jobItem.id}">${jobItem.jobName}</option>
+      `;
+    });
+    html += //html
+    `
+            </select>
+          </td>
+        </tr>
         <tr>
           <th>
             <label>Work Name</label>
@@ -22,37 +44,61 @@ function generateAddWorkForm() {
         </tr>
         <tr>
           <td>
-            <input type="text" name="workName">
+            <input type="text" name="jobWorkName">
           </td>
         </tr>
         <tr>
+        <tr>
           <th>
-            <label>Date</label>
+            <label>Work Type</label>
           </th>
         </tr>
         <tr>
           <td>
-            <input type="date" name="date">
+            <select name="jobWorkType">
+              <option value="Reading">Reading</option>
+              <option value="Study">Study</option>
+              <option value="Homework" selected>Homework</option>
+              <option value="Project">Project</option>
+              <option value="Presentation">Presentation</option>
+              <option value="Quiz">Quiz</option>
+              <option value="Test">Test</option>
+              <option value="Midterm">Midterm</option>
+              <option value="Final">Final</option>
+            </select>
           </td>
         </tr>
         <tr>
           <th>
-            <label>Start Time</label>
+            <label>Priority</label>
           </th>
         </tr>
         <tr>
           <td>
-            <input type="time" name="startTime">
+          <select name="priority">
+            <option value="Low" selected>Low</option>
+            <option value="High">High</option>
+          </select>
           </td>
         </tr>
         <tr>
           <th>
-            <label>End Time</label>
+            <label>Due Date</label>
           </th>
         </tr>
         <tr>
           <td>
-            <input type="time" name="endTime">
+            <input type="date" name="dueDate">
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <label>Due Time</label>
+          </th>
+        </tr>
+        <tr>
+          <td>
+            <input type="time" name="dueTime" value="00:00">
           </td>
         </tr>
         <tr>
@@ -73,4 +119,5 @@ function generateAddWorkForm() {
       </table>
     </form>
   `;
+  return html;
 }

@@ -157,3 +157,25 @@ function updateCourseWorkComplete($id)
   $statement->closeCursor();
  }
 }
+
+function updateJobWorkComplete($id)
+{
+ global $conn;
+ $query =
+  'UPDATE job_work
+   SET Completed = 1
+   WHERE Id = :id';
+
+ $statement = $conn->prepare($query);
+ $statement->bindValue(':id', $id);
+ 
+ try
+ {
+  $statement->execute();
+ } catch (PDOException $ex) {
+  echo $ex->getMessage();
+  die();
+ } finally {
+  $statement->closeCursor();
+ }
+}

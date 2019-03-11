@@ -110,6 +110,28 @@ switch ($action) {
 
   break;
 
+  case 'add-work':
+
+  $jobId     = filter_input(INPUT_POST, 'jobId');
+  $jobWorkName = filter_input(INPUT_POST, 'jobWorkName');
+  $jobWorkType = filter_input(INPUT_POST, 'jobWorkType');
+  $priority     = filter_input(INPUT_POST, 'priority');
+  $dueDate      = filter_input(INPUT_POST, 'dueDate');
+  $dueTime      = filter_input(INPUT_POST, 'dueTime');
+  $completed    = filter_input(INPUT_POST, 'completed');
+
+  if ($completed == null) {
+   $completed = false;
+  }
+
+  $newJobWork = new JobWork(null, $jobWorkName, $jobWorkType, $priority, $dueDate, $dueTime, $completed);
+
+  $newJobWork->set_id(insertJobWork($newJobWork, $jobId));
+
+  header('Location: ./home.php');
+
+  break;
+
  case 'change-settings':
 
   $emailAddress = filter_input(INPUT_POST, 'emailAddress');
@@ -239,6 +261,15 @@ switch ($action) {
 
   $homeworkId = filter_input(INPUT_POST, 'homeworkId');
   updateCourseWorkComplete($homeworkId);
+
+  header('Location: ./home.php');
+
+  break;
+
+  case 'complete-jobWork':
+
+  $jobWorkId = filter_input(INPUT_POST, 'jobWorkId');
+  updateJobWorkComplete($jobWorkId);
 
   header('Location: ./home.php');
 

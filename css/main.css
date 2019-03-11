@@ -38,6 +38,11 @@ header {
   width: 100%;
 }
 
+button,
+input[type="submit"] {
+  padding: 8px;
+}
+
 #uplannerLogo {
   width: 90%;
   max-width: 480px;

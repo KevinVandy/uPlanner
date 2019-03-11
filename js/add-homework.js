@@ -6,7 +6,7 @@ const addHomeworkArea = document.getElementById('add-homework-popup');
 })();
 
 $("#addHomeworkCloseButton").click(function () {
-  $("#add-homework-popup").slideUp(500);
+  $("#add-homework-popup").slideUp(300);
 });
 
 function generateAddHomeworkForm() {

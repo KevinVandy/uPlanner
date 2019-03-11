@@ -50,8 +50,7 @@ if ($courses != null) {
 
       <?php
 if ($courses[$i]->get_courseWork() != null) {
-   for ($j = 0; $j < count($courses[$i]->get_courseWork()); $j++) {
-    ?>
+   for ($j = 0; $j < count($courses[$i]->get_courseWork()); $j++) {?>
   account.courses[<?php echo htmlspecialchars($i); ?>].courseWork[<?php echo htmlspecialchars($j); ?>] = {};
 
           account.courses[<?php echo htmlspecialchars($i); ?>].courseWork[<?php echo htmlspecialchars($j); ?>].id = <?php echo htmlspecialchars($courses[$i]->get_courseWork()[$j]->get_id()); ?>;
@@ -63,14 +62,7 @@ if ($courses[$i]->get_courseWork() != null) {
           account.courses[<?php echo htmlspecialchars($i); ?>].courseWork[<?php echo htmlspecialchars($j); ?>].completed = <?php echo htmlspecialchars($courses[$i]->get_courseWork()[$j]->get_completed()); ?>;
 
 
-      <?php
-}
-  }
-  ?>
-  <?php
-}
-}
-?>
+      <?php }}}}?>
 
   account.jobs = [];
 
@@ -88,10 +80,21 @@ if ($jobs != null) {
 
       account.jobs[<?php echo htmlspecialchars($i); ?>].jobWork = [];
 
-  <?php
-}
-}
-?>
+      <?php
+if ($jobs[$i]->get_jobWork() != null) {
+   for ($j = 0; $j < count($jobs[$i]->get_jobWork()); $j++) {?>
+
+        account.jobs[<?php echo htmlspecialchars($i); ?>].jobWork[<?php echo htmlspecialchars($j); ?>] = {};
+
+          account.jobs[<?php echo htmlspecialchars($i); ?>].jobWork[<?php echo htmlspecialchars($j); ?>].id = <?php echo htmlspecialchars($jobs[$i]->get_jobWork()[$j]->get_id()); ?>;
+          account.jobs[<?php echo htmlspecialchars($i); ?>].jobWork[<?php echo htmlspecialchars($j); ?>].workName = "<?php echo htmlspecialchars($jobs[$i]->get_jobWork()[$j]->get_workName()); ?>";
+          account.jobs[<?php echo htmlspecialchars($i); ?>].jobWork[<?php echo htmlspecialchars($j); ?>].workType = "<?php echo htmlspecialchars($jobs[$i]->get_jobWork()[$j]->get_workType()); ?>";
+          account.jobs[<?php echo htmlspecialchars($i); ?>].jobWork[<?php echo htmlspecialchars($j); ?>].priority = "<?php echo htmlspecialchars($jobs[$i]->get_jobWork()[$j]->get_priority()); ?>";
+          account.jobs[<?php echo htmlspecialchars($i); ?>].jobWork[<?php echo htmlspecialchars($j); ?>].dueDate = new Date("<?php echo htmlspecialchars($jobs[$i]->get_jobWork()[$j]->get_dueDate()); ?>");
+          account.jobs[<?php echo htmlspecialchars($i); ?>].jobWork[<?php echo htmlspecialchars($j); ?>].dueTime = moment("<?php echo htmlspecialchars($jobs[$i]->get_jobWork()[$j]->get_dueTime()); ?>", "HH:mm:ss");
+          account.jobs[<?php echo htmlspecialchars($i); ?>].jobWork[<?php echo htmlspecialchars($j); ?>].completed = <?php echo htmlspecialchars($jobs[$i]->get_jobWork()[$j]->get_completed()); ?>;
+
+  <?php }}}}?>
 
   account.events = [];
 

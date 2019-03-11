@@ -362,8 +362,8 @@ function generateHomeworkItemsSkelaton() {
             </td>
             <td>
               <form method="post" action="./controller.php">
-                <input type="hidden" name="action" value="complete-meeting">
-                <input type="hidden" name="meetingId" value="${courseWorkItem.id}">
+                <input type="hidden" name="action" value="complete-homework">
+                <input type="hidden" name="homeworkId" value="${courseWorkItem.id}">
                 <input type="submit" value="Done">
               </form>
             </td>
@@ -405,8 +405,8 @@ function generateHomeworkItemsSkelaton() {
             </td>
             <td>
               <form method="post" action="./controller.php">
-                <input type="hidden" name="action" value="complete-meeting">
-                <input type="hidden" name="meetingId" value="${courseWorkItem.id}">
+                <input type="hidden" name="action" value="complete-homework">
+                <input type="hidden" name="homeWorkId" value="${courseWorkItem.id}">
                 <input type="submit" value="Done">
               </form>
             </td>
@@ -434,10 +434,135 @@ function generateHomeworkItemsSkelaton() {
 }
 
 function generateWorkItemsSkelaton() {
-  let html = "";
+  let html = '';
+
   if (account.jobs != null && account.jobs.length > 0) {
     html = /*html*/ '<h3>Work</h3>';
 
+    if (currentView == "year") {
+      html += /*html*/ `<table class="itemsTable">`;
+      Array.from(account.jobs).forEach(function (jobItem) {
+        Array.from(jobItem.jobWork).forEach(function (jobWorkItem) {
+          if (jobWorkItem.dueDate.getFullYear() == currentDayYear) {
+            html += //html
+              `
+              <tr>
+                <th class="itemDateYearView">
+                  ${monthShortLabels[jobWorkItem.dueDate.getMonth()]} ${jovWorkItem.dueDate.getDate() + 1}
+                </th>
+              `;
+            if (jobWorkItem.completed == 0) {
+              html += /*html*/ `<td class="itemName">`
+            } else {
+              html += /*html*/ `<td class="itemName" style="text-decoration: line-through; color: grey">`
+            }
+            html += //html
+              `
+                  ${jobWorkItem.workName}
+                </td>
+                <td>
+                  <form method="post" action="./controller.php">
+                    <input type="hidden" name="action" value="complete-jobWork">
+                    <input type="hidden" name="jobWorkId" value="${jobWorkItem.id}">
+                    <input type="submit" value="Done">
+                  </form>
+                </td>
+              </tr>
+            `;
+          }
+        });
+      });
+      html += /*html*/ `</table>`;
+    } else if (currentView == "month") {
+      html += /*html*/ `<table class="itemsTable">`;
+      Array.from(account.jobs).forEach(function (jobItem) {
+        Array.from(jobItem.jobWork).forEach(function (jobWorkItem) {
+          if (jobWorkItem.dueDate.getFullYear() == currentDayYear && jobWorkItem.dueDate.getMonth() == currentDayMonth) {
+            html += //html
+              `
+                <tr>
+                  <th class="itemDateMonthView">
+                    ${jobWorkItem.dueDate.getDate() + 1}
+                  </th>
+            `;
+            if (jobWorkItem.completed == 0) {
+              html += /*html*/ `<td class="itemName">`
+            } else {
+              html += /*html*/ `<td class="itemName" style="text-decoration: line-through; color: grey">`
+            }
+            html += //html
+              `
+              ${jobWorkItem.workName}
+            </td>
+            <td>
+              <form method="post" action="./controller.php">
+                <input type="hidden" name="action" value="complete-jobWork">
+                <input type="hidden" name="jobWorkId" value="${jobWorkItem.id}">
+                <input type="submit" value="Done">
+              </form>
+            </td>
+          </tr>
+        `;
+            if (jobWorkItem.dueTime != null && jobWorkItem.dueTime.format("HH:mm") != "00:00") {
+              html += //html
+                `
+                  <tr>
+                    <th class="itemStartTimeLabel">
+                    </th>
+                    <td class="itemStartTime">
+                      ${jobWorkItem.dueTime.format("HH:mm")}
+                    </td>
+                  </tr>
+                `;
+            }
+          }
+        });
+      });
+      html += /*html*/ `</table>`;
+    } else if (currentView == "day") {
+      html += /*html*/ `<table class="itemsTable">`;
+      Array.from(account.jobs).forEach(function (jobItem) {
+        Array.from(jobItem.jobWork).forEach(function (jobWorkItem) {
+          if (jobWorkItem.dueDate.getFullYear() == currentDayYear && jobWorkItem.dueDate.getMonth() == currentDayMonth && jobWorkItem.dueDate.getDate() == currentDayDay - 1) {
+            html += //html
+              `
+          <tr>
+            `;
+            if (jobWorkItem.completed == 0) {
+              html += /*html*/ `<td class="itemName">`
+            } else {
+              html += /*html*/ `<td class="itemName" style="text-decoration: line-through; color: grey">`
+            }
+            html += //html
+              `
+              ${jobWorkItem.workName}
+            </td>
+            <td>
+              <form method="post" action="./controller.php">
+                <input type="hidden" name="action" value="complete-jobWork">
+                <input type="hidden" name="jobWorkId" value="${jobWorkItem.id}">
+                <input type="submit" value="Done">
+              </form>
+            </td>
+          </tr>
+        `;
+            if (jobWorkItem.dueTime != null && jobWorkItem.dueTime.format("HH:mm") != "00:00") {
+              html += //html
+                `
+                <tr>
+                  <th class="itemStartTimeLabel">
+                  </th>
+                  <td class="itemStartTime">
+                    ${jobWorkItem.dueTime.format("HH:mm")}
+                  </td>
+                </tr>
+              `;
+            }
+          }
+        });
+      });
+      html += /*html*/ `</table>`;
+    }
   }
   return html;
 }
