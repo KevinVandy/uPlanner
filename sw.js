@@ -58,9 +58,17 @@ self.addEventListener('fetch', event => {
   const request = event.request;
   const url = new URL(request.url);
   if (url.origin == location.origin) {
-    event.respondWith(networkFirst(request));
+    try {
+      event.respondWith(networkFirst(request));
+    } catch (err) {
+      event.respondWith(cacheFirst(request));
+    }
   } else {
-    event.respondWith(cacheFirst(request))
+    try {
+      event.respondWith(cacheFirst(request));
+    } catch (err) {
+      event.respondWith(networkFirst(request));
+    }
   }
 });
 
@@ -76,11 +84,7 @@ async function networkFirst(request) {
     cache.put(request, res.clone());
     return res;
   } catch (error) {
-    return offline(request);
+    const cachedResponse = await cache.match(request);
+    return cachedResponse || await caches.match('/offline.html');
   }
-}
-
-async function offline(request) {
-  const cachedResponse = await cache.match(request);
-  return cachedResponse || await caches.match('/offline.html');
 }
