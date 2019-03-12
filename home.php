@@ -34,6 +34,19 @@ if (!isLoggedIn()) {
 
   <?php include 'js/info.php'?>
 
+  <style>
+
+    <?php
+  if ($_SESSION['account']->get_theme() == "light") {
+    echo htmlspecialchars(".popupform {background-color: #fff; color: #000;}");
+  } else if($_SESSION['account']->get_theme() == "dark"){
+    echo htmlspecialchars(".popupform {background-color: #000; color: #fff;}");
+  }
+  ?>
+
+  </style>
+
+
 </head>
 
 <body>
@@ -58,7 +71,7 @@ if (!isLoggedIn()) {
       </div>
       <div class="todoList" id="taskItems">
       </div>
-      <script src="js/items.js" defer></script>
+      <script src="js/items.min.js" defer></script>
     </section>
     <section id="add-job-popup" class="popupform">
       <script src="js/add-job.min.js" defer></script>
@@ -92,7 +105,7 @@ if (!isLoggedIn()) {
     <script src="js/navbar-bottom.min.js" defer></script>
   </nav>
   <footer>
-    
+
   </footer>
 </body>
 

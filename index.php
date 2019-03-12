@@ -191,7 +191,7 @@ if (isLoggedInAdmin()) {
       </form>
     </section>
     <section id="information" class="infoSection">
-      <image src="images/uplanner.jpg" id="uplannerLogo">
+      <image src="images/uplanner.png" id="uplannerLogo">
     </section>
   </main>
   <footer id="loginFooter">

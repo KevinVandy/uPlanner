@@ -20,6 +20,14 @@ if (!isLoggedInAdmin()) {
 
   $allAdmins = selectAllAdmins();
   $allAccounts = selectAllAccounts();
+  $allAccountSettings = selectAllAccountsSettings();
+  $allCourses = selectAllCourses();
+  $allCourseWork = selectAllCourseWork();
+  $allJobs = selectAllJobs();
+  $allJobWork = selectAllJobWork();
+  $allEvents = selectAllEvents();
+  $allMeetings = selectAllMeetings();
+  $allTasks = selectAllTasks();
 
  ?>
 <!DOCTYPE html>
@@ -266,7 +274,7 @@ if (!isLoggedInAdmin()) {
         ?>
         </table>
       </section>
-      <section class="dataTable">
+      <section class="dataTableContainer">
         <h3>Accounts Table</h3>
         <table id="accountsTable">
           <tr>
@@ -298,6 +306,264 @@ if (!isLoggedInAdmin()) {
                 </td>
                 <td>
                   <?php echo htmlspecialchars($allAccounts[$i]->get_creationTime()); ?>
+                </td>
+              </tr>
+            <?php 
+            }
+          }
+        ?>
+        </table>
+      </section>
+      <h1>Anonymous Data</h1>
+      <section class="dataTableContainer">
+        <h3>Account Settings Table</h3>
+        <table id="accountSettingsTable">
+          <tr>
+            <th>Default View</th>
+            <th>Theme</th>
+            <th>Last Updated Time</th>
+          </tr>
+        <?php 
+          if($allAccountSettings != null) {
+            for($i = 0; $i < count($allAccountSettings); $i++) { ?>
+              <tr>
+                <td>
+                  <?php echo htmlspecialchars($allAccountSettings[$i]->get_defaultView()); ?>
+                </td>
+                <td>
+                  <?php echo htmlspecialchars($allAccountSettings[$i]->get_theme()); ?>
+                </td>
+                <td>
+                  <?php echo htmlspecialchars($allAccountSettings[$i]->get_creationTime()); ?>
+                </td>
+              </tr>
+            <?php 
+            }
+          }
+        ?>
+        </table>
+      </section>
+      <section class="dataTableContainer">
+        <h3>Courses Table</h3>
+        <table id="coursesTable">
+          <tr>
+            <th>Course Name</th>
+            <th>Teacher</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+          </tr>
+        <?php 
+          if($allCourses != null) {
+            for($i = 0; $i < count($allCourses); $i++) { ?>
+              <tr>
+                <td>
+                  <?php echo htmlspecialchars($allCourses[$i]->get_courseName()); ?>
+                </td>
+                <td>
+                  <?php echo htmlspecialchars($allCourses[$i]->get_teacher()); ?>
+                </td>
+                <td>
+                  <?php echo htmlspecialchars($allCourses[$i]->get_startDate()); ?>
+                </td>
+                <td>
+                  <?php echo htmlspecialchars($allCourses[$i]->get_endDate()); ?>
+                </td>
+              </tr>
+            <?php 
+            }
+          }
+        ?>
+        </table>
+      </section>
+      <section class="dataTableContainer">
+        <h3>Course Work Table</h3>
+        <table id="courseWorkTable">
+          <tr>
+            <th>Homework Name</th>
+            <th>Type</th>
+            <th>Priority</th>
+            <th>Due Date</th>
+            <th>Due Time</th>
+            <th>Completed</th>
+          </tr>
+        <?php 
+          if($allCourseWork != null) {
+            for($i = 0; $i < count($allCourseWork); $i++) { ?>
+              <tr>
+                <td>
+                  <?php echo htmlspecialchars($allCourseWork[$i]->get_workName()); ?>
+                </td>
+                <td>
+                  <?php echo htmlspecialchars($allCourseWork[$i]->get_workType()); ?>
+                </td>
+                <td>
+                  <?php echo htmlspecialchars($allCourseWork[$i]->get_Priority()); ?>
+                </td>
+                <td>
+                  <?php echo htmlspecialchars($allCourseWork[$i]->get_dueDate()); ?>
+                </td>
+                <td>
+                  <?php echo htmlspecialchars($allCourseWork[$i]->get_dueTime()); ?>
+                </td>
+                <td>
+                  <?php if($allCourseWork[$i]->get_completed() == 1) { echo htmlspecialchars("Yes");} else{echo htmlspecialchars("No");} ?>
+                </td>
+              </tr>
+            <?php 
+            }
+          }
+        ?>
+        </table>
+      </section>
+      <section class="dataTableContainer">
+        <h3>Jobs Table</h3>
+        <table id="jobsTable">
+          <tr>
+            <th>Job Name</th>
+          </tr>
+        <?php 
+          if($allJobs != null) {
+            for($i = 0; $i < count($allJobs); $i++) { ?>
+              <tr>
+                <td>
+                  <?php echo htmlspecialchars($allJobs[$i]->get_jobName()); ?>
+                </td>
+                </td>
+              </tr>
+            <?php 
+            }
+          }
+        ?>
+        </table>
+      </section>
+      <section class="dataTableContainer">
+        <h3>Job Work Table</h3>
+        <table id="jobWorkTable">
+          <tr>
+            <th>Job Work Name</th>
+            <th>Type</th>
+            <th>Priority</th>
+            <th>Due Date</th>
+            <th>Due Time</th>
+            <th>Completed</th>
+          </tr>
+        <?php 
+          if($allJobWork != null) {
+            for($i = 0; $i < count($allJobWork); $i++) { ?>
+              <tr>
+                <td>
+                  <?php echo htmlspecialchars($allJobWork[$i]->get_workName()); ?>
+                </td>
+                <td>
+                  <?php echo htmlspecialchars($allJobWork[$i]->get_workType()); ?>
+                </td>
+                <td>
+                  <?php echo htmlspecialchars($allJobWork[$i]->get_Priority()); ?>
+                </td>
+                <td>
+                  <?php echo htmlspecialchars($allJobWork[$i]->get_dueDate()); ?>
+                </td>
+                <td>
+                  <?php echo htmlspecialchars($allJobWork[$i]->get_dueTime()); ?>
+                </td>
+                <td>
+                  <?php if($allJobWork[$i]->get_completed() == 1) { echo htmlspecialchars("Yes");} else{echo htmlspecialchars("No");} ?>
+                </td>
+              </tr>
+            <?php 
+            }
+          }
+        ?>
+        </table>
+      </section>
+      <section class="dataTableContainer">
+        <h3>Events Table</h3>
+        <table id="eventsTable">
+          <tr>
+            <th>Event Name</th>
+            <th>Date</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Completed</th>
+          </tr>
+        <?php 
+          if($allEvents != null) {
+            for($i = 0; $i < count($allEvents); $i++) { ?>
+              <tr>
+                <td>
+                  <?php echo htmlspecialchars($allEvents[$i]->get_eventName()); ?>
+                </td>
+                <td>
+                  <?php echo htmlspecialchars($allEvents[$i]->get_date()); ?>
+                </td>
+                <td>
+                  <?php echo htmlspecialchars($allEvents[$i]->get_startTime()); ?>
+                </td>
+                <td>
+                  <?php echo htmlspecialchars($allEvents[$i]->get_endTime()); ?>
+                </td>
+                <td>
+                  <?php if($allEvents[$i]->get_completed() == 1) { echo htmlspecialchars("Yes");} else{echo htmlspecialchars("No");} ?>
+                </td>
+              </tr>
+            <?php 
+            }
+          }
+        ?>
+        </table>
+      </section>
+      <section class="dataTableContainer">
+        <h3>Meetings Table</h3>
+        <table id="meetingsTable">
+          <tr>
+            <th>Meeting Name</th>
+            <th>Date</th>
+            <th>Start Time</th>
+            <th>End Time</th>
+            <th>Completed</th>
+          </tr>
+        <?php 
+          if($allMeetings != null) {
+            for($i = 0; $i < count($allMeetings); $i++) { ?>
+              <tr>
+                <td>
+                  <?php echo htmlspecialchars($allMeetings[$i]->get_meetingName()); ?>
+                </td>
+                <td>
+                  <?php echo htmlspecialchars($allMeetings[$i]->get_date()); ?>
+                </td>
+                <td>
+                  <?php echo htmlspecialchars($allMeetings[$i]->get_startTime()); ?>
+                </td>
+                <td>
+                  <?php echo htmlspecialchars($allMeetings[$i]->get_endTime()); ?>
+                </td>
+                <td>
+                  <?php if($allMeetings[$i]->get_completed() == 1) { echo htmlspecialchars("Yes");} else{echo htmlspecialchars("No");} ?>
+                </td>
+              </tr>
+            <?php 
+            }
+          }
+        ?>
+        </table>
+      </section>
+      <section class="dataTableContainer">
+        <h3>Tasks Table</h3>
+        <table id="tasksTable">
+          <tr>
+            <th>Task Name</th>
+            <th>Priority</th>
+          </tr>
+        <?php 
+          if($allTasks != null) {
+            for($i = 0; $i < count($allTasks); $i++) { ?>
+              <tr>
+                <td>
+                  <?php echo htmlspecialchars($allTasks[$i]->get_taskName()); ?>
+                </td>
+                <td>
+                  <?php echo htmlspecialchars($allTasks[$i]->get_priority()); ?>
                 </td>
               </tr>
             <?php 

@@ -277,8 +277,10 @@ switch ($action) {
 
  default:
 
-  header('Location: ./index.php');
+  //header('Location: ./index.php');
 
   break;
 
 }
+
+include('./offline.html');

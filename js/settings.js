@@ -72,7 +72,7 @@ function generateSettingsForm() {
         </tr>
       </table>
     </form>
-    <button onclick='$("#change-password-popup").show(500);'>Change Password</button>
+    <button id="changePasswordButton" onclick='$("#change-password-popup").show(500);'>Change Password</button>
     <div class="popupform" id="change-password-popup">
       <button class="close-button" id="changeAccountPasswordCloseButton" onclick='$("#change-password-popup").slideUp(500);'>X</button>
       <form action="./controller.php" method="post">

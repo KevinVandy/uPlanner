@@ -5,8 +5,8 @@ const addWorkArea = document.getElementById('add-work-popup');
   addWorkArea.innerHTML = generateAddJobWorkForm();
 })();
 
-$("#addWorkCloseButton").click(function () {
-  $("#add-work-popup").slideUp(300);
+$("#addJobWorkCloseButton").click(function () {
+  $("#add-work-popup").slideUp(500);
 });
 
 function generateAddJobWorkForm() {
@@ -56,15 +56,10 @@ function generateAddJobWorkForm() {
         <tr>
           <td>
             <select name="jobWorkType">
-              <option value="Reading">Reading</option>
-              <option value="Study">Study</option>
-              <option value="Homework" selected>Homework</option>
-              <option value="Project">Project</option>
+              <option value="Deadline">Deadline</option>
               <option value="Presentation">Presentation</option>
-              <option value="Quiz">Quiz</option>
-              <option value="Test">Test</option>
-              <option value="Midterm">Midterm</option>
-              <option value="Final">Final</option>
+              <option value="Meeting">Meeting</option>
+              <option value="Research">Research</option>
             </select>
           </td>
         </tr>

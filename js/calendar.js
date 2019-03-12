@@ -97,7 +97,7 @@ function createYearSkelaton() {
       `;
     }
 
-    if (monthOfYear == currentDayMonth && todayYear == currentDayYear) {
+    if (monthOfYear == todayMonth && todayYear == currentDayYear) {
       html += //html
         `
         <div class="this-month-label">
@@ -196,7 +196,7 @@ function createMonthSkelaton() {
             <td class="even-day">
           `;
         }
-        if (dayOfMonth == currentDayDay && currentDayMonth == todayMonth && currentDayYear == todayYear) { //if today
+        if (dayOfMonth == todayDay && currentDayMonth == todayMonth && currentDayYear == todayYear) { //if today
           html += //html
             `
                 <div class="to-day-label">${dayOfMonth++}</div>
